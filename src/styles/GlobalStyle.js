@@ -21,6 +21,15 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.5;
     overflow: hidden;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  input, button {
+    font-family: inherit;
   }
 `;
 
