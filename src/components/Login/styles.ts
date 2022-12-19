@@ -4,6 +4,13 @@ interface props {
   open?: boolean;
 }
 
+type ButtonProps = {
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void; // to handle onClick functions
+  children?: React.ReactNode; // make the component able to receive children elements
+  color?: "primary" | "secondary"; // two styling options (you can create as many as you want)
+  disabled?: boolean; // make the button disabled or not
+};
+
 export const Container = styled.div<props>`
   width: 60rem;
   height: 80rem;
@@ -41,7 +48,7 @@ export const Input = styled.input`
   border-radius: 2.4rem;
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<ButtonProps>`
   padding: 1.6rem 1.6rem;
   background-color: #7f553a;
   color: #fff;

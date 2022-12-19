@@ -1,6 +1,17 @@
+import { useNavigate } from "react-router-dom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { authActiveState } from "../../atoms/LoginState";
 import { Button, Container, Div, Input, Label, Wrapper } from "./styles";
 
 const Login = () => {
+  const [, setAuthActive] = useRecoilState(authActiveState);
+  const navigate = useNavigate();
+
+  const handleAuth = () => {
+    setAuthActive((prevState) => !prevState);
+    navigate("home");
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -12,7 +23,7 @@ const Login = () => {
           <Label>비밀번호</Label>
           <Input type="password" />
         </Div>
-        <Button>로그인</Button>
+        <Button onClick={() => handleAuth()}>로그인</Button>
       </Wrapper>
     </Container>
   );

@@ -12,13 +12,15 @@ import {
 import image from "../assets/coffee.jpg";
 import image2 from "../assets/login3.jpg";
 import image4 from "../assets/login3.jpg";
-
 import Login from "../components/Login/Login";
-import { openBookState } from "../atoms/LoginState";
-import { useRecoilState } from "recoil";
+import { authActiveState, openBookState } from "../atoms/LoginState";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "../components/Home/Home";
 
 const OpeningBook = () => {
   const [openBook, setOpenBook] = useRecoilState(openBookState);
+  const authActive = useRecoilValue(authActiveState);
 
   const handleBookPage = () => {
     setOpenBook((prevState) => !prevState);
@@ -28,12 +30,21 @@ const OpeningBook = () => {
     <Container>
       <Wrapper open={openBook}>
         <LoginBox loginImg={image2} open={openBook}>
-          {openBook && <Login />}
-          <Div className="back" open={openBook}>
-            <Button onClick={handleBookPage} className="back__btn">
-              ⬅ 나가기
-            </Button>
-          </Div>
+          {openBook && (
+            <Router>
+              <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="home" element={<Home />} />
+              </Routes>
+            </Router>
+          )}
+          {!authActive && (
+            <Div className="back" open={openBook}>
+              <Button onClick={handleBookPage} className="back__btn">
+                ⬅ 나가기
+              </Button>
+            </Div>
+          )}
         </LoginBox>
 
         <ImageBox className="book" open={openBook}>

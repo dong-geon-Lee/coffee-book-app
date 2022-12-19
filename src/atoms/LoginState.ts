@@ -4,3 +4,8 @@ export const openBookState = atom<boolean>({
   key: "openBookState",
   default: false,
 });
+
+export const authActiveState = atom({
+  key: "authActiveState",
+  default: false,
+});

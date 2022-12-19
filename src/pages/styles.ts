@@ -120,8 +120,6 @@ export const Div = styled.div<openProps>`
     left: 50%;
     z-index: 0;
     opacity: ${(props) => (props.open ? 1 : 0)};
-    /* transition: opacity 0.3s ease;
-    transition-delay: 0.2s; */
   }
 `;
 
