@@ -64,4 +64,8 @@ export const Button = styled.button<ButtonProps>`
   cursor: pointer;
   user-select: none;
   margin-top: 3rem;
+
+  &:hover {
+    background-color: #855f46;
+  }
 `;
