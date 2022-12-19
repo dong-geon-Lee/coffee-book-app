@@ -7,13 +7,18 @@ import {
   Button,
   Title,
   Strong,
+  LoginBox,
 } from "./styles";
-import image from "../assets/coffee3.jpg";
-import image2 from "../assets/coffee2.jpg";
-import { useState } from "react";
+import image from "../assets/coffee.jpg";
+import image2 from "../assets/login3.jpg";
+import image4 from "../assets/login3.jpg";
+
+import Login from "../components/Login/Login";
+import { openBookState } from "../atoms/LoginState";
+import { useRecoilState } from "recoil";
 
 const OpeningBook = () => {
-  const [openBook, setOpenBook] = useState(false);
+  const [openBook, setOpenBook] = useRecoilState(openBookState);
 
   const handleBookPage = () => {
     setOpenBook((prevState) => !prevState);
@@ -22,19 +27,22 @@ const OpeningBook = () => {
   return (
     <Container>
       <Wrapper open={openBook}>
-        <Div className="back" open={openBook}>
-          <Button onClick={handleBookPage} className="back__btn">
-            ← 돌아가기
-          </Button>
-        </Div>
+        <LoginBox loginImg={image2} open={openBook}>
+          {openBook && <Login />}
+          <Div className="back" open={openBook}>
+            <Button onClick={handleBookPage} className="back__btn">
+              ⬅ 나가기
+            </Button>
+          </Div>
+        </LoginBox>
 
-        <ImageBox className="book">
+        <ImageBox className="book" open={openBook}>
           <Title>
             <Strong>Coffee</Strong> Book
           </Title>
 
           <Img src={image} />
-          <Img src={image2} className="img2" />
+          <Img src={image4} className="back__image"></Img>
 
           <Div className="start">
             <Button onClick={handleBookPage}>시작하기</Button>

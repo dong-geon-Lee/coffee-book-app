@@ -1,22 +1,35 @@
 import styled, { css, keyframes } from "styled-components";
 
+const openBook = keyframes`
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+`;
+
+const closeBook = keyframes`
+  from {
+    opacity: 1
+  }
+
+  to {
+    opacity: 0
+  }
+`;
+
 interface props {
   src?: "string";
+  image4?: "string";
+  loginImg?: "string";
+  open?: boolean;
 }
 
 interface openProps {
   open?: boolean;
 }
-
-const rotating = keyframes`
-  from {
-    transform: rotateY(0deg);
-  }
-
-  to {
-    transform: rotateY(-180deg);
-  }
-`;
 
 export const Container = styled.div`
   width: 100%;
@@ -35,30 +48,18 @@ export const Wrapper = styled.div<openProps>`
   z-index: 5;
   will-change: transition;
 
-  /* &:hover {
-    transform: ${(props) =>
-    props.open ? css` translateX(50%)` : css` translateX(0%)`};
-  }
-
-  &:hover .book {
-    transform: ${(props) => (props.open ? `rotateY(-180deg)` : "")};
-    transform-origin: ${(props) => (props.open ? "left" : "")};
-  } */
-
   & {
     transform: ${(props) =>
       props.open ? "translateX(50%)" : "translateX(0%)"};
   }
 
   & .book {
-    /* transform: ${(props) =>
-      props.open ? `rotateY(-180deg)` : "rotateY(0deg)"}; */
     transform: ${(props) => props.open && "rotateY(-180deg)"};
     transform-origin: ${(props) => props.open && "left"};
   }
 `;
 
-export const ImageBox = styled.div`
+export const ImageBox = styled.div<props>`
   position: relative;
   width: 100%;
   height: 100%;
@@ -83,11 +84,22 @@ export const Img = styled.div<props>`
   transform-style: preserve-3d;
   backface-visibility: hidden;
 
-  & + .img2 {
-    backface-visibility: hidden;
-    transform: rotateY(180deg);
+  & + .back__image {
     z-index: 2;
+    transform: rotateY(180deg);
+    filter: brightness(200%);
+    background-size: cover;
+    background-position: left;
   }
+`;
+
+export const Box = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 export const Div = styled.div<openProps>`
@@ -104,13 +116,12 @@ export const Div = styled.div<openProps>`
 
   &.back {
     position: absolute;
-    bottom: 5%;
-    left: 40%;
+    bottom: 30%;
+    left: 50%;
     z-index: 0;
-    width: 50%;
     opacity: ${(props) => (props.open ? 1 : 0)};
-    transition: opacity 0.3s ease;
-    transition-delay: 0.2s;
+    /* transition: opacity 0.3s ease;
+    transition-delay: 0.2s; */
   }
 `;
 
@@ -120,7 +131,7 @@ export const Title = styled.h1`
   left: 50%;
   transform: translate(-50%, -10%);
   color: #ffb167;
-  font-size: 6.2rem;
+  font-size: 7.2rem;
   width: 100%;
   text-align: center;
   z-index: 1;
@@ -152,7 +163,27 @@ export const Button = styled.div`
   }
 
   &.back__btn {
-    padding: 1rem 1.6rem;
+    padding: 1.4rem 1.6rem;
     font-size: 1.8rem;
+    width: 50%;
   }
+`;
+
+export const LoginBox = styled.div<props>`
+  position: absolute;
+  background-color: inherit;
+  width: 100%;
+  height: 100%;
+  background-image: url(${(props) => props.loginImg});
+  background-size: cover;
+  background-position: right;
+
+  ${(props) =>
+    props.open
+      ? css`
+          animation: ${openBook} 2s alternate;
+        `
+      : css`
+          animation: ${closeBook} 1s alternate;
+        `}
 `;
