@@ -17,6 +17,10 @@ import { authActiveState, openBookState } from "../atoms/loginState";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "../components/Home/Home";
+import CartItems from "../components/CartItems/CartItems";
+import Profiles from "../components/Profiles/Profiles";
+import Likes from "../components/Likes/Likes";
+import { Suspense } from "react";
 
 const OpeningBook = () => {
   const [openBook, setOpenBook] = useRecoilState(openBookState);
@@ -31,13 +35,19 @@ const OpeningBook = () => {
       <Wrapper open={openBook}>
         <LoginBox loginImg={image2} open={openBook}>
           {openBook && (
-            <Router>
-              <Routes>
-                <Route path="/" element={<Login />} />
-                <Route path="home" element={<Home />} />
-              </Routes>
-            </Router>
+            <Suspense fallback={<span>Loading...</span>}>
+              <Router>
+                <Routes>
+                  <Route path="login" element={<Login />} />
+                  <Route path="/" element={<Home />} />
+                  <Route path="likes" element={<Likes />} />
+                  <Route path="cartItems" element={<CartItems />} />
+                  <Route path="profiles" element={<Profiles />} />
+                </Routes>
+              </Router>
+            </Suspense>
           )}
+
           {!authActive && (
             <Div className="back" open={openBook}>
               <Button onClick={handleBookPage} className="back__btn">

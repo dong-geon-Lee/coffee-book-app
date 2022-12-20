@@ -41,15 +41,31 @@ interface Props {
 
 const Home = () => {
   const [, setAuthActive] = useRecoilState(authActiveState);
+  const coffeeLists = useRecoilValue(dataState);
   const navigate = useNavigate();
 
+  console.log(coffeeLists);
+
   const handleLogout = () => {
-    navigate("/");
+    navigate("/login");
     setAuthActive(false);
   };
 
-  const coffeeLists = useRecoilValue(dataState);
-  console.log(coffeeLists);
+  const handleNavigateHome = () => {
+    navigate("/");
+  };
+
+  const handleNavigateLikes = () => {
+    navigate("/likes");
+  };
+
+  const handleNavigateCartItems = () => {
+    navigate("/cartItems");
+  };
+
+  const handleNavigateProfiles = () => {
+    navigate("/profiles");
+  };
 
   return (
     <Container>
@@ -88,7 +104,7 @@ const Home = () => {
 
           <ContentBox>
             {coffeeLists.map((item: Props) => (
-              <Contents>
+              <Contents key={item.id}>
                 <ImgBox className="content">
                   <Img src={item.image} alt="logo" />
                 </ImgBox>
@@ -101,16 +117,16 @@ const Home = () => {
       </Wrapper>
 
       <MenuIcons>
-        <ImgBox className="icon__box">
+        <ImgBox className="icon__box" onClick={handleNavigateHome}>
           <Img src={home} className="icons" />
         </ImgBox>
-        <ImgBox className="icon__box">
+        <ImgBox className="icon__box" onClick={handleNavigateLikes}>
           <Img src={heart} className="icons" />
         </ImgBox>
-        <ImgBox className="icon__box">
+        <ImgBox className="icon__box" onClick={handleNavigateCartItems}>
           <Img src={cart} className="icons" />
         </ImgBox>
-        <ImgBox className="icon__box">
+        <ImgBox className="icon__box" onClick={handleNavigateProfiles}>
           <Img src={profile} className="icons" />
         </ImgBox>
       </MenuIcons>

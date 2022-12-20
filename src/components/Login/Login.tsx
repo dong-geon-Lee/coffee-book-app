@@ -9,7 +9,7 @@ const Login = () => {
 
   const handleAuth = () => {
     setAuthActive((prevState) => !prevState);
-    navigate("home");
+    navigate("/");
   };
 
   return (
