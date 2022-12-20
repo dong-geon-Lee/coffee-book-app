@@ -16,7 +16,6 @@ import {
   Title,
   ContentBox,
   Contents,
-  IconsBox,
   MenuIcons,
 } from "./styles";
 import img from "../../assets/logo5.png";

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { authActiveState } from "../../atoms/loginState";
 import { Button, Container, Div, Input, Label, Wrapper } from "./styles";
 
