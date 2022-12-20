@@ -1,31 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { authActiveState } from "../../atoms/loginState";
-import {
-  Button,
-  Container,
-  Header,
-  Img,
-  ImgBox,
-  Wrapper,
-  MenuIcons,
-} from "./styles";
-import img from "../../assets/logo5.png";
+import { Container, Img, ImgBox, MenuIcons } from "./styles";
 import home from "../../assets/home.svg";
 import heart from "../../assets/heart.svg";
 import cart from "../../assets/cart.svg";
 import profile from "../../assets/profile.svg";
-import { dataState } from "../../atoms/dataState";
-
-interface Props {
-  id: number;
-  title: string;
-  description: string;
-  type: string;
-  image: string;
-  size: string[];
-  price: number[];
-}
+import { Link } from "react-router-dom";
 
 const NavMenu = () => {
   const navigate = useNavigate();
