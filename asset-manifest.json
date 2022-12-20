@@ -1,7 +1,6 @@
 {
   "files": {
-    "main.js": "/coffee-book-app/static/js/main.60ce3162.js",
-    "static/media/login4.jpg": "/coffee-book-app/static/media/login4.d339163a53af9f756b5c.jpg",
+    "main.js": "/coffee-book-app/static/js/main.13305be1.js",
     "static/media/coffee.jpg": "/coffee-book-app/static/media/coffee.ccb1afbe39c88f6248c1.jpg",
     "static/media/login3.jpg": "/coffee-book-app/static/media/login3.374901c236a8980bd535.jpg",
     "static/media/logo5.png": "/coffee-book-app/static/media/logo5.aaa6ea8aef28980c70ea.png",
@@ -9,10 +8,14 @@
     "static/media/coffee4.svg": "/coffee-book-app/static/media/coffee4.c3a871b6b3588479e6f0e56ef4209fac.svg",
     "static/media/coffee7.svg": "/coffee-book-app/static/media/coffee7.907e44bdb9bbec348e076768cedeb678.svg",
     "static/media/coffee6.svg": "/coffee-book-app/static/media/coffee6.82f7b3e69f93f9de6073ab6dbb8fa87e.svg",
+    "static/media/cart.svg": "/coffee-book-app/static/media/cart.43601f5e73ef508c5415a22b3d0d4f31.svg",
+    "static/media/profile.svg": "/coffee-book-app/static/media/profile.9ec508d2d8314b850ba0e99a328f225d.svg",
+    "static/media/home.svg": "/coffee-book-app/static/media/home.914b7d46b6ccf695dfc39173f2c9a5e9.svg",
+    "static/media/heart.svg": "/coffee-book-app/static/media/heart.ebbc150c034ea2b7c48b7dd474047f45.svg",
     "index.html": "/coffee-book-app/index.html",
-    "main.60ce3162.js.map": "/coffee-book-app/static/js/main.60ce3162.js.map"
+    "main.13305be1.js.map": "/coffee-book-app/static/js/main.13305be1.js.map"
   },
   "entrypoints": [
-    "static/js/main.60ce3162.js"
+    "static/js/main.13305be1.js"
   ]
 }
