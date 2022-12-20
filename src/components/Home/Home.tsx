@@ -16,13 +16,18 @@ import {
   Title,
   ContentBox,
   Contents,
+  IconsBox,
+  MenuIcons,
 } from "./styles";
 import img from "../../assets/logo5.png";
-import img2 from "../../assets/login3.jpg";
 import logo6 from "../../assets/coffee6.svg";
 import logo7 from "../../assets/coffee7.svg";
 import logo3 from "../../assets/coffee3.svg";
 import logo4 from "../../assets/coffee4.svg";
+import home from "../../assets/home.svg";
+import heart from "../../assets/heart.svg";
+import cart from "../../assets/cart.svg";
+import profile from "../../assets/profile.svg";
 import { dataState } from "../../atoms/dataState";
 
 interface Props {
@@ -86,7 +91,7 @@ const Home = () => {
             {coffeeLists.map((item: Props) => (
               <Contents>
                 <ImgBox className="content">
-                  <Img src={item.image} alt="logo" className="content-img" />
+                  <Img src={item.image} alt="logo" />
                 </ImgBox>
 
                 <Title>{item.title}</Title>
@@ -95,6 +100,21 @@ const Home = () => {
           </ContentBox>
         </Section>
       </Wrapper>
+
+      <MenuIcons>
+        <ImgBox className="icon__box">
+          <Img src={home} className="icons" />
+        </ImgBox>
+        <ImgBox className="icon__box">
+          <Img src={heart} className="icons" />
+        </ImgBox>
+        <ImgBox className="icon__box">
+          <Img src={cart} className="icons" />
+        </ImgBox>
+        <ImgBox className="icon__box">
+          <Img src={profile} className="icons" />
+        </ImgBox>
+      </MenuIcons>
     </Container>
   );
 };

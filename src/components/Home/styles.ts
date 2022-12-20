@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+interface Props {
+  fill?: string;
+  stroke?: string;
+}
+
 export const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -56,11 +61,29 @@ export const ImgBox = styled.div`
     cursor: pointer;
   }
 
-  &.content-img {
+  &.icon__box {
+    flex: 1;
+    height: 10rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #e6ccb2;
+    }
+  }
+
+  & .icons {
+    margin: auto;
+    width: 3.6rem;
+    height: 3.6rem;
+    transform: translateX(125%);
   }
 `;
 
-export const Img = styled.img`
+export const Img = styled.img<Props>`
   position: absolute;
   top: 0;
   left: 0;
@@ -81,8 +104,8 @@ export const Button = styled.button`
 `;
 
 export const Logo = styled.img`
-  width: 3.6rem;
-  height: 3.6rem;
+  width: 3rem;
+  height: 3rem;
   object-fit: cover;
 `;
 
@@ -119,3 +142,14 @@ export const ContentBox = styled.div`
 `;
 
 export const Contents = styled.div``;
+
+export const MenuIcons = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
+  background-color: #f9e9db;
+  padding: 0 3rem;
+`;
+
+export const IconsBox = styled.div``;
