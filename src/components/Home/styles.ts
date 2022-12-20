@@ -1,21 +1,20 @@
 import styled from "styled-components";
 
-interface Props {
-  img?: string;
-}
-
-export const Container = styled.div<Props>`
+export const Container = styled.div`
   width: 100%;
   height: 100%;
-  background-color: #e6ccb2;
-  background-image: url(${(props) => props.img});
-  background-size: 400% 200%;
+  background-size: cover;
   background-repeat: no-repeat;
-  z-index: 1;
-  padding: 2.6rem;
+  background-position: right;
+  background-color: #f9e9db;
+  overflow: hidden;
 `;
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  padding: 1.4rem 3rem;
+  height: 70rem;
+  overflow-y: auto;
+`;
 
 export const Header = styled.header`
   display: flex;
@@ -24,45 +23,99 @@ export const Header = styled.header`
 `;
 
 export const Div = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
   &.main {
-    padding: 4rem 2rem;
+    border: 3px solid #ddd;
+    margin: 2rem 0 3.6rem 0;
+  }
+
+  &.flex {
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 2rem;
+
+    &:hover {
+      background-color: #e6ccb2;
+      color: black;
+    }
   }
 `;
 
 export const ImgBox = styled.div`
   position: relative;
-  width: 12rem;
-  height: 12rem;
+  width: 8rem;
+  height: 8rem;
+
+  &.content {
+    width: 14rem;
+    height: 14rem;
+    cursor: pointer;
+  }
+
+  &.content-img {
+  }
 `;
 
 export const Img = styled.img`
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
 `;
 
 export const Button = styled.button`
-  padding: 1.8rem 2.4rem;
-  font-size: 1.6rem;
-  background-color: #7f553a;
-  color: #fff;
-  border-radius: 2rem;
-  letter-spacing: 2px;
+  padding: 1.6rem 2rem;
+  font-size: 4rem;
+  background-color: inherit;
 
   &:hover {
-    background-color: #855f46;
+    transform: scale(1.1);
   }
 `;
 
 export const Logo = styled.img`
-  width: 4rem;
-  height: 4rem;
+  width: 3.6rem;
+  height: 3.6rem;
   object-fit: cover;
 `;
 
-export const Text = styled.h2`
+export const Title = styled.h1`
   font-size: 1.8rem;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 2px;
+  user-select: none;
+  margin-top: 1.4rem;
 `;
+
+export const Label = styled.label`
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding: 1rem 0;
+  user-select: none;
+  cursor: pointer;
+`;
+
+export const Section = styled.section``;
+
+export const Input = styled.input`
+  width: 2rem;
+  height: 2rem;
+`;
+
+export const ContentBox = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: baseline;
+  align-items: baseline;
+  gap: 1.6rem 4.8rem;
+`;
+
+export const Contents = styled.div``;

@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-export const openBookState = atom<boolean>({
+export const openBookState = atom({
   key: "openBookState",
   default: false,
 });

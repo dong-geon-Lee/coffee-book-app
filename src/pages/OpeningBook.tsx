@@ -13,7 +13,7 @@ import image from "../assets/coffee.jpg";
 import image2 from "../assets/login3.jpg";
 import image4 from "../assets/login3.jpg";
 import Login from "../components/Login/Login";
-import { authActiveState, openBookState } from "../atoms/LoginState";
+import { authActiveState, openBookState } from "../atoms/loginState";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "../components/Home/Home";

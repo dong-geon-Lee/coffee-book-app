@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { authActiveState } from "../../atoms/LoginState";
+import { authActiveState } from "../../atoms/loginState";
 import { Button, Container, Div, Input, Label, Wrapper } from "./styles";
 
 const Login = () => {

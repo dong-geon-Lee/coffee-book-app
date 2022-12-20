@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { authActiveState } from "../../atoms/LoginState";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { authActiveState } from "../../atoms/loginState";
 import {
   Button,
   Container,
@@ -8,16 +8,32 @@ import {
   Header,
   Img,
   ImgBox,
+  Input,
+  Label,
   Logo,
-  Text,
+  Section,
   Wrapper,
+  Title,
+  ContentBox,
+  Contents,
 } from "./styles";
 import img from "../../assets/logo5.png";
-import img2 from "../../assets/login4.jpg";
+import img2 from "../../assets/login3.jpg";
 import logo6 from "../../assets/coffee6.svg";
 import logo7 from "../../assets/coffee7.svg";
 import logo3 from "../../assets/coffee3.svg";
 import logo4 from "../../assets/coffee4.svg";
+import { dataState } from "../../atoms/dataState";
+
+interface Props {
+  id: number;
+  title: string;
+  description: string;
+  type: string;
+  image: string;
+  size: string[];
+  price: number[];
+}
 
 const Home = () => {
   const [, setAuthActive] = useRecoilState(authActiveState);
@@ -28,40 +44,56 @@ const Home = () => {
     setAuthActive(false);
   };
 
+  const coffeeLists = useRecoilValue(dataState);
+  console.log(coffeeLists);
+
   return (
-    <Container img={img2}>
+    <Container>
       <Wrapper>
         <Header>
           <ImgBox>
             <Img src={img} alt="logo" />
           </ImgBox>
 
-          <Div>
-            <Button onClick={handleLogout}>로그아웃</Button>
-          </Div>
+          <Button onClick={handleLogout}>🔙</Button>
         </Header>
 
-        <Div className="main">
-          <h1>카테고리</h1>
-          <div>
-            <div>
-              <Logo src={logo3} />
-              <Text>에스프레소</Text>
-            </div>
-            <div>
+        <Section>
+          <Div className="main">
+            <Div className="flex">
+              <Logo src={logo3} className="logo__svg" />
+              <Label htmlFor="espresso">에스프레소</Label>
+              <Input type="checkbox" id="espresso" name="espresso" />
+            </Div>
+            <Div className="flex">
               <Logo src={logo7} />
-              <Text>콜드 브루</Text>
-            </div>
-            <div>
+              <Label htmlFor="cold__brew">콜드 브루</Label>
+              <Input type="checkbox" id="cold__brew" name="cold__brew" />
+            </Div>
+            <Div className="flex">
               <Logo src={logo4} />
-              <Text>푸라푸치노</Text>
-            </div>
-            <div>
+              <Label htmlFor="frappuccino">푸라푸치노</Label>
+              <Input type="checkbox" id="frappuccino" name="frappuccino" />
+            </Div>
+            <Div className="flex">
               <Logo src={logo6} />
-              <Text>블렌디드</Text>
-            </div>
-          </div>
-        </Div>
+              <Label htmlFor="blended">블렌디드</Label>
+              <Input type="checkbox" id="blended" name="blended" />
+            </Div>
+          </Div>
+
+          <ContentBox>
+            {coffeeLists.map((item: Props) => (
+              <Contents>
+                <ImgBox className="content">
+                  <Img src={item.image} alt="logo" className="content-img" />
+                </ImgBox>
+
+                <Title>{item.title}</Title>
+              </Contents>
+            ))}
+          </ContentBox>
+        </Section>
       </Wrapper>
     </Container>
   );
