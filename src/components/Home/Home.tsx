@@ -55,7 +55,7 @@ const Home = () => {
   };
 
   const handleNavigateHome = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   const handleNavigateLikes = () => {
@@ -74,7 +74,7 @@ const Home = () => {
 
   useEffect(() => {
     setAuthActive(true);
-  }, [location.pathname === "/"]);
+  }, [location.pathname === "/home"]);
 
   return (
     <Container>

@@ -1,16 +1,15 @@
-import { useNavigate } from "react-router-dom";
+import { HashRouter as Router, useNavigate } from "react-router-dom";
 import { Container, Img, ImgBox, MenuIcons } from "./styles";
 import home from "../../assets/home.svg";
 import heart from "../../assets/heart.svg";
 import cart from "../../assets/cart.svg";
 import profile from "../../assets/profile.svg";
-import { Link } from "react-router-dom";
 
 const NavMenu = () => {
   const navigate = useNavigate();
 
   const handleNavigateHome = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   const handleNavigateLikes = () => {
@@ -36,6 +35,31 @@ const NavMenu = () => {
           <Button onClick={handleLogout}>🔙</Button>
         </Header>
       </Wrapper> */}
+
+      {/* <MenuIcons>
+        <ImgBox className="icon__box" onClick={handleNavigateHome}>
+          <Link to="/">
+            <Img src={home} className="icons" />
+          </Link>
+        </ImgBox>
+
+        <ImgBox className="icon__box" onClick={handleNavigateLikes}>
+          <Link to="/likes">
+            <Img src={heart} className="icons" />
+          </Link>
+        </ImgBox>
+
+        <ImgBox className="icon__box" onClick={handleNavigateCartItems}>
+          <Link to="/cartItems">
+            <Img src={cart} className="icons" />
+          </Link>
+        </ImgBox>
+
+        <ImgBox className="icon__box" onClick={handleNavigateProfiles}>
+          <Link to="/profiles">
+            <Img src={profile} className="icons" />
+          </Link>
+        </ImgBox> */}
 
       <MenuIcons>
         <ImgBox className="icon__box" onClick={handleNavigateHome}>

@@ -165,6 +165,11 @@ export const Button = styled.div`
     font-size: 1.8rem;
     width: 50%;
   }
+
+  & a {
+    text-decoration: none;
+    color: #fff;
+  }
 `;
 
 export const LoginBox = styled.div<props>`

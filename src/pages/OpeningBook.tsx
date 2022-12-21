@@ -15,11 +15,19 @@ import image4 from "../assets/login3.jpg";
 import Login from "../components/Login/Login";
 import { authActiveState, openBookState } from "../atoms/userAuthState";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Routes,
+  Route,
+  redirect,
+  Navigate,
+} from "react-router-dom";
 import Home from "../components/Home/Home";
 import CartItems from "../components/CartItems/CartItems";
 import Profiles from "../components/Profiles/Profiles";
 import Likes from "../components/Likes/Likes";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const OpeningBook = () => {
   const [openBook, setOpenBook] = useRecoilState(openBookState);
@@ -36,8 +44,14 @@ const OpeningBook = () => {
           {openBook && (
             <Router>
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="login" element={<Login />} />
+                <Route
+                  index
+                  path="login"
+                  element={
+                    !authActive ? <Login /> : <Navigate to="/home" replace />
+                  }
+                />
+                <Route path="home" element={<Home />} />
                 <Route path="likes" element={<Likes />} />
                 <Route path="cartItems" element={<CartItems />} />
                 <Route path="profiles" element={<Profiles />} />
@@ -46,11 +60,15 @@ const OpeningBook = () => {
           )}
 
           {!authActive && (
-            <Div className="back" open={openBook}>
-              <Button onClick={handleBookPage} className="back__btn">
-                ⬅ 나가기
-              </Button>
-            </Div>
+            <Router>
+              <Link to="/">
+                <Div className="back" open={openBook}>
+                  <Button onClick={handleBookPage} className="back__btn">
+                    ⬅ 나가기
+                  </Button>
+                </Div>
+              </Link>
+            </Router>
           )}
         </LoginBox>
 
@@ -62,9 +80,13 @@ const OpeningBook = () => {
           <Img src={image} />
           <Img src={image4} className="back__image"></Img>
 
-          <Div className="start">
-            <Button onClick={handleBookPage}>시작하기</Button>
-          </Div>
+          <Router>
+            <Link to="/login">
+              <Div className="start">
+                <Button onClick={() => handleBookPage()}>시작하기</Button>
+              </Div>
+            </Link>
+          </Router>
         </ImageBox>
       </Wrapper>
     </Container>
