@@ -29,7 +29,7 @@ import cart from "../../assets/cart.svg";
 import profile from "../../assets/profile.svg";
 import { dataState } from "../../atoms/dataState";
 
-interface Props {
+export interface Props {
   id: number;
   title: string;
   description: string;

@@ -35,26 +35,25 @@ const OpeningBook = () => {
       <Wrapper open={openBook}>
         <LoginBox loginImg={image2} open={openBook}>
           {openBook && (
-            <Suspense fallback={<span>Loading...</span>}>
-              <Router>
-                <Routes>
-                  <Route path="login" element={<Login />} />
-                  <Route path="/" element={<Home />} />
-                  <Route path="likes" element={<Likes />} />
-                  <Route path="cartItems" element={<CartItems />} />
-                  <Route path="profiles" element={<Profiles />} />
-                </Routes>
-              </Router>
-            </Suspense>
+            <Router>
+              <Routes>
+                <Route path="login" element={<Login />} />
+                <Route path="/" element={<Home />} />
+                <Route path="likes" element={<Likes />} />
+                <Route path="cartItems" element={<CartItems />} />
+                <Route path="profiles" element={<Profiles />} />
+              </Routes>
+            </Router>
           )}
 
-          {!authActive && (
-            <Div className="back" open={openBook}>
-              <Button onClick={handleBookPage} className="back__btn">
-                ⬅ 나가기
-              </Button>
-            </Div>
-          )}
+          {!openBook ||
+            (!authActive && (
+              <Div className="back" open={openBook}>
+                <Button onClick={handleBookPage} className="back__btn">
+                  ⬅ 나가기
+                </Button>
+              </Div>
+            ))}
         </LoginBox>
 
         <ImageBox className="book" open={openBook}>
