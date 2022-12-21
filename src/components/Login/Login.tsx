@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Navigate, redirect, useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import { authActiveState } from "../../atoms/userAuthState";
 import { accounts } from "../../data/userItems";
 import { Button, Container, Div, Form, Input, Label } from "./styles";
@@ -29,7 +29,6 @@ const Login = () => {
   });
   const { userId, password }: inputProps = authInput;
   const [, setAuthActive] = useRecoilState(authActiveState);
-  const authActive = useRecoilValue(authActiveState);
 
   const navigate = useNavigate();
   const location = useLocation();

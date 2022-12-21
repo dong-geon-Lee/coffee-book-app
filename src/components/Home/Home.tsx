@@ -42,8 +42,9 @@ export interface Props {
 }
 
 const Home = () => {
-  const [, setAuthActive] = useRecoilState(authActiveState);
+  const [authActive, setAuthActive] = useRecoilState(authActiveState);
   const coffeeLists = useRecoilValue(coffeeItemState);
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -75,6 +76,12 @@ const Home = () => {
   useEffect(() => {
     setAuthActive(true);
   }, [location.pathname === "/home"]);
+
+  useEffect(() => {
+    if (!authActive) {
+      return navigate("/login");
+    }
+  }, [authActive]);
 
   return (
     <Container>
