@@ -17,7 +17,7 @@ export const Container = styled.div<props>`
   position: relative;
 `;
 
-export const Wrapper = styled.div<props>`
+export const Form = styled.form<props>`
   width: 100%;
   height: 75%;
   display: flex;
@@ -42,10 +42,14 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   padding: 1.4rem 2rem;
-  font-size: 2.4rem;
+  font-size: 2.6rem;
   font-weight: 500;
   background-color: #f3d5b5;
   border-radius: 2.4rem;
+
+  &::placeholder {
+    font-size: 1.6rem;
+  }
 `;
 
 export const Button = styled.button<ButtonProps>`

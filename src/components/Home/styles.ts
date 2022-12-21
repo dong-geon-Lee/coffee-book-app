@@ -75,6 +75,11 @@ export const ImgBox = styled.div`
     }
   }
 
+  &.logout {
+    width: 4rem;
+    height: 4rem;
+  }
+
   & .icons {
     margin: auto;
     width: 3.6rem;

@@ -1,5 +1,5 @@
 import NavMenu from "../NavMenu/NavMenu";
-import { dataState } from "../../atoms/dataState";
+import { coffeeItemState } from "../../atoms/coffeeItemState";
 import { useRecoilValue } from "recoil";
 import star from "../../assets/star.svg";
 import star0 from "../../assets/star0.svg";
@@ -27,8 +27,8 @@ export interface Props {
 }
 
 const Likes = () => {
-  const coffeeLists = useRecoilValue(dataState);
-  const items = coffeeLists.slice(0, 4);
+  const coffeeItems = useRecoilValue(coffeeItemState);
+  const items = coffeeItems.slice(0, 4);
 
   return (
     <Container>

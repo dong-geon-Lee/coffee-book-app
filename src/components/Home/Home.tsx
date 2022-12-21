@@ -1,6 +1,17 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { authActiveState } from "../../atoms/loginState";
+import { authActiveState } from "../../atoms/userAuthState";
+import img from "../../assets/logo5.png";
+import logo6 from "../../assets/coffee6.svg";
+import logo7 from "../../assets/coffee7.svg";
+import logo3 from "../../assets/coffee3.svg";
+import logo4 from "../../assets/coffee4.svg";
+import home from "../../assets/home.svg";
+import heart from "../../assets/heart.svg";
+import cart from "../../assets/cart.svg";
+import profile from "../../assets/profile.svg";
+import logout from "../../assets/logout2.svg";
+import { coffeeItemState } from "../../atoms/coffeeItemState";
 import {
   Button,
   Container,
@@ -18,16 +29,7 @@ import {
   Contents,
   MenuIcons,
 } from "./styles";
-import img from "../../assets/logo5.png";
-import logo6 from "../../assets/coffee6.svg";
-import logo7 from "../../assets/coffee7.svg";
-import logo3 from "../../assets/coffee3.svg";
-import logo4 from "../../assets/coffee4.svg";
-import home from "../../assets/home.svg";
-import heart from "../../assets/heart.svg";
-import cart from "../../assets/cart.svg";
-import profile from "../../assets/profile.svg";
-import { dataState } from "../../atoms/dataState";
+import { useEffect } from "react";
 
 export interface Props {
   id: number;
@@ -41,8 +43,9 @@ export interface Props {
 
 const Home = () => {
   const [, setAuthActive] = useRecoilState(authActiveState);
-  const coffeeLists = useRecoilValue(dataState);
+  const coffeeLists = useRecoilValue(coffeeItemState);
   const navigate = useNavigate();
+  const location = useLocation();
 
   console.log(coffeeLists);
 
@@ -67,6 +70,12 @@ const Home = () => {
     navigate("/profiles");
   };
 
+  console.log(location.pathname, "현재 pass");
+
+  useEffect(() => {
+    setAuthActive(true);
+  }, [location.pathname === "/"]);
+
   return (
     <Container>
       <Wrapper>
@@ -75,7 +84,11 @@ const Home = () => {
             <Img src={img} alt="logo" />
           </ImgBox>
 
-          <Button onClick={handleLogout}>🔙</Button>
+          <Button onClick={handleLogout}>
+            <ImgBox className="logout">
+              <Img src={logout} />
+            </ImgBox>
+          </Button>
         </Header>
 
         <Section>
