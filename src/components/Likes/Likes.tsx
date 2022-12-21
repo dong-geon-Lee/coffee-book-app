@@ -30,12 +30,10 @@ const Likes = () => {
   const coffeeLists = useRecoilValue(dataState);
   const items = coffeeLists.slice(0, 4);
 
-  console.log(items);
-
   return (
     <Container>
       <Section>
-        <h1>파스칼님의 [ Likes ] 목록</h1>
+        <Title>파스칼님의 [ Likes ] 목록</Title>
 
         {items.map((item: Props) => (
           <ItemBox key={item.id}>
@@ -46,11 +44,11 @@ const Likes = () => {
               <Title>{item.title}</Title>
               <Description>{item.description}</Description>
               <Stars>
-                <StarImg src={star} alt="" />
-                <StarImg src={star} alt="" />
-                <StarImg src={star} alt="" />
-                <StarImg src={star} alt="" />
-                <StarImg src={star0} alt="" />
+                <StarImg src={star} alt="star" />
+                <StarImg src={star} alt="star" />
+                <StarImg src={star} alt="star" />
+                <StarImg src={star} alt="star" />
+                <StarImg src={star0} alt="star0" />
               </Stars>
             </ContentBox>
           </ItemBox>
