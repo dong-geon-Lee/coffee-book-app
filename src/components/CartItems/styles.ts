@@ -31,6 +31,10 @@ export const Center = styled.div`
   & div:last-child {
     margin: 4rem 0 0 0;
   }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const Logo = styled.img`
@@ -58,7 +62,7 @@ export const Logo = styled.img`
 
 export const Title = styled.h1`
   font-size: 2rem;
-  font-weight: 700;
+  letter-spacing: 1px;
 `;
 
 export const Div = styled.div`
@@ -122,7 +126,8 @@ export const Btns = styled.div`
 
 export const Button = styled.button`
   padding: 1rem;
-  background-color: #9c6644;
+  /* background-color: #9c6644; */
+  background-color: #03c73c;
   font-size: 2rem;
   color: #fff;
 

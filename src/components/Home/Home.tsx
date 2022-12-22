@@ -28,6 +28,7 @@ import {
   ContentBox,
   Contents,
   MenuIcons,
+  Text,
 } from "./styles";
 import { useEffect } from "react";
 
@@ -90,6 +91,8 @@ const Home = () => {
           <ImgBox>
             <Img src={img} alt="logo" />
           </ImgBox>
+
+          <Text>메인페이지</Text>
 
           <Button onClick={handleLogout}>
             <ImgBox className="logout">

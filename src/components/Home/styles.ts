@@ -123,6 +123,11 @@ export const Title = styled.h1`
   margin-top: 1.4rem;
 `;
 
+export const Text = styled.h1`
+  font-size: 2rem;
+  letter-spacing: 1px;
+`;
+
 export const Label = styled.label`
   font-size: 1.4rem;
   font-weight: 600;
