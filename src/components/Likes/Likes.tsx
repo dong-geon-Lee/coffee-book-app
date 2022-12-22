@@ -3,18 +3,23 @@ import { coffeeItemState } from "../../atoms/coffeeItemState";
 import { useRecoilValue } from "recoil";
 import star from "../../assets/star.svg";
 import star0 from "../../assets/star0.svg";
+import back from "../../assets/back.svg";
+import heart from "../../assets/heart2.svg";
 import {
   Container,
   ContentBox,
   Description,
+  Header,
   Img,
   ImgBox,
   ItemBox,
+  Logo,
   Section,
   StarImg,
   Stars,
   Title,
 } from "./styles";
+import { Link } from "react-router-dom";
 
 export interface Props {
   id: number;
@@ -33,7 +38,13 @@ const Likes = () => {
   return (
     <Container>
       <Section>
-        <Title>파스칼님의 [ Likes ] 목록</Title>
+        <Header>
+          <Link to="/home">
+            <Logo src={back} alt="logo" />
+          </Link>
+          <Title>좋아요</Title>
+          <Logo src={heart} alt="logo" className="logo" />
+        </Header>
 
         {items.map((item: Props) => (
           <ItemBox key={item.id}>

@@ -26,6 +26,27 @@ export const ImgBox = styled.div`
   cursor: pointer;
 `;
 
+export const Logo = styled.img`
+  width: 3.6rem;
+  height: 3.6rem;
+  position: relative;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+  user-select: none;
+
+  &.logo {
+    cursor: default;
+  }
+`;
+
+export const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+`;
+
 export const Img = styled.img`
   position: absolute;
   top: 0;
