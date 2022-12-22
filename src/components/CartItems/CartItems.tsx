@@ -51,10 +51,8 @@ const CartItems = () => {
                 <Img src={item.image} alt="img" />
               </ImgBox>
               <ContentBox>
-                <Title>{item.title}</Title>
-                <Text>
-                  <SubText>size:</SubText> {item.size[1]}
-                </Text>
+                <Text>{item.title}</Text>
+                <SubText>크기: {item.size[1]}</SubText>
                 <Price>{item.price[1]}원</Price>
               </ContentBox>
               <ButtonBox>

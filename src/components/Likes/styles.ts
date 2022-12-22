@@ -21,7 +21,7 @@ export const Section = styled.div`
 
 export const ImgBox = styled.div`
   position: relative;
-  width: 23rem;
+  width: 16rem;
   height: 20rem;
   cursor: pointer;
 `;
@@ -75,7 +75,7 @@ export const StarImg = styled.img<props>`
 
 export const ItemBox = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 2fr;
 `;
 
 export const ContentBox = styled.div`
@@ -87,7 +87,7 @@ export const ContentBox = styled.div`
   align-items: center;
   text-align: center;
   background-color: #fff;
-  padding: 1rem;
+  padding: 2rem;
 `;
 
 export const Stars = styled.div`

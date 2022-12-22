@@ -50,7 +50,7 @@ export const Logo = styled.img`
 
   &.xBtn {
     position: absolute;
-    top: -10%;
+    top: 0%;
     right: 0%;
     transform: translate(0, 0);
   }
@@ -63,14 +63,15 @@ export const Title = styled.h1`
 
 export const Div = styled.div`
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  margin: 0 0 6rem 0;
+  grid-template-columns: 1fr 2.3fr 1fr;
+  margin: 0 0 3.2rem 0;
   position: relative;
+  height: 12rem;
 `;
 
 export const ImgBox = styled.div`
-  width: 10rem;
-  height: 10rem;
+  width: 12rem;
+  height: 12rem;
   position: relative;
 `;
 
@@ -90,15 +91,18 @@ export const ContentBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fff4e6;
+  background-color: #fff;
 `;
 
 export const Text = styled.p`
   font-size: 1.8rem;
-  font-weight: 700;
+  font-weight: 600;
 `;
 
-export const SubText = styled.label``;
+export const SubText = styled.label`
+  font-size: 1.4rem;
+  font-weight: 600;
+`;
 
 export const Price = styled.p`
   font-size: 2rem;
@@ -107,6 +111,12 @@ export const Price = styled.p`
 export const ButtonBox = styled.div`
   display: flex;
   justify-content: right;
+`;
+
+export const Btns = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin-top: auto;
 `;
 
@@ -119,12 +129,10 @@ export const Button = styled.button`
   &.checkout__btn {
     width: 100%;
   }
-`;
 
-export const Btns = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  &:hover {
+    filter: brightness(110%);
+  }
 `;
 
 export const Bottom = styled.div``;
