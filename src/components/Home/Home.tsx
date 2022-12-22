@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { authActiveState } from "../../atoms/userAuthState";
 import img from "../../assets/logo5.png";
 import logo6 from "../../assets/coffee6.svg";
@@ -30,7 +31,6 @@ import {
   MenuIcons,
   Text,
 } from "./styles";
-import { useEffect } from "react";
 
 export interface Props {
   id: number;
@@ -43,13 +43,37 @@ export interface Props {
 }
 
 const Home = () => {
+  const [checkedMenu, setCheckedMenu] = useState({
+    espresso: true,
+    coldbrew: true,
+    frappuccino: false,
+    blended: false,
+  });
+
+  const { espresso, coldbrew, frappuccino, blended } = checkedMenu;
+
   const [authActive, setAuthActive] = useRecoilState(authActiveState);
   const coffeeLists = useRecoilValue(coffeeItemState);
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(coffeeLists);
+  const coffeeItems = coffeeLists.slice();
+  const filteredItems = coffeeItems.filter(
+    (x) =>
+      (espresso && x.type === "espresso") ||
+      (coldbrew && x.type === "coldbrew") ||
+      (frappuccino && x.type === "frappuccino") ||
+      (blended && x.type === "blended")
+  );
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.name);
+    setCheckedMenu({
+      ...checkedMenu,
+      [e.target.name]: e.target.checked,
+    });
+  };
 
   const handleLogout = () => {
     navigate("/login");
@@ -72,8 +96,6 @@ const Home = () => {
     navigate("/profiles");
   };
 
-  console.log(location.pathname, "현재 pass");
-
   useEffect(() => {
     setAuthActive(true);
   }, [location.pathname === "/home"]);
@@ -83,6 +105,9 @@ const Home = () => {
       return navigate("/login");
     }
   }, [authActive]);
+
+  console.log(coffeeLists);
+  console.log(filteredItems);
 
   return (
     <Container>
@@ -106,27 +131,51 @@ const Home = () => {
             <Div className="flex">
               <Logo src={logo3} className="logo__svg" />
               <Label htmlFor="espresso">에스프레소</Label>
-              <Input type="checkbox" id="espresso" name="espresso" />
+              <Input
+                type="checkbox"
+                id="espresso"
+                name="espresso"
+                checked={espresso}
+                onChange={onChange}
+              />
             </Div>
             <Div className="flex">
               <Logo src={logo7} />
-              <Label htmlFor="cold__brew">콜드 브루</Label>
-              <Input type="checkbox" id="cold__brew" name="cold__brew" />
+              <Label htmlFor="coldbrew">콜드 브루</Label>
+              <Input
+                type="checkbox"
+                id="coldbrew"
+                name="coldbrew"
+                checked={coldbrew}
+                onChange={onChange}
+              />
             </Div>
             <Div className="flex">
               <Logo src={logo4} />
               <Label htmlFor="frappuccino">푸라푸치노</Label>
-              <Input type="checkbox" id="frappuccino" name="frappuccino" />
+              <Input
+                type="checkbox"
+                id="frappuccino"
+                name="frappuccino"
+                checked={frappuccino}
+                onChange={onChange}
+              />
             </Div>
             <Div className="flex">
               <Logo src={logo6} />
               <Label htmlFor="blended">블렌디드</Label>
-              <Input type="checkbox" id="blended" name="blended" />
+              <Input
+                type="checkbox"
+                id="blended"
+                name="blended"
+                checked={blended}
+                onChange={onChange}
+              />
             </Div>
           </Div>
 
           <ContentBox>
-            {coffeeLists.map((item: Props) => (
+            {filteredItems.map((item: Props) => (
               <Contents key={item.id}>
                 <ImgBox className="content">
                   <Img src={item.image} alt="logo" />
