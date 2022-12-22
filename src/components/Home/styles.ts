@@ -18,7 +18,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   padding: 1.4rem 3rem;
   height: 70rem;
-  overflow-y: auto;
+  /* overflow-y: scroll; */
 `;
 
 export const Header = styled.header`
@@ -149,6 +149,8 @@ export const ContentBox = styled.div`
   justify-items: baseline;
   align-items: baseline;
   gap: 1.6rem 4.8rem;
+  height: 42rem;
+  overflow-y: scroll;
 `;
 
 export const Contents = styled.div``;

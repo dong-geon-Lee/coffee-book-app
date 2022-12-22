@@ -76,7 +76,7 @@ export const UserInfo = styled.div`
   text-align: center;
   border: 1px solid #000;
   width: 48rem;
-  height: 24.4rem;
+  height: 24.3rem;
 `;
 
 export const Box = styled.div`
