@@ -9,6 +9,7 @@ export const coffeeLists = [
       "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000000038]_20210430113202595.jpg",
     size: ["S", "M", "L"],
     price: [4900, 5400, 5900],
+    stars: [1, 1, 1, 1, 0],
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ export const coffeeLists = [
       "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000003285]_20210416154437226.jpg",
     size: ["S", "M", "L"],
     price: [5800, 6300, 6800],
+    stars: [1, 1, 1, 0, 0],
   },
   {
     id: 3,
@@ -31,6 +33,7 @@ export const coffeeLists = [
       "https://image.istarbucks.co.kr/upload/store/skuimg/2022/10/[9200000004312]_20221005145029298.jpg",
     size: ["S", "M", "L"],
     price: [5000, 5600, 6000],
+    stars: [1, 1, 1, 1, 0],
   },
   {
     id: 4,
@@ -42,6 +45,7 @@ export const coffeeLists = [
       "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[126197]_20210415154610012.jpg",
     size: ["S", "M", "L"],
     price: [5400, 5900, 6400],
+    stars: [1, 1, 1, 1, 1],
   },
   {
     id: 5,
@@ -53,6 +57,7 @@ export const coffeeLists = [
       "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[38]_20210415154821991.jpg",
     size: ["S", "M", "L"],
     price: [4500, 5000, 5500],
+    stars: [1, 1, 0, 0, 0],
   },
   {
     id: 6,
@@ -64,6 +69,7 @@ export const coffeeLists = [
       "https://image.istarbucks.co.kr/upload/store/skuimg/2021/02/[9200000001939]_20210225094313320.jpg",
     size: ["S", "M", "L"],
     price: [5000, 5600, 6100],
+    stars: [1, 1, 1, 1, 0],
   },
   {
     id: 7,
@@ -75,6 +81,7 @@ export const coffeeLists = [
       "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000002502]_20210426100408183.jpg",
     size: ["S", "M", "L"],
     price: [6300, 6800, 7300],
+    stars: [1, 1, 1, 0, 0],
   },
   {
     id: 8,
@@ -86,6 +93,7 @@ export const coffeeLists = [
       "https://image.istarbucks.co.kr/upload/store/skuimg/2020/09/[9200000002088]_20200921171733536.jpg",
     size: ["S", "M", "L"],
     price: [6300, 6800, 7300],
+    stars: [1, 1, 1, 1, 0],
   },
   {
     id: 9,
@@ -96,6 +104,7 @@ export const coffeeLists = [
       "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[168054]_20210415135751989.jpg",
     size: ["S", "M", "L"],
     price: [5500, 6000, 6500],
+    stars: [1, 1, 1, 0, 0],
   },
   {
     id: 10,
@@ -107,6 +116,7 @@ export const coffeeLists = [
       "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000003276]_20210416154001576.jpg",
     size: ["S", "M", "L"],
     price: [6300, 6800, 7300],
+    stars: [1, 1, 1, 1, 1],
   },
   {
     id: 11,
@@ -118,6 +128,7 @@ export const coffeeLists = [
       "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[169001]_20210419130701935.jpg",
     size: ["S", "M", "L"],
     price: [6300, 6800, 7300],
+    stars: [1, 1, 1, 0, 0],
   },
   {
     id: 12,
@@ -129,6 +140,7 @@ export const coffeeLists = [
       "https://image.istarbucks.co.kr/upload/store/skuimg/2022/09/[9200000004295]_20220906080812848.jpg",
     size: ["S", "M", "L"],
     price: [6300, 6800, 7300],
+    stars: [1, 1, 1, 1, 0],
   },
   // {
   //   id: 13,

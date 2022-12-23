@@ -115,12 +115,12 @@ export const Logo = styled.img`
 `;
 
 export const Title = styled.h1`
-  font-size: 1.8rem;
+  font-size: 1.65rem;
   text-align: center;
   font-weight: 700;
   letter-spacing: 2px;
   user-select: none;
-  margin-top: 1.4rem;
+  margin-top: 1rem;
 `;
 
 export const Text = styled.h1`
@@ -131,7 +131,7 @@ export const Text = styled.h1`
 export const Label = styled.label`
   font-size: 1.4rem;
   font-weight: 600;
-  padding: 1rem 0;
+  padding: 1rem 0 1.4rem 0;
   user-select: none;
   cursor: pointer;
 `;

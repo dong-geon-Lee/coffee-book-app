@@ -29,11 +29,12 @@ export interface Props {
   image: string;
   size: string[];
   price: number[];
+  stars: any;
 }
 
 const Likes = () => {
   const coffeeItems = useRecoilValue(coffeeItemState);
-  const items = coffeeItems.slice(0, 4);
+  const items = coffeeItems.slice(0, 12);
 
   return (
     <Container>
@@ -54,12 +55,11 @@ const Likes = () => {
             <ContentBox>
               <Title>{item.title}</Title>
               <Description>{item.description}</Description>
+
               <Stars>
-                <StarImg src={star} alt="star" />
-                <StarImg src={star} alt="star" />
-                <StarImg src={star} alt="star" />
-                <StarImg src={star} alt="star" />
-                <StarImg src={star0} alt="star0" />
+                {item.stars.map((stars: any) => (
+                  <StarImg src={stars === 1 ? star : star0} alt="star" />
+                ))}
               </Stars>
             </ContentBox>
           </ItemBox>
