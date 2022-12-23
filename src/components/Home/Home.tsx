@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { To, useLocation, useNavigate } from "react-router-dom";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { authActiveState } from "../../atoms/userAuthState";
 import img from "../../assets/logo5.png";
 import logo6 from "../../assets/coffee6.svg";
@@ -31,8 +31,9 @@ import {
   MenuIcons,
   Text,
 } from "./styles";
+import { Link } from "react-router-dom";
 
-export interface Props {
+interface Props {
   id: number;
   title: string;
   description: string;
@@ -44,8 +45,8 @@ export interface Props {
 
 const Home = () => {
   const [checkedMenu, setCheckedMenu] = useState({
-    espresso: true,
-    coldbrew: true,
+    espresso: false,
+    coldbrew: false,
     frappuccino: false,
     blended: false,
   });
@@ -68,7 +69,6 @@ const Home = () => {
   );
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.name);
     setCheckedMenu({
       ...checkedMenu,
       [e.target.name]: e.target.checked,
@@ -105,9 +105,6 @@ const Home = () => {
       return navigate("/login");
     }
   }, [authActive]);
-
-  console.log(coffeeLists);
-  console.log(filteredItems);
 
   return (
     <Container>
@@ -175,15 +172,33 @@ const Home = () => {
           </Div>
 
           <ContentBox>
-            {filteredItems.map((item: Props) => (
-              <Contents key={item.id}>
-                <ImgBox className="content">
-                  <Img src={item.image} alt="logo" />
-                </ImgBox>
+            {filteredItems.length >= 1 ? (
+              filteredItems.map((item: Props) => (
+                <Contents key={item.id}>
+                  <Link to={`/home/${item.id}`} state={{ product: item }}>
+                    <ImgBox className="content">
+                      <Img src={item.image} alt="logo" />
+                    </ImgBox>
+                  </Link>
 
-                <Title>{item.title}</Title>
-              </Contents>
-            ))}
+                  <Title>{item.title}</Title>
+                </Contents>
+              ))
+            ) : (
+              <>
+                {coffeeItems.map((item: Props) => (
+                  <Contents key={item.id}>
+                    <Link to={`/home/${item.id}`} state={{ product: item }}>
+                      <ImgBox className="content">
+                        <Img src={item.image} alt="logo" />
+                      </ImgBox>
+                    </Link>
+
+                    <Title>{item.title}</Title>
+                  </Contents>
+                ))}
+              </>
+            )}
           </ContentBox>
         </Section>
       </Wrapper>
