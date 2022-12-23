@@ -18,7 +18,6 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   padding: 1.4rem 3rem;
   height: 70rem;
-  /* overflow-y: scroll; */
 `;
 
 export const Header = styled.header`
@@ -115,10 +114,10 @@ export const Logo = styled.img`
 `;
 
 export const Title = styled.h1`
-  font-size: 1.65rem;
+  font-size: 1.6rem;
   text-align: center;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
   user-select: none;
   margin-top: 1rem;
 `;
@@ -148,8 +147,8 @@ export const ContentBox = styled.div`
   grid-template-columns: repeat(3, 1fr);
   justify-items: baseline;
   align-items: baseline;
-  gap: 1.6rem 4.8rem;
-  height: 42rem;
+  gap: 2.6rem 4.8rem;
+  height: 40rem;
   overflow-y: scroll;
 `;
 

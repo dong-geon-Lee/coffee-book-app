@@ -1,3 +1,4 @@
+import { authActiveState } from "./../../atoms/userAuthState";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -29,6 +30,12 @@ export const Header = styled.header`
 export const Title = styled.h1`
   font-size: 2rem;
   letter-spacing: 1px;
+
+  &.content__title {
+    margin-right: auto;
+    /* margin-left: auto; */
+    margin-top: 0.4rem;
+  }
 `;
 
 export const Logo = styled.img`
@@ -45,4 +52,129 @@ export const Logo = styled.img`
     height: 4.6rem;
     cursor: default;
   }
+
+  &.stars {
+    width: 3rem;
+    height: 3rem;
+  }
+`;
+
+export const ImgBox = styled.div`
+  width: 46rem;
+  height: 20rem;
+  position: relative;
+  border-radius: 3.6rem;
+  overflow: hidden;
+`;
+
+export const Img = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+`;
+
+export const ContentBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Contents = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.2rem;
+  width: 100%;
+  flex-wrap: wrap;
+`;
+
+export const LogoBox = styled.div`
+  display: flex;
+`;
+
+export const Description = styled.p`
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #9d9d9d;
+  margin: 1rem auto 3.2rem auto;
+  width: 100%;
+`;
+
+export const SizeBox = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+`;
+
+export const Button = styled.button`
+  padding: 1rem 2rem;
+  color: #000;
+  /* background-color: #9d6c2d; */
+  background-color: #ffd196;
+  border-radius: 2rem;
+  border: 1px solid #eee;
+  font-size: 1.4rem;
+
+  &:hover {
+    filter: brightness(90%);
+  }
+`;
+
+export const PriceBox = styled.div`
+  margin: 3rem 0 1.6rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+`;
+
+export const PriceText = styled.label`
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 1px;
+`;
+
+export const BtnBox = styled.div`
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  gap: 1.6rem;
+  margin-top: 3rem;
+`;
+
+export const Buttons = styled.button`
+  padding: 1.4rem 2rem;
+  background-color: #03c73c;
+  font-size: 2rem;
+  color: #fff;
+  width: 100%;
+
+  &:hover {
+    filter: brightness(110%);
+  }
+
+  &.minus {
+    background-color: #e9b17c;
+    padding: 1rem 1.4rem;
+  }
+
+  &.plus {
+    background-color: #e98d38;
+    padding: 1rem 1.4rem;
+  }
+`;
+
+export const CountBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
 `;

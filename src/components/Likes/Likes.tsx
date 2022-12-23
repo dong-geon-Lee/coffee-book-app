@@ -2,7 +2,7 @@ import NavMenu from "../NavMenu/NavMenu";
 import { coffeeItemState } from "../../atoms/coffeeItemState";
 import { useRecoilValue } from "recoil";
 import star from "../../assets/star.svg";
-import star0 from "../../assets/star0.svg";
+import star0 from "../../assets/star3.svg";
 import back from "../../assets/back.svg";
 import heart from "../../assets/heart2.svg";
 import {
@@ -29,7 +29,7 @@ export interface Props {
   image: string;
   size: string[];
   price: number[];
-  stars: any;
+  stars: number[];
 }
 
 const Likes = () => {
@@ -57,7 +57,7 @@ const Likes = () => {
               <Description>{item.description}</Description>
 
               <Stars>
-                {item.stars.map((stars: any) => (
+                {item.stars.map((stars) => (
                   <StarImg src={stars === 1 ? star : star0} alt="star" />
                 ))}
               </Stars>
