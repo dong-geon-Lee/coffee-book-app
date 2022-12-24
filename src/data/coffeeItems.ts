@@ -10,6 +10,7 @@ export const coffeeLists = [
     size: ["S", "M", "L"],
     price: [4900, 5400, 5900],
     stars: [1, 1, 1, 1, 0],
+    likes: false,
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ export const coffeeLists = [
     size: ["S", "M", "L"],
     price: [5800, 6300, 6800],
     stars: [1, 1, 1, 0, 0],
+    likes: false,
   },
   {
     id: 3,
@@ -34,6 +36,7 @@ export const coffeeLists = [
     size: ["S", "M", "L"],
     price: [5000, 5600, 6000],
     stars: [1, 1, 1, 1, 0],
+    likes: false,
   },
   {
     id: 4,
@@ -46,6 +49,7 @@ export const coffeeLists = [
     size: ["S", "M", "L"],
     price: [5400, 5900, 6400],
     stars: [1, 1, 1, 1, 1],
+    likes: false,
   },
   {
     id: 5,
@@ -58,6 +62,7 @@ export const coffeeLists = [
     size: ["S", "M", "L"],
     price: [4500, 5000, 5500],
     stars: [1, 1, 0, 0, 0],
+    likes: false,
   },
   {
     id: 6,
@@ -70,6 +75,7 @@ export const coffeeLists = [
     size: ["S", "M", "L"],
     price: [5000, 5600, 6100],
     stars: [1, 1, 1, 1, 0],
+    likes: false,
   },
   {
     id: 7,
@@ -82,6 +88,7 @@ export const coffeeLists = [
     size: ["S", "M", "L"],
     price: [6300, 6800, 7300],
     stars: [1, 1, 1, 0, 0],
+    likes: false,
   },
   {
     id: 8,
@@ -94,6 +101,7 @@ export const coffeeLists = [
     size: ["S", "M", "L"],
     price: [6300, 6800, 7300],
     stars: [1, 1, 1, 1, 0],
+    likes: false,
   },
   {
     id: 9,
@@ -105,6 +113,7 @@ export const coffeeLists = [
     size: ["S", "M", "L"],
     price: [5500, 6000, 6500],
     stars: [1, 1, 1, 0, 0],
+    likes: false,
   },
   {
     id: 10,
@@ -117,6 +126,7 @@ export const coffeeLists = [
     size: ["S", "M", "L"],
     price: [6300, 6800, 7300],
     stars: [1, 1, 1, 1, 1],
+    likes: false,
   },
   {
     id: 11,
@@ -129,6 +139,7 @@ export const coffeeLists = [
     size: ["S", "M", "L"],
     price: [6300, 6800, 7300],
     stars: [1, 1, 1, 0, 0],
+    likes: false,
   },
   {
     id: 12,
@@ -141,6 +152,7 @@ export const coffeeLists = [
     size: ["S", "M", "L"],
     price: [6300, 6800, 7300],
     stars: [1, 1, 1, 1, 0],
+    likes: false,
   },
   // {
   //   id: 13,

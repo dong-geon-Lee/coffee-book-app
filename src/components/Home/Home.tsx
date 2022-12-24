@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { To, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { authActiveState } from "../../atoms/userAuthState";
 import img from "../../assets/logo5.png";
@@ -12,7 +12,9 @@ import heart from "../../assets/heart.svg";
 import cart from "../../assets/cart.svg";
 import profile from "../../assets/profile.svg";
 import logout from "../../assets/logout2.svg";
-import { coffeeItemState } from "../../atoms/coffeeItemState";
+import { coffeeItemState, likeItemState } from "../../atoms/coffeeItemState";
+import { coffeeProps } from "../../atoms/coffeeItemState";
+import { Link } from "react-router-dom";
 import {
   Button,
   Container,
@@ -30,18 +32,8 @@ import {
   Contents,
   MenuIcons,
   Text,
+  IconsText,
 } from "./styles";
-import { Link } from "react-router-dom";
-
-interface Props {
-  id: number;
-  title: string;
-  description: string;
-  type: string;
-  image: string;
-  size: string[];
-  price: number[];
-}
 
 const Home = () => {
   const [checkedMenu, setCheckedMenu] = useState({
@@ -55,6 +47,7 @@ const Home = () => {
 
   const [authActive, setAuthActive] = useRecoilState(authActiveState);
   const coffeeLists = useRecoilValue(coffeeItemState);
+  const likeItems = useRecoilValue(likeItemState);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -173,7 +166,7 @@ const Home = () => {
 
           <ContentBox>
             {filteredItems.length >= 1 ? (
-              filteredItems.map((item: Props) => (
+              filteredItems.map((item: coffeeProps) => (
                 <Contents key={item.id}>
                   <Link to={`/home/${item.id}`} state={{ product: item }}>
                     <ImgBox className="content">
@@ -186,7 +179,7 @@ const Home = () => {
               ))
             ) : (
               <>
-                {coffeeItems.map((item: Props) => (
+                {coffeeItems.map((item: coffeeProps) => (
                   <Contents key={item.id}>
                     <Link to={`/home/${item.id}`} state={{ product: item }}>
                       <ImgBox className="content">
@@ -209,9 +202,11 @@ const Home = () => {
         </ImgBox>
         <ImgBox className="icon__box" onClick={handleNavigateLikes}>
           <Img src={heart} className="icons" />
+          <IconsText>{likeItems.length || 0}</IconsText>
         </ImgBox>
         <ImgBox className="icon__box" onClick={handleNavigateCartItems}>
           <Img src={cart} className="icons" />
+          <IconsText>0</IconsText>
         </ImgBox>
         <ImgBox className="icon__box" onClick={handleNavigateProfiles}>
           <Img src={profile} className="icons" />

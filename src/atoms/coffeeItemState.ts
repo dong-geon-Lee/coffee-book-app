@@ -10,6 +10,11 @@ export interface coffeeProps {
   size: string[];
   price: number[];
   stars: number[];
+  likes?: boolean;
+}
+
+export interface likeProps {
+  likes: boolean;
 }
 
 export const coffeeItemState = atom<coffeeProps[]>({

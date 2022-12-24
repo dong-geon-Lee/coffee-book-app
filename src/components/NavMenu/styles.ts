@@ -153,3 +153,14 @@ export const MenuIcons = styled.div`
 `;
 
 export const IconsBox = styled.div``;
+
+export const IconsText = styled.h1`
+  position: absolute;
+  top: 20%;
+  left: 60%;
+  padding: 0.2rem 0.6rem;
+  background-color: #f8f9fa;
+  border-radius: 50%;
+  color: #000;
+  font-size: 1.6rem;
+`;

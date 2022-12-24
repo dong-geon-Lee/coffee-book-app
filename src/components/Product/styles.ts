@@ -1,5 +1,5 @@
 import { authActiveState } from "./../../atoms/userAuthState";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
@@ -149,6 +149,11 @@ export const BtnBox = styled.div`
   margin-top: 3rem;
 `;
 
+interface btnProps {
+  disabled?: boolean | undefined;
+  active?: boolean;
+}
+
 export const Buttons = styled.button`
   padding: 1.4rem 2rem;
   background-color: #03c73c;
@@ -171,7 +176,10 @@ export const Buttons = styled.button`
   }
 
   &.likes {
-    background-color: #df4b4b;
+    /* background-color: #df4b4b; */
+    background-color: ${(props: btnProps) =>
+      props.disabled || props.active ? "#868e96" : "#df4b4b"};
+    cursor: ${(props: btnProps) => props.disabled && "not-allowed"};
   }
 `;
 

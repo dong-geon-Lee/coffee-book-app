@@ -24,6 +24,18 @@ export const ImgBox = styled.div`
   width: 16rem;
   height: 20rem;
   cursor: pointer;
+
+  &:hover .coffee__img {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  &:hover .heart {
+    /* opacity: 1; */
+    display: block;
+    width: 5.2rem;
+    height: 5.2rem;
+  }
 `;
 
 export const Logo = styled.img`
@@ -37,6 +49,16 @@ export const Logo = styled.img`
 
   &.logo {
     cursor: default;
+  }
+
+  &.heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* opacity: 0; */
+    display: none;
+    transition: all 0.3s ease;
   }
 `;
 
@@ -82,6 +104,8 @@ export const Img = styled.img`
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: all 0.3s ease;
+  opacity: 1;
 `;
 
 interface props {
@@ -114,6 +138,7 @@ export const ContentBox = styled.div`
   text-align: center;
   background-color: #fff;
   padding: 2rem;
+  position: relative;
 `;
 
 export const Stars = styled.div`

@@ -38,14 +38,19 @@ const Product = () => {
   const setLikeItem = useSetRecoilState(likeItemState);
   const {
     state: {
-      product: { id, title, description, image, price, stars, size },
+      product: { id, title, description, image, price, stars },
     },
   } = useLocation();
 
+  const target = coffeeItem.find((item: coffeeProps) => item.id === id);
+  const checkLikes = likeItem.find(
+    (item: coffeeProps) => item.id === target?.id
+  );
+
+  console.log(target, checkLikes);
+
   const handleLikes = () => {
-    const target = coffeeItem.find((item: coffeeProps) => item.id === id);
-    setLikeItem([...likeItem, target]);
-    console.log(target);
+    setLikeItem([...likeItem, { ...target, likes: !target?.likes }]);
   };
 
   return (
@@ -96,7 +101,12 @@ const Product = () => {
           </PriceBox>
 
           <BtnBox>
-            <Buttons className="likes" onClick={handleLikes}>
+            <Buttons
+              className="likes"
+              onClick={handleLikes}
+              disabled={checkLikes?.likes ? true : false}
+              active={checkLikes?.likes}
+            >
               찜하기
             </Buttons>
             <Buttons className="carts">장바구니</Buttons>
