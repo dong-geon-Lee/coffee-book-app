@@ -25,12 +25,28 @@ import coffee8 from "../../assets/coffee8.svg";
 import star from "../../assets/star.svg";
 import star0 from "../../assets/star3.svg";
 import NavMenu from "../NavMenu/NavMenu";
+import {
+  coffeeItemState,
+  likeItemState,
+  coffeeProps,
+} from "../../atoms/coffeeItemState";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 const Product = () => {
-  const location = useLocation();
-  const { product } = location.state;
-  const { title, description, image, price, size, stars } = product;
-  console.log(location, product);
+  const coffeeItem = useRecoilValue(coffeeItemState);
+  const likeItem = useRecoilValue(likeItemState);
+  const setLikeItem = useSetRecoilState(likeItemState);
+  const {
+    state: {
+      product: { id, title, description, image, price, stars, size },
+    },
+  } = useLocation();
+
+  const handleLikes = () => {
+    const target = coffeeItem.find((item: coffeeProps) => item.id === id);
+    setLikeItem([...likeItem, target]);
+    console.log(target);
+  };
 
   return (
     <Container>
@@ -52,7 +68,7 @@ const Product = () => {
           <Contents>
             <Title className="content__title">{title}</Title>
             <LogoBox>
-              {stars.map((stars: any) => (
+              {stars.map((stars: number) => (
                 <Logo
                   src={stars === 1 ? star : star0}
                   alt="star"
@@ -70,7 +86,7 @@ const Product = () => {
           </SizeBox>
 
           <PriceBox>
-            <PriceText>상품 가격: 5,400원</PriceText>
+            <PriceText>상품 가격: {price[0]}원</PriceText>
 
             <CountBox>
               <Buttons className="minus">-</Buttons>
@@ -80,7 +96,9 @@ const Product = () => {
           </PriceBox>
 
           <BtnBox>
-            <Buttons className="likes">좋아요</Buttons>
+            <Buttons className="likes" onClick={handleLikes}>
+              찜하기
+            </Buttons>
             <Buttons className="carts">장바구니</Buttons>
           </BtnBox>
         </ContentBox>

@@ -57,9 +57,9 @@ const CartItems = () => {
               </ContentBox>
               <ButtonBox>
                 <Btns>
-                  <Button>-</Button>
+                  <Button className="minus">-</Button>
                   <Title>1</Title>
-                  <Button>+</Button>
+                  <Button className="plus">+</Button>
                 </Btns>
 
                 <Logo src={x} alt="logo" className="xBtn" />

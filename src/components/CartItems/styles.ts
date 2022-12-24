@@ -138,6 +138,14 @@ export const Button = styled.button`
   &:hover {
     filter: brightness(110%);
   }
+
+  &.minus {
+    background-color: #e9b17c;
+  }
+
+  &.plus {
+    background-color: #e98d38;
+  }
 `;
 
 export const Bottom = styled.div``;

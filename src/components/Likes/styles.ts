@@ -47,6 +47,32 @@ export const Header = styled.header`
   padding: 1rem 0;
 `;
 
+export const EmptyBox = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+`;
+
+interface imageProps {
+  img: string;
+}
+
+export const Background = styled.div<imageProps>`
+  background-image: url(${(props) => props.img});
+  width: 20rem;
+  height: 20rem;
+  background-size: cover;
+  background-position: center;
+`;
+
+export const Text = styled.h1`
+  margin-top: 3rem;
+  letter-spacing: 1px;
+  font-size: 2.4rem;
+`;
+
 export const Img = styled.img`
   position: absolute;
   top: 0;

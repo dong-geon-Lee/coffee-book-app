@@ -44,7 +44,6 @@ export const Logo = styled.img`
   position: relative;
   object-fit: cover;
   display: block;
-  cursor: pointer;
   user-select: none;
 
   &.logo {
@@ -169,6 +168,10 @@ export const Buttons = styled.button`
   &.plus {
     background-color: #e98d38;
     padding: 1rem 1.4rem;
+  }
+
+  &.likes {
+    background-color: #df4b4b;
   }
 `;
 

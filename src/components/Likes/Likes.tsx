@@ -1,14 +1,18 @@
 import NavMenu from "../NavMenu/NavMenu";
-import { coffeeItemState } from "../../atoms/coffeeItemState";
+import { coffeeProps, likeItemState } from "../../atoms/coffeeItemState";
 import { useRecoilValue } from "recoil";
 import star from "../../assets/star.svg";
 import star0 from "../../assets/star3.svg";
 import back from "../../assets/back.svg";
 import heart from "../../assets/heart2.svg";
+import coffee from "../../assets/coffee9.svg";
+import { Link } from "react-router-dom";
 import {
+  Background,
   Container,
   ContentBox,
   Description,
+  EmptyBox,
   Header,
   Img,
   ImgBox,
@@ -17,24 +21,13 @@ import {
   Section,
   StarImg,
   Stars,
+  Text,
   Title,
 } from "./styles";
-import { Link } from "react-router-dom";
-
-export interface Props {
-  id: number;
-  title: string;
-  description: string;
-  type: string;
-  image: string;
-  size: string[];
-  price: number[];
-  stars: number[];
-}
 
 const Likes = () => {
-  const coffeeItems = useRecoilValue(coffeeItemState);
-  const items = coffeeItems.slice(0, 12);
+  const likeItems = useRecoilValue(likeItemState);
+  console.log(likeItems);
 
   return (
     <Container>
@@ -47,23 +40,31 @@ const Likes = () => {
           <Logo src={heart} alt="logo" className="logo" />
         </Header>
 
-        {items.map((item: Props) => (
-          <ItemBox key={item.id}>
-            <ImgBox>
-              <Img src={item.image} />
-            </ImgBox>
-            <ContentBox>
-              <Title>{item.title}</Title>
-              <Description>{item.description}</Description>
+        {likeItems.length === 0 && (
+          <EmptyBox>
+            <Background img={coffee}></Background>
+            <Text>There is no Likes Coffee.</Text>
+          </EmptyBox>
+        )}
 
-              <Stars>
-                {item.stars.map((stars) => (
-                  <StarImg src={stars === 1 ? star : star0} alt="star" />
-                ))}
-              </Stars>
-            </ContentBox>
-          </ItemBox>
-        ))}
+        {likeItems.length >= 1 &&
+          likeItems.map((item: coffeeProps) => (
+            <ItemBox key={item.id}>
+              <ImgBox>
+                <Img src={item.image} />
+              </ImgBox>
+              <ContentBox>
+                <Title>{item.title}</Title>
+                <Description>{item.description}</Description>
+
+                <Stars>
+                  {item.stars.map((stars) => (
+                    <StarImg src={stars === 1 ? star : star0} alt="star" />
+                  ))}
+                </Stars>
+              </ContentBox>
+            </ItemBox>
+          ))}
       </Section>
       <NavMenu />
     </Container>
