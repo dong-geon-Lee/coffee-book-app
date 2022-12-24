@@ -1,5 +1,16 @@
-import { Link } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import back from "../../assets/back.svg";
+import coffee8 from "../../assets/coffee8.svg";
+import star from "../../assets/star.svg";
+import star0 from "../../assets/star3.svg";
+import NavMenu from "../NavMenu/NavMenu";
+import {
+  coffeeItemState,
+  likeItemState,
+  coffeeProps,
+} from "../../atoms/coffeeItemState";
 import {
   BtnBox,
   Button,
@@ -20,34 +31,19 @@ import {
   SizeBox,
   Title,
 } from "./styles";
-import back from "../../assets/back.svg";
-import coffee8 from "../../assets/coffee8.svg";
-import star from "../../assets/star.svg";
-import star0 from "../../assets/star3.svg";
-import NavMenu from "../NavMenu/NavMenu";
-import {
-  coffeeItemState,
-  likeItemState,
-  coffeeProps,
-} from "../../atoms/coffeeItemState";
-import { useRecoilValue, useSetRecoilState } from "recoil";
 
 const Product = () => {
   const coffeeItem = useRecoilValue(coffeeItemState);
   const likeItem = useRecoilValue(likeItemState);
   const setLikeItem = useSetRecoilState(likeItemState);
-  const {
-    state: {
-      product: { id, title, description, image, price, stars },
-    },
-  } = useLocation();
+
+  const { state } = useLocation();
+  const { id, title, description, image, price, stars } = state.product;
 
   const target = coffeeItem.find((item: coffeeProps) => item.id === id);
-  const checkLikes = likeItem.find(
+  const activeLikes = likeItem.find(
     (item: coffeeProps) => item.id === target?.id
   );
-
-  console.log(target, checkLikes);
 
   const handleLikes = () => {
     setLikeItem([...likeItem, { ...target, likes: !target?.likes }]);
@@ -75,6 +71,7 @@ const Product = () => {
             <LogoBox>
               {stars.map((stars: number) => (
                 <Logo
+                  key={Math.random() * 5}
                   src={stars === 1 ? star : star0}
                   alt="star"
                   className="stars"
@@ -104,10 +101,9 @@ const Product = () => {
             <Buttons
               className="likes"
               onClick={handleLikes}
-              disabled={checkLikes?.likes ? true : false}
-              active={checkLikes?.likes}
+              disabled={activeLikes?.likes ? true : false}
             >
-              찜하기
+              좋아요
             </Buttons>
             <Buttons className="carts">장바구니</Buttons>
           </BtnBox>

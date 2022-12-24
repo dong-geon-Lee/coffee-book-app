@@ -22,7 +22,7 @@ export const coffeeItemState = atom<coffeeProps[]>({
   default: coffeeLists,
 });
 
-export const likeItemState = atom<any>({
+export const likeItemState = atom<coffeeProps[] | any>({
   key: "likeItemState",
   default: [],
 });

@@ -31,7 +31,9 @@ const Likes = () => {
   const setLikeItems = useSetRecoilState(likeItemState);
 
   const handleLikes = (id: number) => {
-    const updatedLike = likeItems.filter((item: any) => item.id !== id);
+    const updatedLike = likeItems?.filter(
+      (item: coffeeProps) => item.id !== id
+    );
     setLikeItems(updatedLike);
   };
 
@@ -70,7 +72,11 @@ const Likes = () => {
 
                 <Stars>
                   {item.stars.map((stars) => (
-                    <StarImg src={stars === 1 ? star : star0} alt="star" />
+                    <StarImg
+                      key={Math.random() * 5}
+                      src={stars === 1 ? star : star0}
+                      alt="star"
+                    />
                   ))}
                 </Stars>
               </ContentBox>

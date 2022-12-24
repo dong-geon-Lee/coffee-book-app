@@ -1,5 +1,9 @@
-import { authActiveState } from "./../../atoms/userAuthState";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+
+interface btnProps {
+  disabled?: boolean | undefined;
+  active?: boolean;
+}
 
 export const Container = styled.div`
   width: 100%;
@@ -33,7 +37,6 @@ export const Title = styled.h1`
 
   &.content__title {
     margin-right: auto;
-    /* margin-left: auto; */
     margin-top: 0.4rem;
   }
 `;
@@ -114,7 +117,6 @@ export const SizeBox = styled.div`
 export const Button = styled.button`
   padding: 1rem 2rem;
   color: #000;
-  /* background-color: #9d6c2d; */
   background-color: #ffd196;
   border-radius: 2rem;
   border: 1px solid #eee;
@@ -149,11 +151,6 @@ export const BtnBox = styled.div`
   margin-top: 3rem;
 `;
 
-interface btnProps {
-  disabled?: boolean | undefined;
-  active?: boolean;
-}
-
 export const Buttons = styled.button`
   padding: 1.4rem 2rem;
   background-color: #03c73c;
@@ -176,9 +173,8 @@ export const Buttons = styled.button`
   }
 
   &.likes {
-    /* background-color: #df4b4b; */
     background-color: ${(props: btnProps) =>
-      props.disabled || props.active ? "#868e96" : "#df4b4b"};
+      props.disabled ? "#868e96" : "#df4b4b"};
     cursor: ${(props: btnProps) => props.disabled && "not-allowed"};
   }
 `;
