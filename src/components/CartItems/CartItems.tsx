@@ -20,27 +20,30 @@ import {
   Bottom,
   ItemBox,
   Span,
-  SubText,
+  EmptyBox,
+  EmptyText,
+  Background,
 } from "./styles";
 import back from "../../assets/back.svg";
 import cart from "../../assets/cart2.svg";
-import x from "../../assets/delete.svg";
-import {
-  coffeeItemState,
-  recordedCartItemState,
-} from "../../atoms/coffeeItemState";
-import { useRecoilValue } from "recoil";
+import emptyCart from "../../assets/cart3.svg";
+import xIcons from "../../assets/delete.svg";
+import { recordedCartItemState } from "../../atoms/coffeeItemState";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 const CartItems = () => {
-  const coffeeLists = useRecoilValue(coffeeItemState);
-  const items = coffeeLists.slice(0, 3);
-  console.log(items);
-
   const recordedCartItem = useRecoilValue(recordedCartItemState);
   const total = recordedCartItem.reduce(
     (acc: any, cur: any) => acc + cur.total,
     0
   );
+
+  const setRecordedCartItem = useSetRecoilState(recordedCartItemState);
+
+  const handleRemoveCartItems = (id: number) => {
+    const newItems = recordedCartItem.filter((item: any) => item.id !== id);
+    setRecordedCartItem(newItems);
+  };
 
   return (
     <Container>
@@ -53,68 +56,86 @@ const CartItems = () => {
           <Logo src={cart} alt="logo" className="logo" />
         </Header>
 
-        <Center>
-          {recordedCartItem.map((item: any) => (
-            <Div key={item.id}>
-              <ImgBox>
-                <Img src={item.image} alt="img" />
-              </ImgBox>
-              <ContentBox>
-                <Text>{item.title}</Text>
-                <Price>
-                  {new Intl.NumberFormat("ko-KR", {
-                    maximumSignificantDigits: 3,
-                  }).format(item.price)}
-                  원
-                </Price>
-                <Text>Size: {item.size}</Text>
-              </ContentBox>
-              <ButtonBox>
-                <Btns>
-                  <Text className="qty">상품: {item.recordedQty} 개</Text>
-                </Btns>
+        <Center items={recordedCartItem.length}>
+          {recordedCartItem.length > 0 ? (
+            recordedCartItem.map((item: any) => (
+              <Div key={item.id}>
+                <ImgBox>
+                  <Img src={item.image} alt="img" />
+                </ImgBox>
+                <ContentBox>
+                  <Text items={recordedCartItem.length}>{item.title}</Text>
+                  <Price className="price">
+                    {new Intl.NumberFormat("ko-KR", {
+                      maximumSignificantDigits: 3,
+                    }).format(item.price)}
+                    원
+                  </Price>
+                  <Text className="size" items={recordedCartItem.length}>
+                    Size: {item.size}
+                  </Text>
+                </ContentBox>
+                <ButtonBox>
+                  <Btns>
+                    <Text className="qty" items={recordedCartItem.length}>
+                      상품: {item.recordedQty} 개
+                    </Text>
+                  </Btns>
 
-                <Logo src={x} alt="logo" className="xBtn" />
-              </ButtonBox>
-            </Div>
-          ))}
+                  <Logo
+                    src={xIcons}
+                    alt="logo"
+                    className="xBtn"
+                    onClick={() => handleRemoveCartItems(item.id)}
+                  />
+                </ButtonBox>
+              </Div>
+            ))
+          ) : (
+            <EmptyBox className="empty__box">
+              <Background img={emptyCart} />
+              <EmptyText className="empty__text">Your Cart is Empty.</EmptyText>
+            </EmptyBox>
+          )}
         </Center>
 
-        <Bottom>
-          <ItemBox>
-            <Label>상품금액</Label>
-            <Span>
-              +
-              {new Intl.NumberFormat("ko-KR", {
-                maximumSignificantDigits: 3,
-              }).format(total)}
-              원
-            </Span>
-          </ItemBox>
+        {recordedCartItem.length > 0 && (
+          <Bottom>
+            <ItemBox>
+              <Label>상품금액</Label>
+              <Span>
+                +
+                {new Intl.NumberFormat("ko-KR", {
+                  maximumSignificantDigits: 3,
+                }).format(total)}
+                원
+              </Span>
+            </ItemBox>
 
-          <ItemBox>
-            <Label>배송비</Label>
-            <Span>
-              +
-              {new Intl.NumberFormat("ko-KR", {
-                maximumSignificantDigits: 3,
-              }).format(2500)}
-              원
-            </Span>
-          </ItemBox>
+            <ItemBox>
+              <Label>배송비</Label>
+              <Span>
+                +
+                {new Intl.NumberFormat("ko-KR", {
+                  maximumSignificantDigits: 3,
+                }).format(2500)}
+                원
+              </Span>
+            </ItemBox>
 
-          <ItemBox>
-            <Label>주문금액</Label>
-            <Span>
-              {new Intl.NumberFormat("ko-KR", {
-                maximumSignificantDigits: 3,
-              }).format(total + 2500)}
-              원
-            </Span>
-          </ItemBox>
+            <ItemBox>
+              <Label>주문금액</Label>
+              <Span>
+                {new Intl.NumberFormat("ko-KR", {
+                  maximumSignificantDigits: 3,
+                }).format(total + 2500)}
+                원
+              </Span>
+            </ItemBox>
 
-          <Button className="checkout__btn">결제하기</Button>
-        </Bottom>
+            <Button className="checkout__btn">결제하기</Button>
+          </Bottom>
+        )}
       </Section>
       <NavMenu />
     </Container>
