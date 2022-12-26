@@ -112,17 +112,19 @@ export const ContentBox = styled.div`
 `;
 
 export const Text = styled.p<itemsProps>`
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 800;
 
   &.qty {
     margin: ${(props) => props.items === 1 && "4rem 0 0 0"};
     color: #fa5252;
+    font-size: 1.8rem;
   }
 
   &.size {
     color: #495057;
     font-weight: 400;
+    font-size: 1.6rem;
   }
 `;
 
@@ -132,7 +134,7 @@ export const SubText = styled.label`
 `;
 
 export const Price = styled.p`
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #03c73c;
   font-weight: 600;
 `;
