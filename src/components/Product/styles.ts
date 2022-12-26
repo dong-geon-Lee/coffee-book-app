@@ -39,6 +39,9 @@ export const Title = styled.h1`
     margin-right: auto;
     margin-top: 0.4rem;
   }
+
+  &.quantity {
+  }
 `;
 
 export const Logo = styled.img`
@@ -114,13 +117,20 @@ export const SizeBox = styled.div`
   gap: 1rem;
 `;
 
-export const Button = styled.button`
+export const Div = styled.div``;
+
+interface activeProps {
+  active?: boolean;
+}
+
+export const Button = styled.button<activeProps>`
   padding: 1rem 2rem;
-  color: #000;
-  background-color: #ffd196;
+  color: ${(props) => (props.active ? "#fff" : "#000")};
+  background-color: ${(props) => (props.active ? "#2f9e44" : "#ffd196")};
   border-radius: 2rem;
   border: 1px solid #eee;
   font-size: 1.4rem;
+  font-weight: 800;
 
   &:hover {
     filter: brightness(90%);
@@ -165,11 +175,15 @@ export const Buttons = styled.button`
   &.minus {
     background-color: #e9b17c;
     padding: 1rem 1.4rem;
+    background-color: ${(props) => (props.disabled ? "#adb5bd" : "#e9b17c")};
+    cursor: ${(props) => (props.disabled ? "not-allowed" : "default")};
   }
 
   &.plus {
     background-color: #e98d38;
     padding: 1rem 1.4rem;
+    background-color: ${(props) => (props.disabled ? "#adb5bd" : "#e9b17c")};
+    cursor: ${(props) => (props.disabled ? "not-allowed" : "default")};
   }
 
   &.likes {
@@ -183,5 +197,5 @@ export const CountBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
+  gap: 1.2rem;
 `;

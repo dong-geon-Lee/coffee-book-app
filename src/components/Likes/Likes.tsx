@@ -34,6 +34,7 @@ const Likes = () => {
     const updatedLike = likeItems?.filter(
       (item: coffeeProps) => item.id !== id
     );
+
     setLikeItems(updatedLike);
   };
 

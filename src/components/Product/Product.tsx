@@ -1,4 +1,4 @@
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import back from "../../assets/back.svg";
@@ -10,6 +10,9 @@ import {
   coffeeItemState,
   likeItemState,
   coffeeProps,
+  quantityState,
+  totalPriceState,
+  selectedSizeState,
 } from "../../atoms/coffeeItemState";
 import {
   BtnBox,
@@ -20,6 +23,7 @@ import {
   Contents,
   CountBox,
   Description,
+  Div,
   Header,
   Img,
   ImgBox,
@@ -32,13 +36,30 @@ import {
   Title,
 } from "./styles";
 
+interface itemProps {
+  id?: number;
+  size?: string;
+  price?: number;
+  active: boolean | undefined;
+}
+
 const Product = () => {
+  const [selectedSize, setSelectedSize] = useRecoilState(selectedSizeState);
+  const [quantity, setQuantity] = useRecoilState(quantityState);
+  const [totalPrice, setTotalPrice] = useRecoilState(totalPriceState);
+
   const coffeeItem = useRecoilValue(coffeeItemState);
   const likeItem = useRecoilValue(likeItemState);
   const setLikeItem = useSetRecoilState(likeItemState);
 
   const { state } = useLocation();
-  const { id, title, description, image, price, stars } = state.product;
+  const { id, title, description, image, stars, product } = state.product;
+
+  let total: number | undefined;
+
+  const active = product
+    .map((x: any) => x.price)
+    .findIndex((x: any) => x === selectedSize);
 
   const target = coffeeItem.find((item: coffeeProps) => item.id === id);
   const activeLikes = likeItem.find(
@@ -48,6 +69,30 @@ const Product = () => {
   const handleLikes = () => {
     setLikeItem([...likeItem, { ...target, likes: !target?.likes }]);
   };
+
+  const handlePlusClick = () => {
+    if (quantity > 8) return;
+    setQuantity((prevState) => prevState + 1);
+  };
+
+  const handleMinusClick = () => {
+    if (quantity < 2) return;
+    setQuantity((prevState) => prevState - 1);
+  };
+
+  const handleResetMenu = (price: any) => {
+    setSelectedSize(price);
+    setQuantity(1);
+    setTotalPrice(price);
+  };
+
+  const handleCartItem = () => {
+    setTotalPrice(selectedSize * quantity);
+    setSelectedSize(0);
+    setQuantity(0);
+  };
+
+  console.log(totalPrice, total, (total = totalPrice));
 
   return (
     <Container>
@@ -82,18 +127,37 @@ const Product = () => {
           <Description>{description}</Description>
 
           <SizeBox>
-            <Button>Small</Button>
-            <Button>Medium</Button>
-            <Button>Large</Button>
+            {product.map((item: itemProps) => (
+              <Div key={item.id}>
+                <Button
+                  onClick={() => handleResetMenu(item.price)}
+                  active={item.id === active + 1}
+                >
+                  {item.size}
+                </Button>
+              </Div>
+            ))}
           </SizeBox>
 
           <PriceBox>
-            <PriceText>상품 가격: {price[0]}원</PriceText>
+            <PriceText>상품 가격: {selectedSize * quantity}원</PriceText>
 
             <CountBox>
-              <Buttons className="minus">-</Buttons>
-              <Title>1</Title>
-              <Buttons className="plus">+</Buttons>
+              <Buttons
+                className="minus"
+                onClick={handleMinusClick}
+                disabled={active + 1 ? false : true}
+              >
+                -
+              </Buttons>
+              <Title className="quantity">{quantity}</Title>
+              <Buttons
+                className="plus"
+                onClick={handlePlusClick}
+                disabled={active + 1 ? false : true}
+              >
+                +
+              </Buttons>
             </CountBox>
           </PriceBox>
 
@@ -105,7 +169,9 @@ const Product = () => {
             >
               좋아요
             </Buttons>
-            <Buttons className="carts">장바구니</Buttons>
+            <Buttons className="carts" onClick={handleCartItem}>
+              장바구니
+            </Buttons>
           </BtnBox>
         </ContentBox>
       </Section>

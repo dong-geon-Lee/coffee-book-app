@@ -11,6 +11,11 @@ export const coffeeLists = [
     price: [4900, 5400, 5900],
     stars: [1, 1, 1, 1, 0],
     likes: false,
+    product: [
+      { id: 1, size: "Small", price: 4900, acitve: false },
+      { id: 2, size: "Medium", price: 5400, active: false },
+      { id: 3, size: "Large", price: 5900, active: false },
+    ],
   },
   {
     id: 2,
@@ -24,6 +29,11 @@ export const coffeeLists = [
     price: [5800, 6300, 6800],
     stars: [1, 1, 1, 0, 0],
     likes: false,
+    product: [
+      { id: 1, size: "Small", price: 5800, acitve: false },
+      { id: 2, size: "Medium", price: 6300, active: false },
+      { id: 3, size: "Large", price: 6800, active: false },
+    ],
   },
   {
     id: 3,
@@ -37,6 +47,11 @@ export const coffeeLists = [
     price: [5000, 5600, 6000],
     stars: [1, 1, 1, 1, 0],
     likes: false,
+    product: [
+      { id: 1, size: "Small", price: 5000, acitve: false },
+      { id: 2, size: "Medium", price: 5600, active: false },
+      { id: 3, size: "Large", price: 6000, active: false },
+    ],
   },
   {
     id: 4,
@@ -50,6 +65,11 @@ export const coffeeLists = [
     price: [5400, 5900, 6400],
     stars: [1, 1, 1, 1, 1],
     likes: false,
+    product: [
+      { id: 1, size: "Small", price: 5400, acitve: false },
+      { id: 2, size: "Medium", price: 5900, active: false },
+      { id: 3, size: "Large", price: 6400, active: false },
+    ],
   },
   {
     id: 5,
@@ -63,6 +83,11 @@ export const coffeeLists = [
     price: [4500, 5000, 5500],
     stars: [1, 1, 0, 0, 0],
     likes: false,
+    product: [
+      { id: 1, size: "Small", price: 4500, acitve: false },
+      { id: 2, size: "Medium", price: 5000, active: false },
+      { id: 3, size: "Large", price: 5500, active: false },
+    ],
   },
   {
     id: 6,
@@ -76,6 +101,11 @@ export const coffeeLists = [
     price: [5000, 5600, 6100],
     stars: [1, 1, 1, 1, 0],
     likes: false,
+    product: [
+      { id: 1, size: "Small", price: 5000, acitve: false },
+      { id: 2, size: "Medium", price: 5600, active: false },
+      { id: 3, size: "Large", price: 6100, active: false },
+    ],
   },
   {
     id: 7,
@@ -89,6 +119,11 @@ export const coffeeLists = [
     price: [6300, 6800, 7300],
     stars: [1, 1, 1, 0, 0],
     likes: false,
+    product: [
+      { id: 1, size: "Small", price: 6300, acitve: false },
+      { id: 2, size: "Medium", price: 6800, active: false },
+      { id: 3, size: "Large", price: 7300, active: false },
+    ],
   },
   {
     id: 8,
@@ -102,6 +137,11 @@ export const coffeeLists = [
     price: [6300, 6800, 7300],
     stars: [1, 1, 1, 1, 0],
     likes: false,
+    product: [
+      { id: 1, size: "Small", price: 6300, acitve: false },
+      { id: 2, size: "Medium", price: 6800, active: false },
+      { id: 3, size: "Large", price: 7300, active: false },
+    ],
   },
   {
     id: 9,
@@ -114,6 +154,11 @@ export const coffeeLists = [
     price: [5500, 6000, 6500],
     stars: [1, 1, 1, 0, 0],
     likes: false,
+    product: [
+      { id: 1, size: "Small", price: 5500, acitve: false },
+      { id: 2, size: "Medium", price: 6000, active: false },
+      { id: 3, size: "Large", price: 6500, active: false },
+    ],
   },
   {
     id: 10,
@@ -127,6 +172,11 @@ export const coffeeLists = [
     price: [6300, 6800, 7300],
     stars: [1, 1, 1, 1, 1],
     likes: false,
+    product: [
+      { id: 1, size: "Small", price: 6300, acitve: false },
+      { id: 2, size: "Medium", price: 6800, active: false },
+      { id: 3, size: "Large", price: 7300, active: false },
+    ],
   },
   {
     id: 11,
@@ -140,6 +190,11 @@ export const coffeeLists = [
     price: [6300, 6800, 7300],
     stars: [1, 1, 1, 0, 0],
     likes: false,
+    product: [
+      { id: 1, size: "Small", price: 6300, acitve: false },
+      { id: 2, size: "Medium", price: 6800, active: false },
+      { id: 3, size: "Large", price: 7300, active: false },
+    ],
   },
   {
     id: 12,
@@ -153,6 +208,11 @@ export const coffeeLists = [
     price: [6300, 6800, 7300],
     stars: [1, 1, 1, 1, 0],
     likes: false,
+    product: [
+      { id: 1, size: "Small", price: 6300, acitve: false },
+      { id: 2, size: "Medium", price: 6800, active: false },
+      { id: 3, size: "Large", price: 7300, active: false },
+    ],
   },
   // {
   //   id: 13,

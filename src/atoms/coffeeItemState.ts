@@ -14,7 +14,7 @@ export interface coffeeProps {
 }
 
 export interface likeProps {
-  likes: boolean;
+  id: number | undefined;
 }
 
 export const coffeeItemState = atom<coffeeProps[]>({
@@ -22,7 +22,27 @@ export const coffeeItemState = atom<coffeeProps[]>({
   default: coffeeLists,
 });
 
-export const likeItemState = atom<coffeeProps[] | any>({
+export const likeItemState = atom<any>({
   key: "likeItemState",
   default: [],
+});
+
+export const selectedSizeState = atom({
+  key: "selectedSizeState",
+  default: 0,
+});
+
+export const quantityState = atom({
+  key: "quantityState",
+  default: 0,
+});
+
+export const totalPriceState = atom({
+  key: "totalPriceState",
+  default: 0,
+});
+
+export const sumProductState = atom({
+  key: "sumProductState",
+  default: false,
 });
