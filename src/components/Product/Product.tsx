@@ -13,6 +13,8 @@ import {
   quantityState,
   totalPriceState,
   selectedSizeState,
+  recordedQtyState,
+  recordedCartItemState,
 } from "../../atoms/coffeeItemState";
 import {
   BtnBox,
@@ -47,6 +49,9 @@ const Product = () => {
   const [selectedSize, setSelectedSize] = useRecoilState(selectedSizeState);
   const [quantity, setQuantity] = useRecoilState(quantityState);
   const [totalPrice, setTotalPrice] = useRecoilState(totalPriceState);
+  const [, setRecordedQty] = useRecoilState(recordedQtyState);
+  const recordedCartItem = useRecoilValue(recordedCartItemState);
+  const setRecordedCartItem = useSetRecoilState(recordedCartItemState);
 
   const coffeeItem = useRecoilValue(coffeeItemState);
   const likeItem = useRecoilValue(likeItemState);
@@ -81,24 +86,40 @@ const Product = () => {
   };
 
   const handleResetMenu = (price: any) => {
-    setSelectedSize(price);
     setQuantity(1);
+    setSelectedSize(price);
     setTotalPrice(price);
+  };
+
+  const list = product.find((p: any) => p.price === selectedSize);
+  const cartItems = {
+    id: Math.floor(Math.random() * 1000 + 1),
+    size: list?.size,
+    price: list?.price,
+    image,
+    title,
+    recordedQty: quantity,
+    total: (total = totalPrice * quantity),
   };
 
   const handleCartItem = () => {
     setTotalPrice(selectedSize * quantity);
-    setSelectedSize(0);
+    setRecordedQty(quantity);
+    setRecordedCartItem([...recordedCartItem, cartItems]);
     setQuantity(0);
+    setSelectedSize(0);
   };
 
-  console.log(totalPrice, total, (total = totalPrice));
+  const arrowResetBtn = () => {
+    setQuantity(0);
+    setSelectedSize(0);
+  };
 
   return (
     <Container>
       <Section>
         <Header>
-          <Link to="/home">
+          <Link to="/home" onClick={arrowResetBtn}>
             <Logo src={back} alt="logo" />
           </Link>
 
@@ -140,7 +161,13 @@ const Product = () => {
           </SizeBox>
 
           <PriceBox>
-            <PriceText>상품 가격: {selectedSize * quantity}원</PriceText>
+            <PriceText>
+              상품 가격:
+              {new Intl.NumberFormat("ko-KR", {
+                maximumSignificantDigits: 3,
+              }).format(selectedSize * quantity)}
+              원
+            </PriceText>
 
             <CountBox>
               <Buttons
@@ -169,7 +196,11 @@ const Product = () => {
             >
               좋아요
             </Buttons>
-            <Buttons className="carts" onClick={handleCartItem}>
+            <Buttons
+              className="carts"
+              onClick={handleCartItem}
+              disabled={active + 1 ? false : true}
+            >
               장바구니
             </Buttons>
           </BtnBox>

@@ -25,13 +25,22 @@ import {
 import back from "../../assets/back.svg";
 import cart from "../../assets/cart2.svg";
 import x from "../../assets/delete.svg";
-import { coffeeItemState } from "../../atoms/coffeeItemState";
+import {
+  coffeeItemState,
+  recordedCartItemState,
+} from "../../atoms/coffeeItemState";
 import { useRecoilValue } from "recoil";
 
 const CartItems = () => {
   const coffeeLists = useRecoilValue(coffeeItemState);
   const items = coffeeLists.slice(0, 3);
   console.log(items);
+
+  const recordedCartItem = useRecoilValue(recordedCartItemState);
+  const total = recordedCartItem.reduce(
+    (acc: any, cur: any) => acc + cur.total,
+    0
+  );
 
   return (
     <Container>
@@ -45,21 +54,24 @@ const CartItems = () => {
         </Header>
 
         <Center>
-          {items.map((item) => (
+          {recordedCartItem.map((item: any) => (
             <Div key={item.id}>
               <ImgBox>
                 <Img src={item.image} alt="img" />
               </ImgBox>
               <ContentBox>
                 <Text>{item.title}</Text>
-                <SubText>크기: {item.size[1]}</SubText>
-                <Price>{item.price[1]}원</Price>
+                <Price>
+                  {new Intl.NumberFormat("ko-KR", {
+                    maximumSignificantDigits: 3,
+                  }).format(item.price)}
+                  원
+                </Price>
+                <Text>Size: {item.size}</Text>
               </ContentBox>
               <ButtonBox>
                 <Btns>
-                  <Button className="minus">-</Button>
-                  <Title>1</Title>
-                  <Button className="plus">+</Button>
+                  <Text className="qty">상품: {item.recordedQty} 개</Text>
                 </Btns>
 
                 <Logo src={x} alt="logo" className="xBtn" />
@@ -71,17 +83,34 @@ const CartItems = () => {
         <Bottom>
           <ItemBox>
             <Label>상품금액</Label>
-            <Span>+ 17,500 원</Span>
+            <Span>
+              +
+              {new Intl.NumberFormat("ko-KR", {
+                maximumSignificantDigits: 3,
+              }).format(total)}
+              원
+            </Span>
           </ItemBox>
 
           <ItemBox>
             <Label>배송비</Label>
-            <Span>+ 2,500 원</Span>
+            <Span>
+              +
+              {new Intl.NumberFormat("ko-KR", {
+                maximumSignificantDigits: 3,
+              }).format(2500)}
+              원
+            </Span>
           </ItemBox>
 
           <ItemBox>
             <Label>주문금액</Label>
-            <Span>20,000 원</Span>
+            <Span>
+              {new Intl.NumberFormat("ko-KR", {
+                maximumSignificantDigits: 3,
+              }).format(total + 2500)}
+              원
+            </Span>
           </ItemBox>
 
           <Button className="checkout__btn">결제하기</Button>

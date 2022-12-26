@@ -42,7 +42,12 @@ export const totalPriceState = atom({
   default: 0,
 });
 
-export const sumProductState = atom({
-  key: "sumProductState",
-  default: false,
+export const recordedQtyState = atom({
+  key: "recordedQtyState",
+  default: 0,
+});
+
+export const recordedCartItemState = atom<any>({
+  key: "recoredCartItemState",
+  default: [],
 });

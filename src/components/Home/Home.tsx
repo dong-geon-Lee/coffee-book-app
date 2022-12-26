@@ -12,7 +12,11 @@ import heart from "../../assets/heart.svg";
 import cart from "../../assets/cart.svg";
 import profile from "../../assets/profile.svg";
 import logout from "../../assets/logout2.svg";
-import { coffeeItemState, likeItemState } from "../../atoms/coffeeItemState";
+import {
+  coffeeItemState,
+  likeItemState,
+  recordedCartItemState,
+} from "../../atoms/coffeeItemState";
 import { coffeeProps } from "../../atoms/coffeeItemState";
 import { Link } from "react-router-dom";
 import {
@@ -48,6 +52,7 @@ const Home = () => {
   const [authActive, setAuthActive] = useRecoilState(authActiveState);
   const coffeeLists = useRecoilValue(coffeeItemState);
   const likeItems = useRecoilValue(likeItemState);
+  const cartItems = useRecoilValue(recordedCartItemState);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -206,7 +211,7 @@ const Home = () => {
         </ImgBox>
         <ImgBox className="icon__box" onClick={handleNavigateCartItems}>
           <Img src={cart} className="icons" />
-          <IconsText>0</IconsText>
+          <IconsText>{cartItems.length || 0}</IconsText>
         </ImgBox>
         <ImgBox className="icon__box" onClick={handleNavigateProfiles}>
           <Img src={profile} className="icons" />

@@ -176,20 +176,25 @@ export const Buttons = styled.button`
     background-color: #e9b17c;
     padding: 1rem 1.4rem;
     background-color: ${(props) => (props.disabled ? "#adb5bd" : "#e9b17c")};
-    cursor: ${(props) => (props.disabled ? "not-allowed" : "default")};
+    cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   }
 
   &.plus {
     background-color: #e98d38;
     padding: 1rem 1.4rem;
     background-color: ${(props) => (props.disabled ? "#adb5bd" : "#e9b17c")};
-    cursor: ${(props) => (props.disabled ? "not-allowed" : "default")};
+    cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   }
 
   &.likes {
     background-color: ${(props: btnProps) =>
       props.disabled ? "#868e96" : "#df4b4b"};
     cursor: ${(props: btnProps) => props.disabled && "not-allowed"};
+  }
+
+  &.carts {
+    background-color: ${(props) => (props.disabled ? "#868e96" : "#03c73c")};
+    cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   }
 `;
 

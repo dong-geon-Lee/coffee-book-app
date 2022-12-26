@@ -63,6 +63,11 @@ export const Logo = styled.img`
 export const Title = styled.h1`
   font-size: 2rem;
   letter-spacing: 1px;
+
+  &.qty {
+    text-align: center;
+    width: 100%;
+  }
 `;
 
 export const Div = styled.div`
@@ -119,9 +124,12 @@ export const ButtonBox = styled.div`
 
 export const Btns = styled.div`
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  justify-content: center;
   gap: 1rem;
-  margin-top: auto;
+  margin-top: 2.4rem;
+  width: 100%;
+  /* height: 100%; */
 `;
 
 export const Button = styled.button`
