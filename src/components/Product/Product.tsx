@@ -50,11 +50,12 @@ const Product = () => {
   const [quantity, setQuantity] = useRecoilState(quantityState);
   const [totalPrice, setTotalPrice] = useRecoilState(totalPriceState);
   const [, setRecordedQty] = useRecoilState(recordedQtyState);
-  const recordedCartItem = useRecoilValue(recordedCartItemState);
-  const setRecordedCartItem = useSetRecoilState(recordedCartItemState);
 
+  const recordedCartItem = useRecoilValue(recordedCartItemState);
   const coffeeItem = useRecoilValue(coffeeItemState);
   const likeItem = useRecoilValue(likeItemState);
+
+  const setRecordedCartItem = useSetRecoilState(recordedCartItemState);
   const setLikeItem = useSetRecoilState(likeItemState);
 
   const { state } = useLocation();
