@@ -77,7 +77,7 @@ export const UserInfo = styled.div`
   text-align: center;
   border: 1px solid #000;
   width: 48rem;
-  height: 24.2rem;
+  height: 27.27rem;
 `;
 
 export const Box = styled.div`
@@ -86,7 +86,7 @@ export const Box = styled.div`
   align-items: baseline;
   gap: 2.6rem;
   background-color: #ffd8a8;
-  padding: 1rem;
+  padding: 1.2rem;
   justify-items: left;
   align-items: center;
   border-bottom: 1px solid #000;
@@ -107,6 +107,20 @@ export const Span = styled.span`
   font-size: 1.8rem;
   font-weight: 800;
   display: block;
+`;
+
+export const Select = styled.select`
+  padding: 1rem;
+  cursor: pointer;
+  outline: none;
+`;
+
+export const Option = styled.option``;
+
+export const SubBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
 `;
 
 export const BtnBox = styled.div`

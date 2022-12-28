@@ -3,14 +3,13 @@ import {
   ModalBox,
   Div,
   Price,
-  Title,
   Button,
   Text,
   Select,
   Option,
   ChargeBox,
 } from "./styles";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { totalCashState } from "../../atoms/coffeeItemState";
 import { bankAccountState } from "../../atoms/userAuthState";
 import { modalState, overlayState } from "../../atoms/modalState";

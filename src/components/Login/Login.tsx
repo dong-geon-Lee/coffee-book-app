@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { authActiveState } from "../../atoms/userAuthState";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  authActiveState,
+  authProps,
+  authUserState,
+} from "../../atoms/userAuthState";
 import { accounts } from "../../data/userItems";
 import { Button, Container, Div, Form, Input, Label } from "./styles";
+
+interface Props {
+  setAuthUser: () => void;
+}
 
 interface userProps {
   target: { name: string; value: string };
@@ -14,14 +22,6 @@ interface inputProps {
   password: string;
 }
 
-interface accProps {
-  name: string;
-  userId: string;
-  password: string | number;
-  money: number;
-  createdDate: object;
-}
-
 const Login = () => {
   const [authInput, setAuthInput] = useState({
     userId: "",
@@ -29,6 +29,7 @@ const Login = () => {
   });
   const { userId, password }: inputProps = authInput;
   const [, setAuthActive] = useRecoilState(authActiveState);
+  const [, setAuthUser] = useRecoilState(authUserState);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,7 +45,7 @@ const Login = () => {
     e.preventDefault();
 
     const checkAuth = accounts.find(
-      (account: accProps) =>
+      (account: authProps) =>
         account.userId === userId && account.password === +password
     );
 
@@ -53,6 +54,7 @@ const Login = () => {
       return;
     }
 
+    setAuthUser(checkAuth);
     setAuthActive(true);
     navigate("/home");
   };
