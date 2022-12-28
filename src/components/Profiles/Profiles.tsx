@@ -19,8 +19,20 @@ import {
 import back from "../../assets/back.svg";
 import profile from "../../assets/profile2.svg";
 import avartar from "../../assets/avarta.jpg";
+import { useRecoilState } from "recoil";
+import { modalState, overlayState } from "../../atoms/modalState";
+import Overlays from "../Modals/Overlays/Overlays";
+import Modals from "../Modals/Modals";
 
 const Profiles = () => {
+  const [openModals, setOpenModals] = useRecoilState(modalState);
+  const [overlays, setOverlays] = useRecoilState(overlayState);
+
+  const handleModals = () => {
+    setOpenModals(true);
+    setOverlays(true);
+  };
+
   return (
     <Container>
       <Section>
@@ -32,6 +44,8 @@ const Profiles = () => {
           <Logo src={profile} alt="logo" className="logo" />
         </Header>
 
+        {openModals && <Modals />}
+        {overlays && <Overlays />}
         <UserBox>
           <ImgBox>
             <Img src={avartar} alt="" />
@@ -61,11 +75,12 @@ const Profiles = () => {
           </UserInfo>
 
           <BtnBox>
-            <Button>Pay충전</Button>
+            <Button onClick={() => handleModals()}>Pay충전</Button>
             <Button>결제내역</Button>
           </BtnBox>
         </UserBox>
       </Section>
+
       <NavMenu />
     </Container>
   );

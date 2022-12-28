@@ -9,3 +9,8 @@ export const authActiveState = atom({
   key: "authActiveState",
   default: false,
 });
+
+export const bankAccountState = atom({
+  key: "bankAccountState",
+  default: "",
+});

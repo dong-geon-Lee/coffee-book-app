@@ -51,3 +51,8 @@ export const recordedCartItemState = atom<any>({
   key: "recoredCartItemState",
   default: [],
 });
+
+export const totalCashState = atom<any>({
+  key: "totalCashState",
+  default: 0,
+});

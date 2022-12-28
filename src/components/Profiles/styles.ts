@@ -14,6 +14,7 @@ export const Section = styled.div`
   padding: 2rem 6rem;
   height: 70rem;
   overflow: hidden;
+  position: relative;
 `;
 
 export const Header = styled.header`
