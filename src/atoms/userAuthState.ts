@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import { accounts } from "../data/userItems";
 
 export interface authProps {
   name: string;
@@ -15,10 +16,11 @@ export interface authProps {
 }
 
 export interface bankProps {
-  id: number;
-  bankName: string;
-  accNumber: string;
-  money: number;
+  map?: any;
+  id?: number;
+  bankName?: string;
+  accNumber?: string;
+  money?: number;
 }
 
 export const openBookState = atom({
@@ -39,4 +41,24 @@ export const authUserState = atom<null | authProps>({
 export const bankAccountState = atom({
   key: "bankAccountState",
   default: "",
+});
+
+export const choiceBankState = atom<bankProps | null | any>({
+  key: "choiceBankState",
+  default: null,
+});
+
+export const accountUserState = atom<any>({
+  key: "accountUserState",
+  default: accounts,
+});
+
+export const bankOptionState = atom<string>({
+  key: "bankOptionState",
+  default: "",
+});
+
+export const totalState = atom({
+  key: "totalState",
+  default: 0,
 });

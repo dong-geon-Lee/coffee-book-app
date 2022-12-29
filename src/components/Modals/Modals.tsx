@@ -8,18 +8,32 @@ import {
   Select,
   Option,
   ChargeBox,
+  Label,
+  Span,
+  Box,
 } from "./styles";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { totalCashState } from "../../atoms/coffeeItemState";
-import { bankAccountState } from "../../atoms/userAuthState";
+import {
+  authUserState,
+  bankAccountState,
+  bankOptionState,
+  bankProps,
+  choiceBankState,
+} from "../../atoms/userAuthState";
 import { modalState, overlayState } from "../../atoms/modalState";
 
 const Modals = () => {
   const [totalCash, setTotalCash] = useRecoilState(totalCashState);
   const [bankAccount, setBankAccount] = useRecoilState(bankAccountState);
-
   const [, setModalState] = useRecoilState(modalState);
   const [, setOverlays] = useRecoilState(overlayState);
+
+  const authUser = useRecoilValue<any>(authUserState);
+  const choiceBank = useRecoilValue(choiceBankState);
+  const bankOption = useRecoilValue(bankOptionState);
+
+  const setAuthUser = useSetRecoilState(authUserState);
 
   const x = 10000;
   const y = 50000;
@@ -45,7 +59,27 @@ const Modals = () => {
     setBankAccount(e.target.value);
   };
 
-  console.log(bankAccount);
+  const handleDeleteBanks = () => {
+    const authInfo = { ...authUser };
+
+    const datas = authInfo.bankInfo.map((bank: any) => {
+      if (bank.bankName === bankOption) {
+        return {
+          id: bank.id,
+          bankName: bank.bankName,
+          accNumber: bank.accNumber,
+          money: totalCash + bank.money,
+        };
+      } else {
+        return bank;
+      }
+    });
+
+    setAuthUser({ ...authUser, bankInfo: datas });
+    setTotalCash(0);
+    setModalState(false);
+    setOverlays(false);
+  };
 
   return (
     <Container>
@@ -65,7 +99,6 @@ const Modals = () => {
             x
           </Button>
         </ChargeBox>
-
         <Div>
           <Button onClick={() => handleTotalCash(x)} className="cash__btn">
             +1만원
@@ -77,13 +110,23 @@ const Modals = () => {
             +10만원
           </Button>
         </Div>
-
         <Select value={bankAccount} onChange={onChange}>
-          <Option value="282402-04-1316111">국민은행: 282402-04-1316111</Option>
-          <Option value="402321-11-2769440">신한은행: 402321-11-2769440</Option>
+          {choiceBank?.map((bank: bankProps) => (
+            <>
+              <Option value={bank?.accNumber}>
+                {bank?.bankName} {bank?.accNumber}
+              </Option>
+            </>
+          ))}
         </Select>
 
-        <Button className="pay__btn" onClick={handleChargePoint}>
+        {choiceBank?.map((bank: bankProps) => (
+          <Box>
+            <Label>계좌잔액:</Label>
+            <Span>{totalCash + bank.money}원</Span>
+          </Box>
+        ))}
+        <Button className="pay__btn" onClick={handleDeleteBanks}>
           Pay 충전하기
         </Button>
       </ModalBox>

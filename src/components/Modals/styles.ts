@@ -92,7 +92,7 @@ export const Button = styled.button`
 
   &.close__btn {
     position: absolute;
-    padding: 1rem;
+    padding: 1.4rem 2rem;
     top: 0%;
     right: 0%;
     border-radius: 1rem;
@@ -114,3 +114,17 @@ export const Select = styled.select`
 `;
 
 export const Option = styled.option``;
+
+export const Box = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const Label = styled.label`
+  font-size: 1.6rem;
+`;
+
+export const Span = styled.span`
+  font-size: 2rem;
+`;

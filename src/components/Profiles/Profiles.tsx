@@ -26,19 +26,20 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { modalState, overlayState } from "../../atoms/modalState";
 import Overlays from "../Modals/Overlays/Overlays";
 import Modals from "../Modals/Modals";
-import { authUserState } from "../../atoms/userAuthState";
-import { useState } from "react";
+import {
+  authUserState,
+  bankOptionState,
+  choiceBankState,
+} from "../../atoms/userAuthState";
 import { bankProps } from "../../atoms/userAuthState";
 
 const Profiles = () => {
   const [openModals, setOpenModals] = useRecoilState(modalState);
   const [overlays, setOverlays] = useRecoilState(overlayState);
   const authUser = useRecoilValue(authUserState);
-  const [bankOption, setBankOption] = useState("");
-  const [bankAccNumber, setBankAccNumber] = useState<any>("");
+  const [bankOption, setBankOption] = useRecoilState(bankOptionState);
+  const [choiceBank, setChoiceBank] = useRecoilState<any>(choiceBankState);
 
-  console.log(authUser);
-  console.log(bankAccNumber);
   const handleModals = () => {
     setOpenModals(true);
     setOverlays(true);
@@ -47,7 +48,7 @@ const Profiles = () => {
   const onChange = (e: { target: { value: any } }) => {
     setBankOption(e.target.value);
     const banks = findBankName(e.target.value);
-    setBankAccNumber(banks);
+    setChoiceBank(banks);
   };
 
   const findBankName = (bank: string) => {
@@ -95,27 +96,27 @@ const Profiles = () => {
                 <SubBox>
                   <Label>계좌번호</Label>
                   <Select value={bankOption} onChange={onChange}>
-                    {authUser.bankInfo.map((bank) => (
+                    {authUser?.bankInfo?.map((bank) => (
                       <Option key={bank.id} value={bank.bankName}>
-                        {bank.bankName}
+                        {bank?.bankName}
                       </Option>
                     ))}
                   </Select>
                 </SubBox>
-                {bankAccNumber.length === 0 ? (
-                  <Span>은행을 선택해주세요</Span>
+                {choiceBank?.length === 0 ? (
+                  <Span className="choice__bank">은행을 선택해주세요</Span>
                 ) : (
-                  bankAccNumber?.map((bank: bankProps) => (
+                  choiceBank?.map((bank: bankProps) => (
                     <Span key={bank.id}>{bank.accNumber}</Span>
                   ))
                 )}
               </Box>
               <Box>
                 <Label>Pay머니</Label>
-                {bankAccNumber.length === 0 ? (
-                  <Span>은행을 선택해주세요</Span>
+                {choiceBank?.length === 0 ? (
+                  <Span className="choice__bank">은행을 선택해주세요</Span>
                 ) : (
-                  bankAccNumber?.map((bank: bankProps) => (
+                  choiceBank?.map((bank: bankProps) => (
                     <Span key={bank.id}>{bank.money}원</Span>
                   ))
                 )}

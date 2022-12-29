@@ -69,7 +69,7 @@ export const UserBox = styled.div`
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  margin-top: 4rem;
+  margin-top: 2.4rem;
 `;
 
 export const UserInfo = styled.div`
@@ -107,6 +107,12 @@ export const Span = styled.span`
   font-size: 1.8rem;
   font-weight: 800;
   display: block;
+
+  &.choice__bank {
+    font-size: 1.4rem;
+    color: gray;
+    letter-spacing: 1px;
+  }
 `;
 
 export const Select = styled.select`
@@ -127,7 +133,7 @@ export const BtnBox = styled.div`
   display: flex;
   width: 100%;
   gap: 1.6rem;
-  margin-top: 1.6rem;
+  margin: 1rem 0 0 0;
 `;
 
 export const Button = styled.button`
