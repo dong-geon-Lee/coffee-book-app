@@ -58,7 +58,7 @@ export const bankOptionState = atom<string>({
   default: "",
 });
 
-export const totalState = atom({
-  key: "totalState",
-  default: 0,
+export const spinnerState = atom({
+  key: "spinnerState",
+  default: false,
 });

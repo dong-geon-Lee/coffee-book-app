@@ -38,7 +38,7 @@ const Checkout = () => {
             <Link to="/home">
               <Button className="home__btn">메인페이지</Button>
             </Link>
-            <Link to="/profiles">
+            <Link to="/details">
               <Button className="checkout__btn">결제내역</Button>
             </Link>
           </Div>

@@ -1,5 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavMenu from "../NavMenu/NavMenu";
+import back from "../../assets/back.svg";
+import profile from "../../assets/profile2.svg";
+import avartar from "../../assets/avarta.jpg";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { modalState, overlayState } from "../../atoms/modalState";
+import Overlays from "../Modals/Overlays/Overlays";
+import Modals from "../Modals/Modals";
+import { authUserState, bankOptionState } from "../../atoms/userAuthState";
+import { bankProps } from "../../atoms/userAuthState";
 import {
   Box,
   BtnBox,
@@ -19,29 +28,14 @@ import {
   UserBox,
   UserInfo,
 } from "./styles";
-import back from "../../assets/back.svg";
-import profile from "../../assets/profile2.svg";
-import avartar from "../../assets/avarta.jpg";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { modalState, overlayState } from "../../atoms/modalState";
-import Overlays from "../Modals/Overlays/Overlays";
-import Modals from "../Modals/Modals";
-import {
-  accountListState,
-  authUserState,
-  bankOptionState,
-} from "../../atoms/userAuthState";
-import { bankProps } from "../../atoms/userAuthState";
 
 const Profiles = () => {
   const [openModals, setOpenModals] = useRecoilState(modalState);
   const [overlays, setOverlays] = useRecoilState(overlayState);
   const authUser = useRecoilValue(authUserState);
   const [bankOption, setBankOption] = useRecoilState(bankOptionState);
-  const accountLists = useRecoilValue(accountListState);
 
-  console.log(accountLists, "전체 리스트");
-  console.log(authUser, "변경된 데이터3 ");
+  const navigate = useNavigate();
 
   const handleModals = () => {
     setOpenModals(true);
@@ -118,7 +112,7 @@ const Profiles = () => {
 
           <BtnBox>
             <Button onClick={() => handleModals()}>Pay충전</Button>
-            <Button>결제내역</Button>
+            <Button onClick={() => navigate("/details")}>결제내역</Button>
           </BtnBox>
         </UserBox>
       </Section>

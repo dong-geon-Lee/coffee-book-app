@@ -94,7 +94,7 @@ const Product = () => {
 
   const list = product.find((p: any) => p.price === selectedSize);
   const cartItems = {
-    id: Math.floor(Math.random() * 1000 + 1),
+    id: "AC" + Math.floor(Math.random() * 10000) + "CF",
     size: list?.size,
     price: list?.price,
     image,

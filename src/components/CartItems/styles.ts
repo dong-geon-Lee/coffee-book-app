@@ -4,6 +4,10 @@ interface imageProps {
   img: string;
 }
 
+interface itemProps {
+  items: any;
+}
+
 export const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -14,10 +18,10 @@ export const Container = styled.div`
   overflow: hidden;
 `;
 
-export const Section = styled.div`
+export const Section = styled.div<itemProps>`
   padding: 2rem 6rem;
   height: 70rem;
-  overflow-y: scroll;
+  overflow-y: ${(props) => (props.items.length === 0 ? "none" : "scroll")};
 `;
 
 export const Header = styled.header`

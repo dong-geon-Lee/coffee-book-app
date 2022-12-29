@@ -1,3 +1,14 @@
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { totalCashState } from "../../atoms/coffeeItemState";
+import { modalState, overlayState } from "../../atoms/modalState";
+import {
+  accountListState,
+  authProps,
+  authUserState,
+  bankAccountState,
+  bankOptionState,
+  bankProps,
+} from "../../atoms/userAuthState";
 import {
   Container,
   ModalBox,
@@ -12,17 +23,6 @@ import {
   Span,
   Box,
 } from "./styles";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { totalCashState } from "../../atoms/coffeeItemState";
-import {
-  accountListState,
-  authProps,
-  authUserState,
-  bankAccountState,
-  bankOptionState,
-  bankProps,
-} from "../../atoms/userAuthState";
-import { modalState, overlayState } from "../../atoms/modalState";
 
 const Modals = () => {
   const [totalCash, setTotalCash] = useRecoilState(totalCashState);
@@ -41,11 +41,11 @@ const Modals = () => {
     setTotalCash((prevState: number) => prevState + x);
   };
 
-  const handleResetPoint = () => {
+  const handleResetIcon = () => {
     setTotalCash(0);
   };
 
-  const handleChargePoint = () => {
+  const handleBtnReset = () => {
     setTotalCash(0);
     setModalState(false);
     setOverlays(false);
@@ -57,7 +57,7 @@ const Modals = () => {
     setBankAccount(e.target.value);
   };
 
-  const handleDeleteBanks = () => {
+  const handleChargePoint = () => {
     const newBankInfo = authUser?.bankInfo?.map((bank: bankProps) => {
       if (bank.bankName === bankOption) {
         return {
@@ -67,7 +67,6 @@ const Modals = () => {
           money: totalCash + bank.money,
         };
       }
-
       return bank;
     });
 
@@ -81,9 +80,11 @@ const Modals = () => {
       { ...authUser, bankInfo: newBankInfo },
       ...accountLists.slice(index + 1),
     ]);
+
     setTotalCash(0);
     setModalState(false);
     setOverlays(false);
+    alert(`${totalCash}원 충전이 완료되었습니다.`);
   };
 
   const filteredBank = authUser?.bankInfo.find(
@@ -96,7 +97,7 @@ const Modals = () => {
 
   return (
     <Container>
-      <Button className="close__btn" onClick={handleChargePoint}>
+      <Button className="close__btn" onClick={handleBtnReset}>
         x
       </Button>
       <ModalBox>
@@ -108,7 +109,7 @@ const Modals = () => {
             }).format(totalCash)}
             원
           </Price>
-          <Button className="reset__btn" onClick={handleResetPoint}>
+          <Button className="reset__btn" onClick={handleResetIcon}>
             x
           </Button>
         </ChargeBox>
@@ -125,18 +126,20 @@ const Modals = () => {
         </Div>
 
         <Select value={bankAccount} onChange={onChange}>
-          <Option value={filteredBank?.accNumber} key={filteredBank.id}>
-            {filteredBank?.bankName} {filteredBank?.accNumber}
-          </Option>
+          {filteredBank && (
+            <Option value={filteredBank?.accNumber} key={filteredBank.id}>
+              {filteredBank?.bankName} {filteredBank?.accNumber}
+            </Option>
+          )}
         </Select>
 
         <Box key={filteredBank.id}>
           <Label>계좌잔액:</Label>
-          <Span>{totalCash + filteredBank.money}원</Span>
+          <Span>{filteredBank && totalCash + filteredBank.money}원</Span>
         </Box>
 
-        <Button className="pay__btn" onClick={handleDeleteBanks}>
-          Pay 충전하기
+        <Button className="pay__btn" onClick={handleChargePoint}>
+          충전하기
         </Button>
       </ModalBox>
     </Container>

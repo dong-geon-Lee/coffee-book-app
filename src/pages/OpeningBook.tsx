@@ -23,6 +23,7 @@ import Likes from "../components/Likes/Likes";
 import { Link } from "react-router-dom";
 import Product from "../components/Product/Product";
 import Checkout from "../components/CheckOut/Checkout";
+import PaymentDetails from "../components/PaymentDetails/PaymentDetails";
 
 const OpeningBook = () => {
   const [openBook, setOpenBook] = useRecoilState(openBookState);
@@ -46,6 +47,7 @@ const OpeningBook = () => {
                 <Route path="cartItems" element={<CartItems />} />
                 <Route path="profiles" element={<Profiles />} />
                 <Route path="checkout" element={<Checkout />} />
+                <Route path="details" element={<PaymentDetails />} />
               </Routes>
             </Router>
           )}

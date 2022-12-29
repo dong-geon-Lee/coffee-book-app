@@ -56,3 +56,8 @@ export const totalCashState = atom<any>({
   key: "totalCashState",
   default: 0,
 });
+
+export const paymentDetailState = atom<any>({
+  key: "paymentDetailState",
+  default: [],
+});

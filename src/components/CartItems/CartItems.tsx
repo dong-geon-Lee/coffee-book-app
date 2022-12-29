@@ -28,7 +28,10 @@ import back from "../../assets/back.svg";
 import cart from "../../assets/cart2.svg";
 import emptyCart from "../../assets/cart3.svg";
 import xIcons from "../../assets/delete.svg";
-import { recordedCartItemState } from "../../atoms/coffeeItemState";
+import {
+  paymentDetailState,
+  recordedCartItemState,
+} from "../../atoms/coffeeItemState";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useEffect, useState } from "react";
 import Spinner from "../Spinner/Spinner";
@@ -38,12 +41,16 @@ const CartItems = () => {
   const navigate = useNavigate();
 
   const recordedCartItem = useRecoilValue(recordedCartItemState);
+  const paymentDetails = useRecoilValue(paymentDetailState);
+
+  const setRecordedCartItem = useSetRecoilState(recordedCartItemState);
+  const setPaymentDetails = useSetRecoilState(paymentDetailState);
+
   const total = recordedCartItem.reduce(
     (acc: any, cur: any) => acc + cur.total,
     0
   );
 
-  const setRecordedCartItem = useSetRecoilState(recordedCartItemState);
   const handleRemoveCartItems = (id: number) => {
     const newItems = recordedCartItem.filter((item: any) => item.id !== id);
     setRecordedCartItem(newItems);
@@ -51,6 +58,8 @@ const CartItems = () => {
 
   const handleCheckout = () => {
     setActiveSpinner(true);
+    setPaymentDetails([...paymentDetails, ...recordedCartItem]);
+    setRecordedCartItem([]);
   };
 
   useEffect(() => {
@@ -64,7 +73,7 @@ const CartItems = () => {
 
   return (
     <Container>
-      <Section>
+      <Section items={recordedCartItem}>
         <Header>
           <Link to="/home">
             <Logo src={back} alt="logo" />
