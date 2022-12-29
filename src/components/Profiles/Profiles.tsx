@@ -27,9 +27,9 @@ import { modalState, overlayState } from "../../atoms/modalState";
 import Overlays from "../Modals/Overlays/Overlays";
 import Modals from "../Modals/Modals";
 import {
+  accountListState,
   authUserState,
   bankOptionState,
-  choiceBankState,
 } from "../../atoms/userAuthState";
 import { bankProps } from "../../atoms/userAuthState";
 
@@ -38,7 +38,10 @@ const Profiles = () => {
   const [overlays, setOverlays] = useRecoilState(overlayState);
   const authUser = useRecoilValue(authUserState);
   const [bankOption, setBankOption] = useRecoilState(bankOptionState);
-  const [choiceBank, setChoiceBank] = useRecoilState<any>(choiceBankState);
+  const accountLists = useRecoilValue(accountListState);
+
+  console.log(accountLists, "전체 리스트");
+  console.log(authUser, "변경된 데이터3 ");
 
   const handleModals = () => {
     setOpenModals(true);
@@ -47,18 +50,11 @@ const Profiles = () => {
 
   const onChange = (e: { target: { value: any } }) => {
     setBankOption(e.target.value);
-    const banks = findBankName(e.target.value);
-    setChoiceBank(banks);
   };
 
-  const findBankName = (bank: string) => {
-    const bankLists = authUser?.bankInfo;
-    const selectedBank = bankLists?.filter(
-      (bankList) => bankList.bankName === bank
-    );
-
-    return selectedBank;
-  };
+  const filteredBank = authUser?.bankInfo.find(
+    (x: bankProps) => x.bankName === bankOption
+  );
 
   return (
     <Container>
@@ -96,29 +92,25 @@ const Profiles = () => {
                 <SubBox>
                   <Label>계좌번호</Label>
                   <Select value={bankOption} onChange={onChange}>
-                    {authUser?.bankInfo?.map((bank) => (
+                    {authUser?.bankInfo?.map((bank: bankProps) => (
                       <Option key={bank.id} value={bank.bankName}>
                         {bank?.bankName}
                       </Option>
                     ))}
                   </Select>
                 </SubBox>
-                {choiceBank?.length === 0 ? (
+                {filteredBank === undefined ? (
                   <Span className="choice__bank">은행을 선택해주세요</Span>
                 ) : (
-                  choiceBank?.map((bank: bankProps) => (
-                    <Span key={bank.id}>{bank.accNumber}</Span>
-                  ))
+                  <Span key={filteredBank?.id}>{filteredBank?.accNumber}</Span>
                 )}
               </Box>
               <Box>
                 <Label>Pay머니</Label>
-                {choiceBank?.length === 0 ? (
+                {filteredBank === undefined ? (
                   <Span className="choice__bank">은행을 선택해주세요</Span>
                 ) : (
-                  choiceBank?.map((bank: bankProps) => (
-                    <Span key={bank.id}>{bank.money}원</Span>
-                  ))
+                  <Span key={filteredBank?.id}>{filteredBank?.money}원</Span>
                 )}
               </Box>
             </UserInfo>

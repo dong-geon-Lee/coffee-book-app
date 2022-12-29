@@ -7,7 +7,7 @@ export interface authProps {
   password: string | number;
   createdDate: Object | object;
   address: string;
-  bankInfo: {
+  bankInfo?: {
     id: number;
     bankName: string;
     accNumber: string;
@@ -33,14 +33,14 @@ export const authActiveState = atom({
   default: false,
 });
 
-export const authUserState = atom<null | authProps>({
+export const authUserState = atom<null | authProps | any>({
   key: "authUser",
   default: null,
 });
 
 export const bankAccountState = atom({
   key: "bankAccountState",
-  default: "",
+  default: "은행을 선택해주세요",
 });
 
 export const choiceBankState = atom<bankProps | null | any>({
@@ -48,7 +48,7 @@ export const choiceBankState = atom<bankProps | null | any>({
   default: null,
 });
 
-export const accountUserState = atom<any>({
+export const accountListState = atom<any>({
   key: "accountUserState",
   default: accounts,
 });

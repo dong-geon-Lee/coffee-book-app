@@ -109,8 +109,8 @@ export const Span = styled.span`
   display: block;
 
   &.choice__bank {
-    font-size: 1.4rem;
-    color: gray;
+    font-size: 1.6rem;
+    color: #000;
     letter-spacing: 1px;
   }
 `;

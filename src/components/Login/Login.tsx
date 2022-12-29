@@ -1,17 +1,13 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { Button, Container, Div, Form, Input, Label } from "./styles";
 import {
+  accountListState,
   authActiveState,
   authProps,
   authUserState,
 } from "../../atoms/userAuthState";
-import { accounts } from "../../data/userItems";
-import { Button, Container, Div, Form, Input, Label } from "./styles";
-
-interface Props {
-  setAuthUser: () => void;
-}
 
 interface userProps {
   target: { name: string; value: string };
@@ -23,14 +19,16 @@ interface inputProps {
 }
 
 const Login = () => {
+  const accountLists = useRecoilValue(accountListState);
+  const [, setAuthActive] = useRecoilState(authActiveState);
+  const [, setAuthUser] = useRecoilState(authUserState);
+
   const [authInput, setAuthInput] = useState({
     userId: "",
     password: "",
   });
-  const { userId, password }: inputProps = authInput;
-  const [, setAuthActive] = useRecoilState(authActiveState);
-  const [, setAuthUser] = useRecoilState(authUserState);
 
+  const { userId, password }: inputProps = authInput;
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -44,7 +42,7 @@ const Login = () => {
   const handleAuth = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    const checkAuth = accounts.find(
+    const checkAuth = accountLists.find(
       (account: authProps) =>
         account.userId === userId && account.password === +password
     );
@@ -58,8 +56,6 @@ const Login = () => {
     setAuthActive(true);
     navigate("/home");
   };
-
-  console.log(accounts);
 
   useEffect(() => {
     if (location.pathname === "/login") setAuthActive(false);

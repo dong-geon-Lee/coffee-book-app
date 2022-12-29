@@ -15,11 +15,12 @@ import {
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { totalCashState } from "../../atoms/coffeeItemState";
 import {
+  accountListState,
+  authProps,
   authUserState,
   bankAccountState,
   bankOptionState,
   bankProps,
-  choiceBankState,
 } from "../../atoms/userAuthState";
 import { modalState, overlayState } from "../../atoms/modalState";
 
@@ -29,15 +30,12 @@ const Modals = () => {
   const [, setModalState] = useRecoilState(modalState);
   const [, setOverlays] = useRecoilState(overlayState);
 
-  const authUser = useRecoilValue<any>(authUserState);
-  const choiceBank = useRecoilValue(choiceBankState);
+  const authUser = useRecoilValue(authUserState);
+  const accountLists = useRecoilValue(accountListState);
   const bankOption = useRecoilValue(bankOptionState);
 
   const setAuthUser = useSetRecoilState(authUserState);
-
-  const x = 10000;
-  const y = 50000;
-  const z = 100000;
+  const setAccountList = useSetRecoilState(accountListState);
 
   const handleTotalCash = (x: number) => {
     setTotalCash((prevState: number) => prevState + x);
@@ -60,9 +58,7 @@ const Modals = () => {
   };
 
   const handleDeleteBanks = () => {
-    const authInfo = { ...authUser };
-
-    const datas = authInfo.bankInfo.map((bank: any) => {
+    const newBankInfo = authUser?.bankInfo?.map((bank: bankProps) => {
       if (bank.bankName === bankOption) {
         return {
           id: bank.id,
@@ -70,16 +66,33 @@ const Modals = () => {
           accNumber: bank.accNumber,
           money: totalCash + bank.money,
         };
-      } else {
-        return bank;
       }
+
+      return bank;
     });
 
-    setAuthUser({ ...authUser, bankInfo: datas });
+    const index = accountLists.findIndex(
+      (x: authProps) => x.userId === authUser?.userId
+    );
+
+    setAuthUser({ ...authUser, bankInfo: newBankInfo });
+    setAccountList([
+      ...accountLists.slice(0, index),
+      { ...authUser, bankInfo: newBankInfo },
+      ...accountLists.slice(index + 1),
+    ]);
     setTotalCash(0);
     setModalState(false);
     setOverlays(false);
   };
+
+  const filteredBank = authUser?.bankInfo.find(
+    (x: any) => x.bankName === bankOption
+  );
+
+  const x = 10000;
+  const y = 50000;
+  const z = 100000;
 
   return (
     <Container>
@@ -110,22 +123,18 @@ const Modals = () => {
             +10만원
           </Button>
         </Div>
+
         <Select value={bankAccount} onChange={onChange}>
-          {choiceBank?.map((bank: bankProps) => (
-            <>
-              <Option value={bank?.accNumber}>
-                {bank?.bankName} {bank?.accNumber}
-              </Option>
-            </>
-          ))}
+          <Option value={filteredBank?.accNumber} key={filteredBank.id}>
+            {filteredBank?.bankName} {filteredBank?.accNumber}
+          </Option>
         </Select>
 
-        {choiceBank?.map((bank: bankProps) => (
-          <Box>
-            <Label>계좌잔액:</Label>
-            <Span>{totalCash + bank.money}원</Span>
-          </Box>
-        ))}
+        <Box key={filteredBank.id}>
+          <Label>계좌잔액:</Label>
+          <Span>{totalCash + filteredBank.money}원</Span>
+        </Box>
+
         <Button className="pay__btn" onClick={handleDeleteBanks}>
           Pay 충전하기
         </Button>
