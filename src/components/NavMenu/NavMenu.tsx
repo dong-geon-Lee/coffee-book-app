@@ -6,14 +6,21 @@ import cart from "../../assets/cart.svg";
 import profile from "../../assets/profile.svg";
 import {
   likeItemState,
+  paymentDetailState,
   recordedCartItemState,
 } from "../../atoms/coffeeItemState";
 import { useRecoilValue } from "recoil";
+import { authUserState } from "../../atoms/userAuthState";
 
 const NavMenu = () => {
   const navigate = useNavigate();
   const likeItems = useRecoilValue(likeItemState);
   const cartItems = useRecoilValue(recordedCartItemState);
+  const paymentItems = useRecoilValue(paymentDetailState);
+  const authUser = useRecoilValue(authUserState);
+  const detailItems = paymentItems.filter(
+    (item: any) => item.orderUser === authUser.userId
+  );
 
   const handleNavigateHome = () => {
     navigate("/home");
@@ -47,6 +54,7 @@ const NavMenu = () => {
         </ImgBox>
         <ImgBox className="icon__box" onClick={handleNavigateProfiles}>
           <Img src={profile} className="icons" />
+          <IconsText>{detailItems.length || 0}</IconsText>
         </ImgBox>
       </MenuIcons>
     </Container>

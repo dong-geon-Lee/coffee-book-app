@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { authActiveState } from "../../atoms/userAuthState";
+import { authActiveState, authUserState } from "../../atoms/userAuthState";
 import img from "../../assets/logo5.png";
 import logo6 from "../../assets/coffee6.svg";
 import logo7 from "../../assets/coffee7.svg";
@@ -15,6 +15,7 @@ import logout from "../../assets/logout2.svg";
 import {
   coffeeItemState,
   likeItemState,
+  paymentDetailState,
   recordedCartItemState,
 } from "../../atoms/coffeeItemState";
 import { coffeeProps } from "../../atoms/coffeeItemState";
@@ -53,6 +54,11 @@ const Home = () => {
   const coffeeLists = useRecoilValue(coffeeItemState);
   const likeItems = useRecoilValue(likeItemState);
   const cartItems = useRecoilValue(recordedCartItemState);
+  const paymentItems = useRecoilValue(paymentDetailState);
+  const authUser = useRecoilValue(authUserState);
+  const detailItems = paymentItems.filter(
+    (item: any) => item.orderUser === authUser.userId
+  );
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -215,6 +221,7 @@ const Home = () => {
         </ImgBox>
         <ImgBox className="icon__box" onClick={handleNavigateProfiles}>
           <Img src={profile} className="icons" />
+          <IconsText>{detailItems.length || 0}</IconsText>
         </ImgBox>
       </MenuIcons>
     </Container>

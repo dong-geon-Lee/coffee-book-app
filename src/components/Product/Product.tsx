@@ -37,6 +37,7 @@ import {
   SizeBox,
   Title,
 } from "./styles";
+import { authUserState } from "../../atoms/userAuthState";
 
 interface itemProps {
   id?: number;
@@ -54,6 +55,7 @@ const Product = () => {
   const recordedCartItem = useRecoilValue(recordedCartItemState);
   const coffeeItem = useRecoilValue(coffeeItemState);
   const likeItem = useRecoilValue(likeItemState);
+  const authUser = useRecoilValue(authUserState);
 
   const setRecordedCartItem = useSetRecoilState(recordedCartItemState);
   const setLikeItem = useSetRecoilState(likeItemState);
@@ -92,15 +94,28 @@ const Product = () => {
     setTotalPrice(price);
   };
 
+  const randomDates = (min: number, max: number) => {
+    const randomYears = Math.floor(Math.random() * (max - min)) + min;
+    const randomMonths = Math.floor(Math.random() * 12) + 1;
+    const randomDays = Math.floor(Math.random() * 30) + 1;
+
+    return { randomYears, randomMonths, randomDays };
+  };
+
+  const { randomYears, randomMonths, randomDays } = randomDates(2020, 2023);
   const list = product.find((p: any) => p.price === selectedSize);
   const cartItems = {
-    id: "AC" + Math.floor(Math.random() * 10000) + "CF",
+    id: "FE" + Math.floor(Math.random() * 10000) + "DEV",
     size: list?.size,
     price: list?.price,
     image,
     title,
     recordedQty: quantity,
     total: (total = totalPrice * quantity),
+    orderDate: new Intl.DateTimeFormat("ko-KR").format(
+      new Date(randomYears, randomMonths, randomDays)
+    ),
+    orderUser: authUser.userId,
   };
 
   const handleCartItem = () => {

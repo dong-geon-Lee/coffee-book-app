@@ -127,7 +127,7 @@ export const coffeeLists = [
   },
   {
     id: 8,
-    title: "제주 까망 크림 프라푸치노",
+    title: "까망 크림 프라푸치노",
     description:
       "고소한 국내산 흑임자와 쫄깃한 국내산 흑임자 떡, 달콤한 블랙 소보로 토핑으로 제주의 돌 하르방 길을 느낄 수 있는 음료",
     type: "frappuccino",
@@ -198,7 +198,7 @@ export const coffeeLists = [
   },
   {
     id: 12,
-    title: "제주 감귤 스노잉 블렌디드",
+    title: "감귤 스노잉 블렌디드",
     description:
       "눈 속에 쌓인 당근처럼 특색 있는 비주얼과 함께 제주산 감귤, 당근 등 다양한 과일을 이용하여 누구나 맛있게 즐길 수 있는 요거트 음료",
     type: "blended",

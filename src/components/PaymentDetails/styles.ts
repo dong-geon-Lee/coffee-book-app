@@ -42,7 +42,57 @@ export const Logo = styled.img`
   }
 `;
 
-export const Title = styled.h1`
+export const Title = styled.p`
   font-size: 2rem;
   letter-spacing: 1px;
+`;
+
+export const Div = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.4rem;
+`;
+
+export const Card = styled.div`
+  background-color: beige;
+  padding: 1.4rem 2rem;
+`;
+
+export const Text = styled.p`
+  font-size: 1.6rem;
+  line-height: 1.7;
+
+  &.title {
+    font-size: 1.4rem;
+  }
+
+  &.dates {
+    font-size: 1.4rem;
+  }
+`;
+
+export const EmptyBox = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+`;
+
+interface imageProps {
+  img: string;
+}
+
+export const Background = styled.div<imageProps>`
+  background-image: url(${(props) => props.img});
+  width: 20rem;
+  height: 20rem;
+  background-size: cover;
+  background-position: center;
+`;
+
+export const LogoText = styled.h1`
+  margin-top: 3rem;
+  letter-spacing: 1px;
+  font-size: 2.4rem;
 `;

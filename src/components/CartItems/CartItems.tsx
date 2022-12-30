@@ -101,7 +101,7 @@ const CartItems = () => {
                       원
                     </Price>
                     <Text className="size" items={recordedCartItem.length}>
-                      Size: {item.size}
+                      크기: {item.size}
                     </Text>
                   </ContentBox>
                   <ButtonBox>

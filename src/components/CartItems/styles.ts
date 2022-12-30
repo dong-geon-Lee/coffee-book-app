@@ -157,7 +157,7 @@ export const Btns = styled.div`
 `;
 
 export const Button = styled.button`
-  padding: 1rem;
+  padding: 1.6rem;
   background-color: #03c73c;
   font-size: 2rem;
   color: #fff;
