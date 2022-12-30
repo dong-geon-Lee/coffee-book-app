@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface activeProps {
+  active: undefined;
+}
+
 export const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -140,7 +144,8 @@ export const Button = styled.button`
   width: 100%;
   display: inline-block;
   padding: 1.6rem;
-  background-color: #03c73c;
+  background-color: ${(props) => (props.disabled ? "#868e96" : "#03c73c")};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   color: #fff;
   font-weight: 600;
   letter-spacing: 2px;
@@ -148,5 +153,9 @@ export const Button = styled.button`
 
   &:hover {
     filter: brightness(110%);
+  }
+
+  &.pay__recorded {
+    background-color: #df4b4b;
   }
 `;

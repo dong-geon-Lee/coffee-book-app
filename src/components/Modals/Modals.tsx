@@ -22,6 +22,7 @@ import {
   Label,
   Span,
   Box,
+  BtnBox,
 } from "./styles";
 
 const Modals = () => {
@@ -84,7 +85,11 @@ const Modals = () => {
     setTotalCash(0);
     setModalState(false);
     setOverlays(false);
-    alert(`${totalCash}원 충전이 완료되었습니다.`);
+    alert(
+      `${new Intl.NumberFormat("ko-KR", {
+        maximumSignificantDigits: 3,
+      }).format(totalCash)}원 충전이 완료되었습니다.`
+    );
   };
 
   const filteredBank = authUser?.bankInfo.find(
@@ -97,9 +102,6 @@ const Modals = () => {
 
   return (
     <Container>
-      <Button className="close__btn" onClick={handleBtnReset}>
-        x
-      </Button>
       <ModalBox>
         <Text className="title">포인트</Text>
         <ChargeBox>
@@ -135,12 +137,27 @@ const Modals = () => {
 
         <Box key={filteredBank.id}>
           <Label>계좌잔액:</Label>
-          <Span>{filteredBank && totalCash + filteredBank.money}원</Span>
+          <Span>
+            {filteredBank &&
+              new Intl.NumberFormat("ko-KR", {
+                maximumSignificantDigits: 3,
+              }).format(totalCash + filteredBank.money)}
+            원
+          </Span>
         </Box>
 
-        <Button className="pay__btn" onClick={handleChargePoint}>
-          충전하기
-        </Button>
+        <BtnBox>
+          <Button className="close__btn" onClick={handleBtnReset}>
+            닫기
+          </Button>
+          <Button
+            className="pay__btn"
+            onClick={handleChargePoint}
+            disabled={totalCash === 0 ? true : false}
+          >
+            충전하기
+          </Button>
+        </BtnBox>
       </ModalBox>
     </Container>
   );

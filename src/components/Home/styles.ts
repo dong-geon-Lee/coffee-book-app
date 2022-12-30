@@ -58,6 +58,10 @@ export const ImgBox = styled.div`
     width: 14rem;
     height: 14rem;
     cursor: pointer;
+
+    &:hover {
+      transform: scale3d(1.1, 1.1, 1.1);
+    }
   }
 
   &.icon__box {

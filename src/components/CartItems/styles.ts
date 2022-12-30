@@ -38,7 +38,7 @@ interface itemsProps {
 export const Center = styled.div<itemsProps>`
   overflow-y: scroll;
   height: 38rem;
-  margin: 4rem 0 4rem 0;
+  margin: 4rem 0 0rem 0;
 
   & div:last-child {
     margin: ${(props) => (props.items <= 1 ? "0" : "4rem 0 0 0")};
@@ -116,7 +116,7 @@ export const ContentBox = styled.div`
 `;
 
 export const Text = styled.p<itemsProps>`
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 800;
 
   &.qty {
@@ -179,7 +179,9 @@ export const Button = styled.button`
   }
 `;
 
-export const Bottom = styled.div``;
+export const Bottom = styled.div`
+  margin-top: 1rem;
+`;
 
 export const ItemBox = styled.div`
   display: flex;

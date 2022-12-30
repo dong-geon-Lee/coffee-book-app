@@ -13,7 +13,7 @@ const PaymentDetails = () => {
     <Container>
       <Section>
         <Header>
-          <Link to="/home">
+          <Link to="/profiles">
             <Logo src={back} alt="logo" />
           </Link>
           <Title>결제내역</Title>

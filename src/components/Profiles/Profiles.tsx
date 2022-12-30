@@ -1,8 +1,8 @@
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import NavMenu from "../NavMenu/NavMenu";
 import back from "../../assets/back.svg";
 import profile from "../../assets/profile2.svg";
-import avartar from "../../assets/avarta.jpg";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { modalState, overlayState } from "../../atoms/modalState";
 import Overlays from "../Modals/Overlays/Overlays";
@@ -50,6 +50,10 @@ const Profiles = () => {
     (x: bankProps) => x.bankName === bankOption
   );
 
+  useEffect(() => {
+    if (!authUser) setBankOption("계좌 선택");
+  }, [authUser]);
+
   return (
     <Container>
       <Section>
@@ -65,7 +69,7 @@ const Profiles = () => {
         {overlays && <Overlays />}
         <UserBox>
           <ImgBox>
-            <Img src={avartar} alt="" />
+            <Img src={authUser.avartar} alt="avartar" />
           </ImgBox>
 
           {authUser && (
@@ -86,6 +90,7 @@ const Profiles = () => {
                 <SubBox>
                   <Label>계좌번호</Label>
                   <Select value={bankOption} onChange={onChange}>
+                    <Option value="계좌 선택">계좌 선택</Option>
                     {authUser?.bankInfo?.map((bank: bankProps) => (
                       <Option key={bank.id} value={bank.bankName}>
                         {bank?.bankName}
@@ -94,7 +99,9 @@ const Profiles = () => {
                   </Select>
                 </SubBox>
                 {filteredBank === undefined ? (
-                  <Span className="choice__bank">은행을 선택해주세요</Span>
+                  <Span className="choice__bank">
+                    -- 계좌를 선택해주세요 --
+                  </Span>
                 ) : (
                   <Span key={filteredBank?.id}>{filteredBank?.accNumber}</Span>
                 )}
@@ -102,17 +109,34 @@ const Profiles = () => {
               <Box>
                 <Label>Pay머니</Label>
                 {filteredBank === undefined ? (
-                  <Span className="choice__bank">은행을 선택해주세요</Span>
+                  <Span className="choice__bank">
+                    -- 계좌를 선택해주세요 --
+                  </Span>
                 ) : (
-                  <Span key={filteredBank?.id}>{filteredBank?.money}원</Span>
+                  <Span key={filteredBank?.id}>
+                    {new Intl.NumberFormat("ko-KR", {
+                      maximumSignificantDigits: 3,
+                    }).format(filteredBank?.money)}
+                    원
+                  </Span>
                 )}
               </Box>
             </UserInfo>
           )}
 
           <BtnBox>
-            <Button onClick={() => handleModals()}>Pay충전</Button>
-            <Button onClick={() => navigate("/details")}>결제내역</Button>
+            <Button
+              onClick={() => handleModals()}
+              disabled={filteredBank === undefined ? true : false}
+            >
+              Pay충전
+            </Button>
+            <Button
+              onClick={() => navigate("/details")}
+              className="pay__recorded"
+            >
+              결제내역
+            </Button>
           </BtnBox>
         </UserBox>
       </Section>

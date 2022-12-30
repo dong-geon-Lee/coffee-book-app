@@ -9,20 +9,20 @@ export const Container = styled.div`
 `;
 
 export const ModalBox = styled.div`
-  width: 40rem;
-  height: 40rem;
+  width: 46rem;
+  height: 46rem;
   border-radius: 1rem;
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  padding: 2.4rem;
+  padding: 3.2rem 4.4rem;
 `;
 
 export const Div = styled.div`
   display: flex;
   justify-content: space-evenly;
   width: 100%;
-  margin: 3rem 0 1rem 0;
+  margin: 3rem 0 auto 0;
   gap: 1.2rem;
 `;
 
@@ -33,8 +33,8 @@ export const Title = styled.h1`
 `;
 
 export const Text = styled.p`
-  font-size: 1.6rem;
-  margin: 1.6rem 0;
+  font-size: 1.8rem;
+  margin: 1.6rem 0 1.6rem 0;
 `;
 
 export const ChargeBox = styled.div`
@@ -49,30 +49,38 @@ export const Price = styled.p`
   letter-spacing: 1px;
 `;
 
+export const BtnBox = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 2.4rem;
+`;
+
 export const Button = styled.button`
   padding: 1.4rem 4rem;
   background-color: #ffedb6;
   display: inline-block;
 
   &.pay__btn {
-    background-color: #00c73a;
+    background-color: ${(props) => (props.disabled ? "#868e96" : "#00c73a")};
+    cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
     color: #fff;
-    padding: 1.2rem;
+    padding: 1.6rem 1.2rem;
     margin-top: auto;
     font-size: 1.6rem;
-    border: 1px solid #2b8a3e;
+    border: 1px solid transparent;
+    flex: 1;
 
     &:hover {
-      filter: brightness(110%);
+      filter: brightness(105%);
     }
   }
 
   &.reset__btn {
     position: absolute;
-    top: 0;
+    top: -35%;
     right: 0;
-    transform: translate(0, 0);
-    font-size: 2.6rem;
+    transform: translate(0, 20%);
+    font-size: 3.2rem;
     font-weight: 400;
     padding: 0;
     margin: 0;
@@ -85,20 +93,24 @@ export const Button = styled.button`
 
   &.cash__btn {
     border: 1px solid #868e96;
-    padding: 1.4rem 2.8rem;
+    padding: 1.4rem 2.6rem;
+    font-size: 1.6rem;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
   }
 
   &.close__btn {
-    position: absolute;
-    padding: 1.4rem 2rem;
-    top: 0%;
-    right: 0%;
-    border-radius: 1rem;
-    background-color: black;
+    background-color: #212529;
     color: #fff;
-    font-size: 2rem;
+    padding: 1.6rem 1.2rem;
+    margin-top: auto;
+    font-size: 1.6rem;
+    border: 1px solid transparent;
+    flex: 1;
+
+    &:hover {
+      filter: brightness(110%);
+    }
   }
 `;
 
@@ -108,7 +120,7 @@ export const Select = styled.select`
   font-weight: 400;
   letter-spacing: 1px;
   cursor: pointer;
-  margin: auto 0;
+  margin: auto 0 auto 0;
   outline: none;
   border-color: #868e96;
 `;
@@ -119,12 +131,14 @@ export const Box = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: auto 0 2.6rem 0;
 `;
 
 export const Label = styled.label`
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 `;
 
 export const Span = styled.span`
   font-size: 2rem;
+  font-weight: 800;
 `;

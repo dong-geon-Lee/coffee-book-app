@@ -19,7 +19,7 @@ export const coffeeLists = [
   },
   {
     id: 2,
-    title: "콜드 브루 오트 라떼",
+    title: "콜드 브루 라떼",
     description:
       "콜드 브루의 풍미와 깔끔한 오트 밀크가 어우러진 달콤 고소한 라떼. 식물성 밀크를 사용해 모든 고객이 부담없이 즐길 수 있는 콜드 브루 음료",
     type: "coldbrew",
@@ -162,7 +162,7 @@ export const coffeeLists = [
   },
   {
     id: 10,
-    title: "딸기 딜라이트 요거트 블렌디드",
+    title: "딸기 요거트 블렌디드",
     description:
       "유산균이 살아있는 리얼 요거트와 풍성한 딸기 과육이 더욱 상큼하게 어우러진 과일 요거트 블렌디드",
     type: "blended",
@@ -198,7 +198,7 @@ export const coffeeLists = [
   },
   {
     id: 12,
-    title: "제주 감귤 당근 스노잉 블렌디드",
+    title: "제주 감귤 스노잉 블렌디드",
     description:
       "눈 속에 쌓인 당근처럼 특색 있는 비주얼과 함께 제주산 감귤, 당근 등 다양한 과일을 이용하여 누구나 맛있게 즐길 수 있는 요거트 음료",
     type: "blended",

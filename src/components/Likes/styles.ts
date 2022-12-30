@@ -31,7 +31,6 @@ export const ImgBox = styled.div`
   }
 
   &:hover .heart {
-    /* opacity: 1; */
     display: block;
     width: 5.2rem;
     height: 5.2rem;
@@ -56,7 +55,6 @@ export const Logo = styled.img`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* opacity: 0; */
     display: none;
     transition: all 0.3s ease;
   }
@@ -126,6 +124,7 @@ export const StarImg = styled.img<props>`
 export const ItemBox = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
+  padding: 0.4rem 2rem;
 `;
 
 export const ContentBox = styled.div`
@@ -146,13 +145,15 @@ export const Stars = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 2rem;
+  font-size: 1.8rem;
+  font-weight: 800;
   letter-spacing: 1px;
 `;
 
 export const Description = styled.p`
   font-size: 1.4rem;
-  line-height: 1.6;
+  line-height: 1.8;
+  font-weight: 400;
   letter-spacing: 1px;
   margin: auto 0 0 0;
 `;
