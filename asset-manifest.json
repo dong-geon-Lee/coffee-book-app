@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/coffee-book-app/static/js/main.fa9d2bfb.js",
+    "main.js": "/coffee-book-app/static/js/main.05994712.js",
     "static/media/coffee.jpg": "/coffee-book-app/static/media/coffee.ccb1afbe39c88f6248c1.jpg",
     "static/media/avarta4.jpg": "/coffee-book-app/static/media/avarta4.51b8941cbf1027e2eb6f.jpg",
     "static/media/avarta8.jpg": "/coffee-book-app/static/media/avarta8.27615564930c171711a1.jpg",
@@ -9,6 +9,7 @@
     "static/media/logo5.png": "/coffee-book-app/static/media/logo5.aaa6ea8aef28980c70ea.png",
     "static/media/spinner5.gif": "/coffee-book-app/static/media/spinner5.017779166cb6124df2ae.gif",
     "static/media/cart3.svg": "/coffee-book-app/static/media/cart3.5469f7cb40ce248d5127eb1c3f6a3c2d.svg",
+    "static/media/payment.svg": "/coffee-book-app/static/media/payment.b11a231bf71620c1dd6909521818258d.svg",
     "static/media/heart4.svg": "/coffee-book-app/static/media/heart4.7b36759e2b3fac487f401bf7db080cab.svg",
     "static/media/coffee9.svg": "/coffee-book-app/static/media/coffee9.a7112b973dd74054b83e9b965b2ab95d.svg",
     "static/media/coffee3.svg": "/coffee-book-app/static/media/coffee3.27973684e81d9b53f8904160502fbeef.svg",
@@ -31,9 +32,9 @@
     "static/media/back.svg": "/coffee-book-app/static/media/back.46f9b388a4e4b17f57d5b30b81488273.svg",
     "static/media/star.svg": "/coffee-book-app/static/media/star.4b7d5d1a09360a4fb1d7feebfe035c5a.svg",
     "static/media/delete.svg": "/coffee-book-app/static/media/delete.bdd46454c48db57a65abf0e9aa9143cf.svg",
-    "main.fa9d2bfb.js.map": "/coffee-book-app/static/js/main.fa9d2bfb.js.map"
+    "main.05994712.js.map": "/coffee-book-app/static/js/main.05994712.js.map"
   },
   "entrypoints": [
-    "static/js/main.fa9d2bfb.js"
+    "static/js/main.05994712.js"
   ]
 }
