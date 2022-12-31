@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import NavMenu from "../NavMenu/NavMenu";
+import NavMenu from "../../components/NavMenu/NavMenu";
 import {
   Button,
   Container,

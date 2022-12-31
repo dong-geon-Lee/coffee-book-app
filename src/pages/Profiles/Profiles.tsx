@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import NavMenu from "../NavMenu/NavMenu";
+import NavMenu from "../../components/NavMenu/NavMenu";
 import back from "../../assets/back.svg";
 import profile from "../../assets/profile2.svg";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { modalState, overlayState } from "../../atoms/modalState";
-import Overlays from "../Modals/Overlays/Overlays";
-import Modals from "../Modals/Modals";
+import Overlays from "../../components/Modals/Overlays/Overlays";
+import Modals from "../../components/Modals/Modals";
 import { authUserState, bankOptionState } from "../../atoms/userAuthState";
-import { bankProps } from "../../atoms/userAuthState";
+import { bankProps } from "../../@types/types";
 import {
   Box,
   BtnBox,

@@ -14,9 +14,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    /* font-family: 'Inter', sans-serif; */
     font-family: 'Nanum Myeongjo', serif;
-    /* font-family: 'Gothic A1', sans-serif; */
     font-weight: 400;
     line-height: 1.5;
     overflow: hidden;
@@ -30,15 +28,14 @@ const GlobalStyle = createGlobalStyle`
 
   input, button {
     font-family: inherit;
+    border: none; 
   }
 
   input {
     outline: none;
-    border: none;
   }  
 
   button {
-    border: none;
     cursor: pointer;
   }
 

@@ -1,4 +1,4 @@
-import NavMenu from "../NavMenu/NavMenu";
+import NavMenu from "../../components/NavMenu/NavMenu";
 import {
   Container,
   Section,

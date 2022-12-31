@@ -8,7 +8,6 @@ export const accounts = [
     userId: "guest1",
     password: 1111,
     avartar: avartar,
-    createdDate: new Date(2022, 12, 18),
     address: "서울특별시 송파구",
     bankInfo: [
       {
@@ -36,7 +35,6 @@ export const accounts = [
     userId: "guest2",
     password: 2222,
     avartar: avartar2,
-    createdDate: new Date(2021, 5, 14),
     address: "대전광역시 동구",
     bankInfo: [
       {
@@ -64,7 +62,6 @@ export const accounts = [
     userId: "guest3",
     password: 3333,
     avartar: avartar3,
-    createdDate: new Date(2020, 8, 16),
     address: "인천광역시 계양구",
     bankInfo: [
       {

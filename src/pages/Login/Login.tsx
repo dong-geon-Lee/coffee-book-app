@@ -2,21 +2,12 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Button, Container, Div, Form, GuestBox, Input, Label } from "./styles";
+import { authProps, userProps, inputProps } from "../../@types/types";
 import {
   accountListState,
   authActiveState,
-  authProps,
   authUserState,
 } from "../../atoms/userAuthState";
-
-interface userProps {
-  target: { name: string; value: string };
-}
-
-interface inputProps {
-  userId: string;
-  password: string;
-}
 
 const Login = () => {
   const accountLists = useRecoilValue(accountListState);

@@ -11,7 +11,7 @@ const Overlays = () => {
     setOverlays(false);
   };
 
-  return <Container onClick={handleOverlays}></Container>;
+  return <Container onClick={handleOverlays} />;
 };
 
 export default Overlays;

@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import NavMenu from "../NavMenu/NavMenu";
+import NavMenu from "../../components/NavMenu/NavMenu";
 import {
   Section,
   Container,
@@ -34,7 +34,7 @@ import {
 } from "../../atoms/coffeeItemState";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useEffect, useState } from "react";
-import Spinner from "../Spinner/Spinner";
+import Spinner from "../../components/Spinner/Spinner";
 
 const CartItems = () => {
   const [activeSpinner, setActiveSpinner] = useState(false);

@@ -1,4 +1,4 @@
-import NavMenu from "../NavMenu/NavMenu";
+import NavMenu from "../../components/NavMenu/NavMenu";
 import { coffeeProps, likeItemState } from "../../atoms/coffeeItemState";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import star from "../../assets/star.svg";

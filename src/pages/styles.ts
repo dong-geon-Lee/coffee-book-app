@@ -1,3 +1,4 @@
+import { imageProps, openProps } from "./../@types/types";
 import styled, { css, keyframes } from "styled-components";
 
 const openBook = keyframes`
@@ -20,17 +21,6 @@ const closeBook = keyframes`
   }
 `;
 
-interface props {
-  src?: "string";
-  image4?: "string";
-  loginImg?: "string";
-  open?: boolean;
-}
-
-interface openProps {
-  open?: boolean;
-}
-
 export const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -44,14 +34,9 @@ export const Wrapper = styled.div<openProps>`
   transition: all 1s ease;
   perspective: 60cm;
   transform-style: preserve-3d;
-  transform: translateX(0%);
-  z-index: 5;
+  transform: ${(props) => (props.open ? "translateX(50%)" : "translateX(0%)")};
   will-change: transition;
-
-  & {
-    transform: ${(props) =>
-      props.open ? "translateX(50%)" : "translateX(0%)"};
-  }
+  z-index: 5;
 
   & .book {
     transform: ${(props) => props.open && "rotateY(-180deg)"};
@@ -59,47 +44,23 @@ export const Wrapper = styled.div<openProps>`
   }
 `;
 
-export const ImageBox = styled.div<props>`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: all 1s ease;
-  transform-style: preserve-3d;
-  background-color: #000;
-`;
-
-export const Img = styled.div<props>`
+export const LoginBox = styled.div<imageProps>`
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
+  background-color: inherit;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background-image: url(${(props) => props.loginImg});
   background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(${(props) => props.src});
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
+  background-position: right;
 
-  & + .back__image {
-    z-index: 2;
-    transform: rotateY(180deg);
-    filter: brightness(200%);
-    background-size: cover;
-    background-position: left;
-  }
-`;
-
-export const Box = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
+  ${(props) =>
+    props.open
+      ? css`
+          animation: ${openBook} 2s alternate;
+        `
+      : css`
+          animation: ${closeBook} 1s alternate;
+        `}
 `;
 
 export const Div = styled.div<openProps>`
@@ -110,10 +71,6 @@ export const Div = styled.div<openProps>`
   width: 100%;
   opacity: 0;
 
-  &.start {
-    opacity: 1;
-  }
-
   &.back {
     position: absolute;
     bottom: 30%;
@@ -121,23 +78,6 @@ export const Div = styled.div<openProps>`
     z-index: 0;
     opacity: ${(props) => (props.open ? 1 : 0)};
   }
-`;
-
-export const Title = styled.h1`
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -10%);
-  color: #ffb167;
-  font-size: 7.2rem;
-  width: 100%;
-  text-align: center;
-  z-index: 1;
-  letter-spacing: 1px;
-`;
-
-export const Strong = styled.strong`
-  color: #fff;
 `;
 
 export const Button = styled.div`
@@ -165,28 +105,4 @@ export const Button = styled.div`
     font-size: 1.8rem;
     width: 50%;
   }
-
-  & a {
-    text-decoration: none;
-    color: #fff;
-  }
-`;
-
-export const LoginBox = styled.div<props>`
-  position: absolute;
-  background-color: inherit;
-  width: 100%;
-  height: 100%;
-  background-image: url(${(props) => props.loginImg});
-  background-size: cover;
-  background-position: right;
-
-  ${(props) =>
-    props.open
-      ? css`
-          animation: ${openBook} 2s alternate;
-        `
-      : css`
-          animation: ${closeBook} 1s alternate;
-        `}
 `;

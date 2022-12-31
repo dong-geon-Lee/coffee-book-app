@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Container, IconsText, Img, ImgBox, MenuIcons } from "./styles";
+import { useRecoilValue } from "recoil";
+import { authUserState } from "../../atoms/userAuthState";
+import { paymentProps } from "../../@types/types";
 import home from "../../assets/home.svg";
 import heart from "../../assets/heart.svg";
 import cart from "../../assets/cart.svg";
@@ -9,18 +12,17 @@ import {
   paymentDetailState,
   recordedCartItemState,
 } from "../../atoms/coffeeItemState";
-import { useRecoilValue } from "recoil";
-import { authUserState } from "../../atoms/userAuthState";
 
 const NavMenu = () => {
-  const navigate = useNavigate();
   const likeItems = useRecoilValue(likeItemState);
   const cartItems = useRecoilValue(recordedCartItemState);
   const paymentItems = useRecoilValue(paymentDetailState);
   const authUser = useRecoilValue(authUserState);
   const detailItems = paymentItems.filter(
-    (item: any) => item.orderUser === authUser.userId
+    (item: paymentProps) => item.orderUser === authUser.userId
   );
+
+  const navigate = useNavigate();
 
   const handleNavigateHome = () => {
     navigate("/home");

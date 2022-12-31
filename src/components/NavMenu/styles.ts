@@ -1,9 +1,5 @@
 import styled from "styled-components";
-
-interface Props {
-  fill?: string;
-  stroke?: string;
-}
+import { svgProps } from "./../../@types/types";
 
 export const Container = styled.div`
   width: 100%;
@@ -83,7 +79,7 @@ export const ImgBox = styled.div`
   }
 `;
 
-export const Img = styled.img<Props>`
+export const Img = styled.img<svgProps>`
   position: absolute;
   top: 0;
   left: 0;

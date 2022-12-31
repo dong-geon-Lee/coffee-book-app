@@ -1,28 +1,6 @@
 import { atom } from "recoil";
 import { accounts } from "../data/userItems";
 
-export interface authProps {
-  name: string;
-  userId: string;
-  password: string | number;
-  createdDate: Object | object;
-  address: string;
-  bankInfo?: {
-    id: number;
-    bankName: string;
-    accNumber: string;
-    money?: number;
-  }[];
-}
-
-export interface bankProps {
-  map?: any;
-  id?: number;
-  bankName?: string;
-  accNumber?: string;
-  money?: number;
-}
-
 export const openBookState = atom({
   key: "openBookState",
   default: false,
@@ -33,7 +11,7 @@ export const authActiveState = atom({
   default: false,
 });
 
-export const authUserState = atom<null | authProps | any>({
+export const authUserState = atom<any>({
   key: "authUser",
   default: null,
 });
@@ -43,22 +21,12 @@ export const bankAccountState = atom({
   default: "은행을 선택해주세요",
 });
 
-export const choiceBankState = atom<bankProps | null | any>({
-  key: "choiceBankState",
-  default: null,
-});
-
 export const accountListState = atom<any>({
   key: "accountUserState",
   default: accounts,
 });
 
-export const bankOptionState = atom<string>({
+export const bankOptionState = atom({
   key: "bankOptionState",
   default: "",
-});
-
-export const spinnerState = atom({
-  key: "spinnerState",
-  default: false,
 });

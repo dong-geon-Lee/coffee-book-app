@@ -2,12 +2,17 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { totalCashState } from "../../atoms/coffeeItemState";
 import { modalState, overlayState } from "../../atoms/modalState";
 import {
-  accountListState,
+  bankProps,
   authProps,
+  onChangeProps,
+  bankNameProps,
+} from "../../@types/types";
+import { x, y, z } from "../../config/constant";
+import {
+  accountListState,
   authUserState,
   bankAccountState,
   bankOptionState,
-  bankProps,
 } from "../../atoms/userAuthState";
 import {
   Container,
@@ -52,9 +57,7 @@ const Modals = () => {
     setOverlays(false);
   };
 
-  const onChange = (e: {
-    target: { value: string | ((currVal: string) => string) };
-  }) => {
+  const onChange = (e: onChangeProps) => {
     setBankAccount(e.target.value);
   };
 
@@ -93,12 +96,8 @@ const Modals = () => {
   };
 
   const filteredBank = authUser?.bankInfo.find(
-    (x: any) => x.bankName === bankOption
+    (x: bankNameProps) => x.bankName === bankOption
   );
-
-  const x = 10000;
-  const y = 50000;
-  const z = 100000;
 
   return (
     <Container>

@@ -5,7 +5,7 @@ import back from "../../assets/back.svg";
 import coffee8 from "../../assets/coffee8.svg";
 import star from "../../assets/star.svg";
 import star0 from "../../assets/star3.svg";
-import NavMenu from "../NavMenu/NavMenu";
+import NavMenu from "../../components/NavMenu/NavMenu";
 import {
   coffeeItemState,
   likeItemState,
