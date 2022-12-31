@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { Button, Container, Div, Form, Input, Label } from "./styles";
+import { Button, Container, Div, Form, GuestBox, Input, Label } from "./styles";
 import {
   accountListState,
   authActiveState,
@@ -29,6 +29,7 @@ const Login = () => {
   });
 
   const { userId, password }: inputProps = authInput;
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -42,6 +43,13 @@ const Login = () => {
   const handleAuth = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
+    if (!userId || !password) {
+      alert("아이디와 비밀번호를 모두 입력해주세요");
+      return;
+    }
+
+    const guestBtn = "";
+
     const checkAuth = accountLists.find(
       (account: authProps) =>
         account.userId === userId && account.password === +password
@@ -49,12 +57,20 @@ const Login = () => {
 
     if (!checkAuth) {
       setAuthActive(false);
+      alert("아이디 또는 비밀번호가 일치하지 않습니다");
       return;
+    } else {
+      setAuthUser(checkAuth);
+      setAuthActive(true);
+      navigate("/home");
     }
+  };
 
-    setAuthUser(checkAuth);
-    setAuthActive(true);
-    navigate("/home");
+  const randomGuest = () => {
+    const randomIndex = Math.floor(Math.random() * 3);
+    const { userId, password } = accountLists[randomIndex];
+
+    setAuthInput({ userId, password });
   };
 
   useEffect(() => {
@@ -63,6 +79,12 @@ const Login = () => {
 
   return (
     <Container>
+      <GuestBox>
+        <Button className="guest__btn" onClick={() => randomGuest()}>
+          랜덤 게스트 계정
+        </Button>
+      </GuestBox>
+
       <Form onSubmit={handleAuth}>
         <Div>
           <Label>아이디</Label>

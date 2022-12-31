@@ -72,4 +72,14 @@ export const Button = styled.button<ButtonProps>`
   &:hover {
     background-color: #855f46;
   }
+
+  &.guest__btn {
+    width: 100%;
+  }
+`;
+
+export const GuestBox = styled.div`
+  position: absolute;
+  top: 1%;
+  right: 5%;
 `;
