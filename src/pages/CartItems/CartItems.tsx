@@ -51,6 +51,7 @@ const CartItems = () => {
     0
   );
 
+  console.log(paymentDetails, "g");
   const handleRemoveCartItems = (id: number) => {
     const newItems = recordedCartItem.filter((item: any) => item.id !== id);
     setRecordedCartItem(newItems);

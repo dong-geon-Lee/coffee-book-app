@@ -28,12 +28,13 @@ import {
   UserBox,
   UserInfo,
 } from "./styles";
+import { findSelectedBank } from "../../helpers/helpers";
 
 const Profiles = () => {
   const [openModals, setOpenModals] = useRecoilState(modalState);
   const [overlays, setOverlays] = useRecoilState(overlayState);
-  const authUser = useRecoilValue(authUserState);
   const [bankOption, setBankOption] = useRecoilState(bankOptionState);
+  const authUser = useRecoilValue(authUserState);
 
   const navigate = useNavigate();
 
@@ -46,9 +47,7 @@ const Profiles = () => {
     setBankOption(e.target.value);
   };
 
-  const filteredBank = authUser?.bankInfo.find(
-    (x: bankProps) => x.bankName === bankOption
-  );
+  const filteredBank = findSelectedBank(authUser, bankOption);
 
   useEffect(() => {
     if (!authUser) setBankOption("계좌 선택");

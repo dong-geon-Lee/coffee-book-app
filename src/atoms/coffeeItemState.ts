@@ -1,29 +1,24 @@
 import { atom } from "recoil";
+import { cartItemProps, productProps } from "../@types/types";
 import { coffeeLists } from "../data/coffeeItems";
 
-export interface coffeeProps {
-  id: number;
-  title: string;
-  description: string;
-  type: string;
-  image: string;
-  size: string[];
-  price: number[];
-  stars: number[];
-  likes?: boolean;
-}
-
-export interface likeProps {
-  id: number | undefined;
-}
-
-export const coffeeItemState = atom<coffeeProps[]>({
+export const coffeeItemState = atom<productProps[]>({
   key: "dataState",
   default: coffeeLists,
 });
 
-export const likeItemState = atom<any>({
+export const likeItemState = atom<productProps[]>({
   key: "likeItemState",
+  default: [],
+});
+
+export const recordedCartItemState = atom<cartItemProps[]>({
+  key: "recoredCartItemState",
+  default: [],
+});
+
+export const paymentDetailState = atom<cartItemProps[]>({
+  key: "paymentDetailState",
   default: [],
 });
 
@@ -47,17 +42,7 @@ export const recordedQtyState = atom({
   default: 0,
 });
 
-export const recordedCartItemState = atom<any>({
-  key: "recoredCartItemState",
-  default: [],
-});
-
-export const totalCashState = atom<any>({
+export const totalCashState = atom({
   key: "totalCashState",
   default: 0,
-});
-
-export const paymentDetailState = atom<any>({
-  key: "paymentDetailState",
-  default: [],
 });

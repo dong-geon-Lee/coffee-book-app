@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { authActiveState, authUserState } from "../../atoms/userAuthState";
+import { productProps } from "../../@types/types";
+import { Link } from "react-router-dom";
 import img from "../../assets/logo5.png";
 import logo6 from "../../assets/coffee6.svg";
 import logo7 from "../../assets/coffee7.svg";
@@ -12,14 +14,6 @@ import heart from "../../assets/heart.svg";
 import cart from "../../assets/cart.svg";
 import profile from "../../assets/profile.svg";
 import logout from "../../assets/logout2.svg";
-import {
-  coffeeItemState,
-  likeItemState,
-  paymentDetailState,
-  recordedCartItemState,
-} from "../../atoms/coffeeItemState";
-import { coffeeProps } from "../../atoms/coffeeItemState";
-import { Link } from "react-router-dom";
 import {
   Button,
   Container,
@@ -39,6 +33,12 @@ import {
   Text,
   IconsText,
 } from "./styles";
+import {
+  coffeeItemState,
+  likeItemState,
+  paymentDetailState,
+  recordedCartItemState,
+} from "../../atoms/coffeeItemState";
 
 const Home = () => {
   const [checkedMenu, setCheckedMenu] = useState({
@@ -177,7 +177,7 @@ const Home = () => {
 
           <ContentBox>
             {filteredItems.length >= 1 ? (
-              filteredItems.map((item: coffeeProps) => (
+              filteredItems.map((item: productProps) => (
                 <Contents key={item.id}>
                   <Link to={`/home/${item.id}`} state={{ product: item }}>
                     <ImgBox className="content">
@@ -190,7 +190,7 @@ const Home = () => {
               ))
             ) : (
               <>
-                {coffeeItems.map((item: coffeeProps) => (
+                {coffeeItems.map((item: productProps) => (
                   <Contents key={item.id}>
                     <Link to={`/home/${item.id}`} state={{ product: item }}>
                       <ImgBox className="content">

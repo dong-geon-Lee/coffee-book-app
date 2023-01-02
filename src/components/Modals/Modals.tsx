@@ -1,19 +1,20 @@
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { totalCashState } from "../../atoms/coffeeItemState";
 import { modalState, overlayState } from "../../atoms/modalState";
-import {
-  bankProps,
-  authProps,
-  onChangeProps,
-  bankNameProps,
-} from "../../@types/types";
-import { x, y, z } from "../../config/constant";
+import { onChangeProps } from "../../@types/types";
+import { chargeX, chargeY, chargeZ } from "../../constants/constants";
 import {
   accountListState,
   authUserState,
   bankAccountState,
   bankOptionState,
 } from "../../atoms/userAuthState";
+import {
+  calcBankMoney,
+  findAuthUser,
+  findSelectedBank,
+  formattedNumber,
+} from "../../helpers/helpers";
 import {
   Container,
   ModalBox,
@@ -37,14 +38,16 @@ const Modals = () => {
   const [, setOverlays] = useRecoilState(overlayState);
 
   const authUser = useRecoilValue(authUserState);
-  const accountLists = useRecoilValue(accountListState);
   const bankOption = useRecoilValue(bankOptionState);
+  const accountLists = useRecoilValue(accountListState);
+
+  const filteredBank = findSelectedBank(authUser, bankOption);
 
   const setAuthUser = useSetRecoilState(authUserState);
   const setAccountList = useSetRecoilState(accountListState);
 
-  const handleTotalCash = (x: number) => {
-    setTotalCash((prevState: number) => prevState + x);
+  const handleTotalCash = (cash: number) => {
+    setTotalCash((prevState: number) => prevState + cash);
   };
 
   const handleResetIcon = () => {
@@ -62,66 +65,49 @@ const Modals = () => {
   };
 
   const handleChargePoint = () => {
-    const newBankInfo = authUser?.bankInfo?.map((bank: bankProps) => {
-      if (bank.bankName === bankOption) {
-        return {
-          id: bank.id,
-          bankName: bank.bankName,
-          accNumber: bank.accNumber,
-          money: totalCash + bank.money,
-        };
-      }
-      return bank;
-    });
-
-    const index = accountLists.findIndex(
-      (x: authProps) => x.userId === authUser?.userId
-    );
+    const correctUserIndex = findAuthUser(accountLists, authUser);
+    const newBankInfo = calcBankMoney(authUser, bankOption, totalCash);
 
     setAuthUser({ ...authUser, bankInfo: newBankInfo });
     setAccountList([
-      ...accountLists.slice(0, index),
+      ...accountLists.slice(0, correctUserIndex),
       { ...authUser, bankInfo: newBankInfo },
-      ...accountLists.slice(index + 1),
+      ...accountLists.slice(correctUserIndex + 1),
     ]);
 
     setTotalCash(0);
     setModalState(false);
     setOverlays(false);
-    alert(
-      `${new Intl.NumberFormat("ko-KR", {
-        maximumSignificantDigits: 3,
-      }).format(totalCash)}원 충전이 완료되었습니다.`
-    );
+    alert(`${formattedNumber(totalCash)}원 충전이 완료되었습니다.`);
   };
-
-  const filteredBank = authUser?.bankInfo.find(
-    (x: bankNameProps) => x.bankName === bankOption
-  );
 
   return (
     <Container>
       <ModalBox>
         <Text className="title">포인트</Text>
         <ChargeBox>
-          <Price>
-            {new Intl.NumberFormat("ko-KR", {
-              maximumSignificantDigits: 4,
-            }).format(totalCash)}
-            원
-          </Price>
+          <Price>{formattedNumber(totalCash)}원</Price>
           <Button className="reset__btn" onClick={handleResetIcon}>
             x
           </Button>
         </ChargeBox>
         <Div>
-          <Button onClick={() => handleTotalCash(x)} className="cash__btn">
+          <Button
+            onClick={() => handleTotalCash(chargeX)}
+            className="cash__btn"
+          >
             +1만원
           </Button>
-          <Button onClick={() => handleTotalCash(y)} className="cash__btn">
+          <Button
+            onClick={() => handleTotalCash(chargeY)}
+            className="cash__btn"
+          >
             +5만원
           </Button>
-          <Button onClick={() => handleTotalCash(z)} className="cash__btn">
+          <Button
+            onClick={() => handleTotalCash(chargeZ)}
+            className="cash__btn"
+          >
             +10만원
           </Button>
         </Div>
@@ -134,14 +120,11 @@ const Modals = () => {
           )}
         </Select>
 
-        <Box key={filteredBank.id}>
+        <Box key={filteredBank?.id}>
           <Label>계좌잔액:</Label>
           <Span>
             {filteredBank &&
-              new Intl.NumberFormat("ko-KR", {
-                maximumSignificantDigits: 3,
-              }).format(totalCash + filteredBank.money)}
-            원
+              `${formattedNumber(totalCash + filteredBank.money)}원`}
           </Span>
         </Box>
 

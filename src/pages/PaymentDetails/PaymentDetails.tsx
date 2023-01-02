@@ -1,4 +1,11 @@
 import NavMenu from "../../components/NavMenu/NavMenu";
+import back from "../../assets/back.svg";
+import note from "../../assets/note.svg";
+import payment from "../../assets/payment.svg";
+import { Link } from "react-router-dom";
+import { paymentDetailState } from "../../atoms/coffeeItemState";
+import { useRecoilValue } from "recoil";
+import { authUserState } from "../../atoms/userAuthState";
 import {
   Container,
   Section,
@@ -12,13 +19,6 @@ import {
   Background,
   LogoText,
 } from "./styles";
-import back from "../../assets/back.svg";
-import note from "../../assets/note.svg";
-import payment from "../../assets/payment.svg";
-import { Link } from "react-router-dom";
-import { paymentDetailState } from "../../atoms/coffeeItemState";
-import { useRecoilValue } from "recoil";
-import { authUserState } from "../../atoms/userAuthState";
 
 const PaymentDetails = () => {
   const paymentDetail = useRecoilValue(paymentDetailState);

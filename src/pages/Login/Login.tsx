@@ -12,14 +12,14 @@ import {
 const Login = () => {
   const accountLists = useRecoilValue(accountListState);
   const [, setAuthActive] = useRecoilState(authActiveState);
-  const [, setAuthUser] = useRecoilState(authUserState);
+  const [, setAuthUser] = useRecoilState<authProps>(authUserState);
 
-  const [authInput, setAuthInput] = useState({
+  const [authInput, setAuthInput] = useState<inputProps>({
     userId: "",
     password: "",
   });
 
-  const { userId, password }: inputProps = authInput;
+  const { userId, password } = authInput;
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,8 +38,6 @@ const Login = () => {
       alert("아이디와 비밀번호를 모두 입력해주세요");
       return;
     }
-
-    const guestBtn = "";
 
     const checkAuth = accountLists.find(
       (account: authProps) =>
@@ -60,7 +58,6 @@ const Login = () => {
   const randomGuest = () => {
     const randomIndex = Math.floor(Math.random() * 3);
     const { userId, password } = accountLists[randomIndex];
-
     setAuthInput({ userId, password });
   };
 

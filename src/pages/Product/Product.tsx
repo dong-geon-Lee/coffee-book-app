@@ -6,10 +6,11 @@ import coffee8 from "../../assets/coffee8.svg";
 import star from "../../assets/star.svg";
 import star0 from "../../assets/star3.svg";
 import NavMenu from "../../components/NavMenu/NavMenu";
+import { productProps } from "../../@types/types";
+import { authUserState } from "../../atoms/userAuthState";
 import {
   coffeeItemState,
   likeItemState,
-  coffeeProps,
   quantityState,
   totalPriceState,
   selectedSizeState,
@@ -37,7 +38,6 @@ import {
   SizeBox,
   Title,
 } from "./styles";
-import { authUserState } from "../../atoms/userAuthState";
 
 interface itemProps {
   id?: number;
@@ -60,22 +60,26 @@ const Product = () => {
   const setRecordedCartItem = useSetRecoilState(recordedCartItemState);
   const setLikeItem = useSetRecoilState(likeItemState);
 
+  console.log(recordedCartItem, "gma");
+
   const { state } = useLocation();
   const { id, title, description, image, stars, product } = state.product;
 
-  let total: number | undefined;
+  let total: number | undefined = 0;
 
   const active = product
     .map((x: any) => x.price)
     .findIndex((x: any) => x === selectedSize);
 
-  const target = coffeeItem.find((item: coffeeProps) => item.id === id);
-  const activeLikes = likeItem.find(
-    (item: coffeeProps) => item.id === target?.id
-  );
+  const target = coffeeItem.find((item) => item.id === id);
+  const activeLikes = likeItem.find((item) => item.id === target?.id);
+  const nativeTypes: productProps = { ...target, likes: !target?.likes };
 
+  console.log(likeItem);
+  console.log(target);
+  console.log(coffeeItem);
   const handleLikes = () => {
-    setLikeItem([...likeItem, { ...target, likes: !target?.likes }]);
+    setLikeItem([...likeItem, nativeTypes]);
   };
 
   const handlePlusClick = () => {

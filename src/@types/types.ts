@@ -1,7 +1,7 @@
 export interface imageProps {
   open?: boolean;
-  loginImg?: "string";
-  src?: "string";
+  loginImg?: string;
+  src?: string;
 }
 
 export interface openProps {
@@ -24,11 +24,12 @@ export interface paymentProps {
 }
 
 export interface bankProps {
+  id: number;
+  bankName: string;
+  accNumber: string;
+  money: number;
+  find?: any;
   map?: any;
-  id?: number;
-  bankName?: string;
-  accNumber?: string;
-  money?: number;
 }
 
 export interface bankNameProps {
@@ -39,15 +40,11 @@ export interface bankNameProps {
 export interface authProps {
   name: string;
   userId: string;
-  password: string | number;
-  createdDate: Object | object;
+  password: number;
+  avartar: string;
   address: string;
-  bankInfo?: {
-    id: number;
-    bankName: string;
-    accNumber: string;
-    money?: number;
-  }[];
+  bankInfo: bankProps[] | bankProps;
+  findIndex?: any;
 }
 
 export interface userProps {
@@ -56,10 +53,38 @@ export interface userProps {
 
 export interface inputProps {
   userId: string;
-  password: string;
+  password: string | number;
 }
 
 export interface onChangeProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   target: any;
+}
+
+export interface productProps {
+  id?: number;
+  title?: string;
+  description?: string;
+  type?: string;
+  image?: string;
+  stars?: number[];
+  likes: boolean;
+  product?: {
+    id: number;
+    size: string;
+    price: number;
+    active?: boolean;
+  }[];
+}
+
+export interface cartItemProps {
+  id: string;
+  image: string;
+  orderDate: string;
+  orderUser: string;
+  price: number;
+  recordedQty: number;
+  size: string;
+  title: string;
+  total: number;
 }

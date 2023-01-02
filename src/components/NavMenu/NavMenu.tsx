@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { Container, IconsText, Img, ImgBox, MenuIcons } from "./styles";
 import { useRecoilValue } from "recoil";
 import { authUserState } from "../../atoms/userAuthState";
-import { paymentProps } from "../../@types/types";
 import home from "../../assets/home.svg";
 import heart from "../../assets/heart.svg";
 import cart from "../../assets/cart.svg";
@@ -19,7 +18,7 @@ const NavMenu = () => {
   const paymentItems = useRecoilValue(paymentDetailState);
   const authUser = useRecoilValue(authUserState);
   const detailItems = paymentItems.filter(
-    (item: paymentProps) => item.orderUser === authUser.userId
+    (item) => item.orderUser === authUser.userId
   );
 
   const navigate = useNavigate();

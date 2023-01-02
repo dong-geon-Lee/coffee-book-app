@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import { authProps } from "../@types/types";
 import { accounts } from "../data/userItems";
 
 export const openBookState = atom({
@@ -11,9 +12,9 @@ export const authActiveState = atom({
   default: false,
 });
 
-export const authUserState = atom<any>({
+export const authUserState = atom<authProps>({
   key: "authUser",
-  default: null,
+  default: undefined,
 });
 
 export const bankAccountState = atom({
@@ -21,7 +22,7 @@ export const bankAccountState = atom({
   default: "은행을 선택해주세요",
 });
 
-export const accountListState = atom<any>({
+export const accountListState = atom({
   key: "accountUserState",
   default: accounts,
 });

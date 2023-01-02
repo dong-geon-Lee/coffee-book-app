@@ -1,13 +1,14 @@
 import NavMenu from "../../components/NavMenu/NavMenu";
-import { coffeeProps, likeItemState } from "../../atoms/coffeeItemState";
+import { likeItemState } from "../../atoms/coffeeItemState";
 import { useRecoilValue, useSetRecoilState } from "recoil";
+import { productProps } from "../../@types/types";
+import { Link } from "react-router-dom";
 import star from "../../assets/star.svg";
 import star0 from "../../assets/star3.svg";
 import back from "../../assets/back.svg";
 import heart from "../../assets/heart2.svg";
 import heart4 from "../../assets/heart4.svg";
 import coffee from "../../assets/coffee9.svg";
-import { Link } from "react-router-dom";
 import {
   Background,
   Container,
@@ -32,7 +33,7 @@ const Likes = () => {
 
   const handleLikes = (id: number) => {
     const updatedLike = likeItems?.filter(
-      (item: coffeeProps) => item.id !== id
+      (item: productProps) => item.id !== id
     );
 
     setLikeItems(updatedLike);
@@ -57,14 +58,14 @@ const Likes = () => {
         )}
 
         {likeItems.length >= 1 &&
-          likeItems.map((item: coffeeProps) => (
+          likeItems.map((item: productProps) => (
             <ItemBox key={item.id}>
               <ImgBox>
                 <Img src={item.image} className="coffee__img" />
                 <Logo
                   src={heart4}
                   className="heart"
-                  onClick={() => handleLikes(item.id)}
+                  onClick={() => handleLikes(Number(item.id))}
                 />
               </ImgBox>
               <ContentBox>
@@ -72,7 +73,7 @@ const Likes = () => {
                 <Description>{item.description}</Description>
 
                 <Stars>
-                  {item.stars.map((stars) => (
+                  {item.stars?.map((stars) => (
                     <StarImg
                       key={Math.random() * 5}
                       src={stars === 1 ? star : star0}
