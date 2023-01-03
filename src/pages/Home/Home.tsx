@@ -1,9 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { authActiveState, authUserState } from "../../atoms/userAuthState";
-import { productProps } from "../../@types/types";
+import { authActiveState } from "../../recoil/userAuthState";
+import { onChangeProps, productProps } from "../../@types/types";
 import { Link } from "react-router-dom";
+import {
+  checkedMenuState,
+  currentItemState,
+} from "../../recoil/coffeeItemState";
+import {
+  ROUTE__CARTITEMS,
+  ROUTE__HOME,
+  ROUTE__LIKES,
+  ROUTE__PROFILES,
+} from "../../constants/constants";
 import img from "../../assets/logo5.png";
 import logo6 from "../../assets/coffee6.svg";
 import logo7 from "../../assets/coffee7.svg";
@@ -33,71 +43,33 @@ import {
   Text,
   IconsText,
 } from "./styles";
-import {
-  coffeeItemState,
-  likeItemState,
-  paymentDetailState,
-  recordedCartItemState,
-} from "../../atoms/coffeeItemState";
 
 const Home = () => {
-  const [checkedMenu, setCheckedMenu] = useState({
-    espresso: false,
-    coldbrew: false,
-    frappuccino: false,
-    blended: false,
-  });
-
+  const [authActive, setAuthActive] = useRecoilState(authActiveState);
+  const [checkedMenu, setCheckedMenu] = useRecoilState(checkedMenuState);
   const { espresso, coldbrew, frappuccino, blended } = checkedMenu;
 
-  const [authActive, setAuthActive] = useRecoilState(authActiveState);
-  const coffeeLists = useRecoilValue(coffeeItemState);
-  const likeItems = useRecoilValue(likeItemState);
-  const cartItems = useRecoilValue(recordedCartItemState);
-  const paymentItems = useRecoilValue(paymentDetailState);
-  const authUser = useRecoilValue(authUserState);
-  const detailItems = paymentItems.filter(
-    (item: any) => item.orderUser === authUser.userId
-  );
+  const { homeStatus, likeStatus, cartStatus, profileStatus } =
+    useRecoilValue(currentItemState);
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const coffeeItems = coffeeLists.slice();
-  const filteredItems = coffeeItems.filter(
-    (x) =>
-      (espresso && x.type === "espresso") ||
-      (coldbrew && x.type === "coldbrew") ||
-      (frappuccino && x.type === "frappuccino") ||
-      (blended && x.type === "blended")
-  );
+  const homeItemStatus = homeStatus.length || 0;
+  const likeItemStatus = likeStatus.length || 0;
+  const cartItemStatus = cartStatus.length || 0;
+  const profileItemStatus = profileStatus.length || 0;
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: onChangeProps) => {
     setCheckedMenu({
       ...checkedMenu,
       [e.target.name]: e.target.checked,
     });
   };
 
-  const handleLogout = () => {
-    navigate("/login");
-    setAuthActive(false);
-  };
-
-  const handleNavigateHome = () => {
-    navigate("/home");
-  };
-
-  const handleNavigateLikes = () => {
-    navigate("/likes");
-  };
-
-  const handleNavigateCartItems = () => {
-    navigate("/cartItems");
-  };
-
-  const handleNavigateProfiles = () => {
-    navigate("/profiles");
+  const handleNavigate = (destination: string) => {
+    if (destination === "login") setAuthActive(false);
+    navigate(`/${destination}`);
   };
 
   useEffect(() => {
@@ -120,7 +92,7 @@ const Home = () => {
 
           <Text>메인페이지</Text>
 
-          <Button onClick={handleLogout}>
+          <Button onClick={() => handleNavigate("login")}>
             <ImgBox className="logout">
               <Img src={logout} />
             </ImgBox>
@@ -176,52 +148,49 @@ const Home = () => {
           </Div>
 
           <ContentBox>
-            {filteredItems.length >= 1 ? (
-              filteredItems.map((item: productProps) => (
-                <Contents key={item.id}>
-                  <Link to={`/home/${item.id}`} state={{ product: item }}>
-                    <ImgBox className="content">
-                      <Img src={item.image} alt="logo" />
-                    </ImgBox>
-                  </Link>
+            {homeStatus.map((item: productProps) => (
+              <Contents key={item.id}>
+                <Link to={`/home/${item.id}`} state={{ product: item }}>
+                  <ImgBox className="content">
+                    <Img src={item.image} alt="logo" />
+                  </ImgBox>
+                </Link>
 
-                  <Title>{item.title}</Title>
-                </Contents>
-              ))
-            ) : (
-              <>
-                {coffeeItems.map((item: productProps) => (
-                  <Contents key={item.id}>
-                    <Link to={`/home/${item.id}`} state={{ product: item }}>
-                      <ImgBox className="content">
-                        <Img src={item.image} alt="logo" />
-                      </ImgBox>
-                    </Link>
-
-                    <Title>{item.title}</Title>
-                  </Contents>
-                ))}
-              </>
-            )}
+                <Title>{item.title}</Title>
+              </Contents>
+            ))}
           </ContentBox>
         </Section>
       </Wrapper>
 
       <MenuIcons>
-        <ImgBox className="icon__box" onClick={handleNavigateHome}>
+        <ImgBox
+          className="icon__box"
+          onClick={() => handleNavigate(ROUTE__HOME)}
+        >
           <Img src={home} className="icons" />
+          <IconsText>{homeItemStatus}</IconsText>
         </ImgBox>
-        <ImgBox className="icon__box" onClick={handleNavigateLikes}>
+        <ImgBox
+          className="icon__box"
+          onClick={() => handleNavigate(ROUTE__LIKES)}
+        >
           <Img src={heart} className="icons" />
-          <IconsText>{likeItems.length || 0}</IconsText>
+          <IconsText>{likeItemStatus}</IconsText>
         </ImgBox>
-        <ImgBox className="icon__box" onClick={handleNavigateCartItems}>
+        <ImgBox
+          className="icon__box"
+          onClick={() => handleNavigate(ROUTE__CARTITEMS)}
+        >
           <Img src={cart} className="icons" />
-          <IconsText>{cartItems.length || 0}</IconsText>
+          <IconsText>{cartItemStatus}</IconsText>
         </ImgBox>
-        <ImgBox className="icon__box" onClick={handleNavigateProfiles}>
+        <ImgBox
+          className="icon__box"
+          onClick={() => handleNavigate(ROUTE__PROFILES)}
+        >
           <Img src={profile} className="icons" />
-          <IconsText>{detailItems.length || 0}</IconsText>
+          <IconsText>{profileItemStatus}</IconsText>
         </ImgBox>
       </MenuIcons>
     </Container>

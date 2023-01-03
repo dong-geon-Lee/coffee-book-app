@@ -4,10 +4,10 @@ import NavMenu from "../../components/NavMenu/NavMenu";
 import back from "../../assets/back.svg";
 import profile from "../../assets/profile2.svg";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { modalState, overlayState } from "../../atoms/modalState";
+import { modalState, overlayState } from "../../recoil/modalState";
 import Overlays from "../../components/Modals/Overlays/Overlays";
 import Modals from "../../components/Modals/Modals";
-import { authUserState, bankOptionState } from "../../atoms/userAuthState";
+import { authUserState, bankOptionState } from "../../recoil/userAuthState";
 import { bankProps } from "../../@types/types";
 import {
   Box,

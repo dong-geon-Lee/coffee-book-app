@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { modalState, overlayState } from "../../../atoms/modalState";
+import { modalState, overlayState } from "../../../recoil/modalState";
 import { Container } from "./styles";
 
 const Overlays = () => {

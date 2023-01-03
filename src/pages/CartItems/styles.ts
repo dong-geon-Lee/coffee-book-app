@@ -1,12 +1,5 @@
 import styled from "styled-components";
-
-interface imageProps {
-  img: string;
-}
-
-interface itemProps {
-  items: any;
-}
+import { imageProps, itemLengthProps, itemProps } from "./../../@types/types";
 
 export const Container = styled.div`
   width: 100%;
@@ -31,11 +24,7 @@ export const Header = styled.header`
   padding: 1rem 0;
 `;
 
-interface itemsProps {
-  items: number;
-}
-
-export const Center = styled.div<itemsProps>`
+export const Center = styled.div<itemLengthProps>`
   overflow-y: scroll;
   height: 38rem;
   margin: 4rem 0 0rem 0;
@@ -115,7 +104,7 @@ export const ContentBox = styled.div`
   background-color: #fff;
 `;
 
-export const Text = styled.p<itemsProps>`
+export const Text = styled.p<itemLengthProps>`
   font-size: 1.8rem;
   font-weight: 800;
 
@@ -179,9 +168,7 @@ export const Button = styled.button`
   }
 `;
 
-export const Bottom = styled.div`
-  margin-top: 1rem;
-`;
+export const Bottom = styled.div``;
 
 export const ItemBox = styled.div`
   display: flex;

@@ -1,14 +1,14 @@
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { totalCashState } from "../../atoms/coffeeItemState";
-import { modalState, overlayState } from "../../atoms/modalState";
+import { totalCashState } from "../../recoil/coffeeItemState";
+import { modalState, overlayState } from "../../recoil/modalState";
 import { onChangeProps } from "../../@types/types";
-import { chargeX, chargeY, chargeZ } from "../../constants/constants";
+import { CHARGE__X, CHARGE__Y, CHARGE__Z } from "../../constants/constants";
 import {
   accountListState,
   authUserState,
   bankAccountState,
   bankOptionState,
-} from "../../atoms/userAuthState";
+} from "../../recoil/userAuthState";
 import {
   calcBankMoney,
   findAuthUser,
@@ -93,19 +93,19 @@ const Modals = () => {
         </ChargeBox>
         <Div>
           <Button
-            onClick={() => handleTotalCash(chargeX)}
+            onClick={() => handleTotalCash(CHARGE__X)}
             className="cash__btn"
           >
             +1만원
           </Button>
           <Button
-            onClick={() => handleTotalCash(chargeY)}
+            onClick={() => handleTotalCash(CHARGE__Y)}
             className="cash__btn"
           >
             +5만원
           </Button>
           <Button
-            onClick={() => handleTotalCash(chargeZ)}
+            onClick={() => handleTotalCash(CHARGE__Z)}
             className="cash__btn"
           >
             +10만원

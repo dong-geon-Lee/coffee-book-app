@@ -1,5 +1,5 @@
 import NavMenu from "../../components/NavMenu/NavMenu";
-import { likeItemState } from "../../atoms/coffeeItemState";
+import { likeItemState } from "../../recoil/coffeeItemState";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { productProps } from "../../@types/types";
 import { Link } from "react-router-dom";

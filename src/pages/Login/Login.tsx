@@ -7,7 +7,7 @@ import {
   accountListState,
   authActiveState,
   authUserState,
-} from "../../atoms/userAuthState";
+} from "../../recoil/userAuthState";
 
 const Login = () => {
   const accountLists = useRecoilValue(accountListState);

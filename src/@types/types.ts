@@ -2,6 +2,15 @@ export interface imageProps {
   open?: boolean;
   loginImg?: string;
   src?: string;
+  img?: string;
+}
+
+export interface itemProps {
+  items: cartItemProps[];
+}
+
+export interface itemLengthProps {
+  items: number;
 }
 
 export interface openProps {
@@ -78,7 +87,7 @@ export interface productProps {
 }
 
 export interface cartItemProps {
-  id: string;
+  id: number | string;
   image: string;
   orderDate: string;
   orderUser: string;
@@ -87,4 +96,12 @@ export interface cartItemProps {
   size: string;
   title: string;
   total: number;
+  filter?: any;
+}
+
+export interface filterItemProps {
+  espresso: boolean;
+  coldbrew: boolean;
+  frappuccino: boolean;
+  blended: boolean;
 }

@@ -7,7 +7,7 @@ import star from "../../assets/star.svg";
 import star0 from "../../assets/star3.svg";
 import NavMenu from "../../components/NavMenu/NavMenu";
 import { productProps } from "../../@types/types";
-import { authUserState } from "../../atoms/userAuthState";
+import { authUserState } from "../../recoil/userAuthState";
 import {
   coffeeItemState,
   likeItemState,
@@ -16,7 +16,7 @@ import {
   selectedSizeState,
   recordedQtyState,
   recordedCartItemState,
-} from "../../atoms/coffeeItemState";
+} from "../../recoil/coffeeItemState";
 import {
   BtnBox,
   Button,
@@ -59,8 +59,6 @@ const Product = () => {
 
   const setRecordedCartItem = useSetRecoilState(recordedCartItemState);
   const setLikeItem = useSetRecoilState(likeItemState);
-
-  console.log(recordedCartItem, "gma");
 
   const { state } = useLocation();
   const { id, title, description, image, stars, product } = state.product;

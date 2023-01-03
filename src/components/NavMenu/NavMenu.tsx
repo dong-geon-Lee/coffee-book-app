@@ -1,61 +1,62 @@
 import { useNavigate } from "react-router-dom";
 import { Container, IconsText, Img, ImgBox, MenuIcons } from "./styles";
 import { useRecoilValue } from "recoil";
-import { authUserState } from "../../atoms/userAuthState";
 import home from "../../assets/home.svg";
 import heart from "../../assets/heart.svg";
 import cart from "../../assets/cart.svg";
 import profile from "../../assets/profile.svg";
+import { currentItemState } from "../../recoil/coffeeItemState";
 import {
-  likeItemState,
-  paymentDetailState,
-  recordedCartItemState,
-} from "../../atoms/coffeeItemState";
+  ROUTE__CARTITEMS,
+  ROUTE__HOME,
+  ROUTE__LIKES,
+  ROUTE__PROFILES,
+} from "../../constants/constants";
 
 const NavMenu = () => {
-  const likeItems = useRecoilValue(likeItemState);
-  const cartItems = useRecoilValue(recordedCartItemState);
-  const paymentItems = useRecoilValue(paymentDetailState);
-  const authUser = useRecoilValue(authUserState);
-  const detailItems = paymentItems.filter(
-    (item) => item.orderUser === authUser.userId
-  );
+  const { homeStatus, likeStatus, cartStatus, profileStatus } =
+    useRecoilValue(currentItemState);
 
   const navigate = useNavigate();
+  const homeItemStatus = homeStatus.length || 0;
+  const likeItemStatus = likeStatus.length || 0;
+  const cartItemStatus = cartStatus.length || 0;
+  const profileItemStatus = profileStatus.length || 0;
 
-  const handleNavigateHome = () => {
-    navigate("/home");
-  };
-
-  const handleNavigateLikes = () => {
-    navigate("/likes");
-  };
-
-  const handleNavigateCartItems = () => {
-    navigate("/cartItems");
-  };
-
-  const handleNavigateProfiles = () => {
-    navigate("/profiles");
+  const handleNavigate = (destination: string) => {
+    navigate(`/${destination}`);
   };
 
   return (
     <Container>
       <MenuIcons>
-        <ImgBox className="icon__box" onClick={handleNavigateHome}>
+        <ImgBox
+          className="icon__box"
+          onClick={() => handleNavigate(ROUTE__HOME)}
+        >
           <Img src={home} className="icons" />
+          <IconsText>{homeItemStatus}</IconsText>
         </ImgBox>
-        <ImgBox className="icon__box" onClick={handleNavigateLikes}>
+        <ImgBox
+          className="icon__box"
+          onClick={() => handleNavigate(ROUTE__LIKES)}
+        >
           <Img src={heart} className="icons" />
-          <IconsText>{likeItems.length || 0}</IconsText>
+          <IconsText>{likeItemStatus}</IconsText>
         </ImgBox>
-        <ImgBox className="icon__box" onClick={handleNavigateCartItems}>
+        <ImgBox
+          className="icon__box"
+          onClick={() => handleNavigate(ROUTE__CARTITEMS)}
+        >
           <Img src={cart} className="icons" />
-          <IconsText>{cartItems.length || 0}</IconsText>
+          <IconsText>{cartItemStatus}</IconsText>
         </ImgBox>
-        <ImgBox className="icon__box" onClick={handleNavigateProfiles}>
+        <ImgBox
+          className="icon__box"
+          onClick={() => handleNavigate(ROUTE__PROFILES)}
+        >
           <Img src={profile} className="icons" />
-          <IconsText>{detailItems.length || 0}</IconsText>
+          <IconsText>{profileItemStatus}</IconsText>
         </ImgBox>
       </MenuIcons>
     </Container>
