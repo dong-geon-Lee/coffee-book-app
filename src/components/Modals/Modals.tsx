@@ -7,14 +7,10 @@ import {
   accountListState,
   authUserState,
   bankAccountState,
-  bankOptionState,
+  selectedBankState,
+  updatedBankMoneyState,
 } from "../../recoil/userAuthState";
-import {
-  calcBankMoney,
-  findAuthUser,
-  findSelectedBank,
-  formattedNumber,
-} from "../../helpers/helpers";
+import { formattedNumber } from "../../helpers/helpers";
 import {
   Container,
   ModalBox,
@@ -37,11 +33,9 @@ const Modals = () => {
   const [, setModalState] = useRecoilState(modalState);
   const [, setOverlays] = useRecoilState(overlayState);
 
-  const authUser = useRecoilValue(authUserState);
-  const bankOption = useRecoilValue(bankOptionState);
-  const accountLists = useRecoilValue(accountListState);
-
-  const filteredBank = findSelectedBank(authUser, bankOption);
+  const selectedBank = useRecoilValue(selectedBankState);
+  const { accountLists, authUser, correctUserIndex, newBankInfo, btnDisabled } =
+    useRecoilValue(updatedBankMoneyState);
 
   const setAuthUser = useSetRecoilState(authUserState);
   const setAccountList = useSetRecoilState(accountListState);
@@ -65,9 +59,6 @@ const Modals = () => {
   };
 
   const handleChargePoint = () => {
-    const correctUserIndex = findAuthUser(accountLists, authUser);
-    const newBankInfo = calcBankMoney(authUser, bankOption, totalCash);
-
     setAuthUser({ ...authUser, bankInfo: newBankInfo });
     setAccountList([
       ...accountLists.slice(0, correctUserIndex),
@@ -113,18 +104,18 @@ const Modals = () => {
         </Div>
 
         <Select value={bankAccount} onChange={onChange}>
-          {filteredBank && (
-            <Option value={filteredBank?.accNumber} key={filteredBank.id}>
-              {filteredBank?.bankName} {filteredBank?.accNumber}
+          {selectedBank && (
+            <Option value={selectedBank?.accNumber} key={selectedBank.id}>
+              {selectedBank?.bankName} {selectedBank?.accNumber}
             </Option>
           )}
         </Select>
 
-        <Box key={filteredBank?.id}>
+        <Box>
           <Label>계좌잔액:</Label>
           <Span>
-            {filteredBank &&
-              `${formattedNumber(totalCash + filteredBank.money)}원`}
+            {selectedBank &&
+              `${formattedNumber(totalCash + selectedBank.money)}원`}
           </Span>
         </Box>
 
@@ -135,7 +126,7 @@ const Modals = () => {
           <Button
             className="pay__btn"
             onClick={handleChargePoint}
-            disabled={totalCash === 0 ? true : false}
+            disabled={btnDisabled}
           >
             충전하기
           </Button>

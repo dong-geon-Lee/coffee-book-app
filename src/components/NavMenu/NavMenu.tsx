@@ -1,10 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Container, IconsText, Img, ImgBox, MenuIcons } from "./styles";
 import { useRecoilValue } from "recoil";
-import home from "../../assets/home.svg";
-import heart from "../../assets/heart.svg";
-import cart from "../../assets/cart.svg";
-import profile from "../../assets/profile.svg";
 import { currentItemState } from "../../recoil/coffeeItemState";
 import {
   ROUTE__CARTITEMS,
@@ -12,6 +8,10 @@ import {
   ROUTE__LIKES,
   ROUTE__PROFILES,
 } from "../../constants/constants";
+import home from "../../assets/home.svg";
+import heart from "../../assets/heart.svg";
+import cart from "../../assets/cart.svg";
+import profile from "../../assets/profile.svg";
 
 const NavMenu = () => {
   const { homeStatus, likeStatus, cartStatus, profileStatus } =
