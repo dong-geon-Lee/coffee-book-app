@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { svgProps } from "./../../@types/types";
+import { svgProps } from "../../@types/types";
 
 export const Container = styled.div`
   width: 100%;

@@ -3,6 +3,7 @@ import { totalCashState } from "../../recoil/coffeeItemState";
 import { modalState, overlayState } from "../../recoil/modalState";
 import { onChangeProps } from "../../@types/types";
 import { CHARGE__X, CHARGE__Y, CHARGE__Z } from "../../constants/constants";
+import { formattedNumber } from "../../helpers/helpers";
 import {
   accountListState,
   authUserState,
@@ -10,7 +11,6 @@ import {
   selectedBankState,
   updatedBankMoneyState,
 } from "../../recoil/userAuthState";
-import { formattedNumber } from "../../helpers/helpers";
 import {
   Container,
   ModalBox,

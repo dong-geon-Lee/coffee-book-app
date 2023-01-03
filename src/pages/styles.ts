@@ -1,4 +1,4 @@
-import { imageProps, openProps } from "./../@types/types";
+import { imageProps, openProps } from "../@types/types";
 import styled, { css, keyframes } from "styled-components";
 
 const openBook = keyframes`

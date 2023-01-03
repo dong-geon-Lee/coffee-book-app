@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { imageProps, itemLengthProps, itemProps } from "./../../@types/types";
+import { imageProps, itemLengthProps, itemProps } from "../../@types/types";
 
 export const Container = styled.div`
   width: 100%;

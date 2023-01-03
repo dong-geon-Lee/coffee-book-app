@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { imageProps } from "./../../@types/types";
+import { imageProps } from "../../@types/types";
 import { openProps } from "../../@types/types";
 
 export const ImageBox = styled.div<imageProps>`

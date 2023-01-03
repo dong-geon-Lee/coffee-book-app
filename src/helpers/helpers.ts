@@ -20,11 +20,9 @@ export const findAuthUser = (
 };
 
 export const findSelectedBank = (authUser: authProps, bankOption: string) => {
-  const filteredBank = authUser.bankInfo.find((bank: bankProps) => {
+  return authUser.bankInfo.find((bank: bankProps) => {
     return bank.bankName === bankOption;
   });
-
-  return filteredBank;
 };
 
 export const calcBankMoney = (
@@ -89,3 +87,10 @@ export function itemStatus(
     profile: profileItemStatus,
   };
 }
+
+export const removeCartItem = (
+  recordedCartItem: cartItemProps[],
+  id: string
+) => {
+  return recordedCartItem.filter((item: cartItemProps) => item.id !== id);
+};

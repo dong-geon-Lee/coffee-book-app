@@ -1,7 +1,12 @@
 import { atom, selector } from "recoil";
-import { cartItemProps, filterItemProps, productProps } from "../@types/types";
+import { cartItemProps, productProps } from "../@types/types";
+import { SHIPPING__COST } from "../constants/constants";
 import { coffeeLists } from "../data/coffeeItems";
-import { findFilteredItems, findPaymentOrderUser } from "../helpers/helpers";
+import {
+  calcTotalProduct,
+  findFilteredItems,
+  findPaymentOrderUser,
+} from "../helpers/helpers";
 import { authUserState } from "./userAuthState";
 
 export const coffeeItemState = atom<productProps[]>({
@@ -43,6 +48,25 @@ export const currentItemState = selector({
     return { homeStatus, likeStatus, cartStatus, profileStatus };
   },
 });
+
+export const cartItemTotalState = selector({
+  key: "cartItemTotalState",
+  get: ({ get }) => {
+    const recordedCartItem = get(recordedCartItemState);
+    const total = calcTotalProduct(recordedCartItem) + SHIPPING__COST;
+    return total;
+  },
+});
+
+// export const cartItemState = selector({
+//   key: "cartItemState",
+//   get: ({ get }) => {
+//     const recordedCartItem= get(recordedCartItemState);
+//     const newItems = recordedCartItem.filter(
+//       (item: cartItemProps) => item.id !== id
+//     );
+//   },
+// });
 
 export const checkedMenuState = atom({
   key: "checkedMenuState",

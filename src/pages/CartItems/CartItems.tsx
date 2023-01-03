@@ -2,18 +2,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useEffect, useState } from "react";
 import { cartItemProps } from "../../@types/types";
-import { calcTotalProduct, formattedNumber } from "../../helpers/helpers";
+import { formattedNumber, removeCartItem } from "../../helpers/helpers";
 import { SHIPPING__COST } from "../../constants/constants";
+import {
+  cartItemTotalState,
+  paymentDetailState,
+  recordedCartItemState,
+} from "../../recoil/coffeeItemState";
 import Spinner from "../../components/Spinner/Spinner";
 import NavMenu from "../../components/NavMenu/NavMenu";
 import back from "../../assets/back.svg";
 import cart from "../../assets/cart2.svg";
 import emptyCart from "../../assets/cart3.svg";
 import xIcons from "../../assets/delete.svg";
-import {
-  paymentDetailState,
-  recordedCartItemState,
-} from "../../recoil/coffeeItemState";
 import {
   Section,
   Container,
@@ -44,18 +45,15 @@ const CartItems = () => {
 
   const recordedCartItem = useRecoilValue(recordedCartItemState);
   const paymentDetails = useRecoilValue(paymentDetailState);
+  const cartItemTotal = useRecoilValue(cartItemTotalState);
 
   const setRecordedCartItem = useSetRecoilState(recordedCartItemState);
   const setPaymentDetails = useSetRecoilState(paymentDetailState);
 
   const navigate = useNavigate();
-  const total = calcTotalProduct(recordedCartItem) + SHIPPING__COST;
 
   const handleRemoveCartItems = (id: string) => {
-    const newItems = recordedCartItem.filter(
-      (item: cartItemProps) => item.id !== id
-    );
-
+    const newItems = removeCartItem(recordedCartItem, id);
     setRecordedCartItem(newItems);
   };
 
@@ -127,11 +125,11 @@ const CartItems = () => {
           )}
         </Center>
 
-        {!activeSpinner && recordedCartItem.length > 0 && (
+        {recordedCartItem.length > 0 && (
           <Bottom>
             <ItemBox>
               <Label>상품금액</Label>
-              <Span>+{formattedNumber(total - SHIPPING__COST)}원</Span>
+              <Span>+{formattedNumber(cartItemTotal - SHIPPING__COST)}원</Span>
             </ItemBox>
 
             <ItemBox>
@@ -141,7 +139,7 @@ const CartItems = () => {
 
             <ItemBox>
               <Label>주문금액</Label>
-              <Span>{formattedNumber(total)} 원</Span>
+              <Span>{formattedNumber(cartItemTotal)} 원</Span>
             </ItemBox>
 
             <Button className="checkout__btn" onClick={handleCheckout}>
