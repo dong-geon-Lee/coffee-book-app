@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { imageProps } from "../../@types/types";
 
 export const Container = styled.div`
   width: 100%;
@@ -78,10 +79,6 @@ export const EmptyBox = styled.div`
   align-items: center;
   height: 100%;
 `;
-
-interface imageProps {
-  img: string;
-}
 
 export const Background = styled.div<imageProps>`
   background-image: url(${(props) => props.img});

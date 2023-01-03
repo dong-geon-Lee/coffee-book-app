@@ -1,12 +1,7 @@
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import back from "../../assets/back.svg";
-import coffee8 from "../../assets/coffee8.svg";
-import star from "../../assets/star.svg";
-import star0 from "../../assets/star3.svg";
-import NavMenu from "../../components/NavMenu/NavMenu";
-import { productProps } from "../../@types/types";
+import { itemOptionProps } from "../../@types/types";
 import { authUserState } from "../../atoms/userAuthState";
 import {
   coffeeItemState,
@@ -17,6 +12,18 @@ import {
   recordedQtyState,
   recordedCartItemState,
 } from "../../atoms/coffeeItemState";
+import {
+  addCartItems,
+  addLikeProduct,
+  findSameProduct,
+  formattedNumber,
+  selectProductSize,
+} from "../../helpers/helpers";
+import back from "../../assets/back.svg";
+import coffee8 from "../../assets/coffee8.svg";
+import star from "../../assets/star.svg";
+import star0 from "../../assets/star3.svg";
+import NavMenu from "../../components/NavMenu/NavMenu";
 import {
   BtnBox,
   Button,
@@ -39,13 +46,6 @@ import {
   Title,
 } from "./styles";
 
-interface itemProps {
-  id?: number;
-  size?: string;
-  price?: number;
-  active: boolean | undefined;
-}
-
 const Product = () => {
   const [selectedSize, setSelectedSize] = useRecoilState(selectedSizeState);
   const [quantity, setQuantity] = useRecoilState(quantityState);
@@ -63,21 +63,12 @@ const Product = () => {
   const { state } = useLocation();
   const { id, title, description, image, stars, product } = state.product;
 
-  let total: number | undefined = 0;
+  const activeSizeIndex = selectProductSize(product, selectedSize);
+  const targetItems = findSameProduct(coffeeItem, id);
+  const activeLikes = addLikeProduct(likeItem, targetItems);
 
-  const active = product
-    .map((x: any) => x.price)
-    .findIndex((x: any) => x === selectedSize);
-
-  const target = coffeeItem.find((item) => item.id === id);
-  const activeLikes = likeItem.find((item) => item.id === target?.id);
-  const nativeTypes: productProps = { ...target, likes: !target?.likes };
-
-  console.log(likeItem);
-  console.log(target);
-  console.log(coffeeItem);
   const handleLikes = () => {
-    setLikeItem([...likeItem, nativeTypes]);
+    setLikeItem([...likeItem, { ...targetItems, likes: !targetItems?.likes }]);
   };
 
   const handlePlusClick = () => {
@@ -90,35 +81,23 @@ const Product = () => {
     setQuantity((prevState) => prevState - 1);
   };
 
-  const handleResetMenu = (price: any) => {
+  const handleResetMenu = (price: number) => {
     setQuantity(1);
     setSelectedSize(price);
     setTotalPrice(price);
   };
 
-  const randomDates = (min: number, max: number) => {
-    const randomYears = Math.floor(Math.random() * (max - min)) + min;
-    const randomMonths = Math.floor(Math.random() * 12) + 1;
-    const randomDays = Math.floor(Math.random() * 30) + 1;
-
-    return { randomYears, randomMonths, randomDays };
-  };
-
-  const { randomYears, randomMonths, randomDays } = randomDates(2020, 2023);
-  const list = product.find((p: any) => p.price === selectedSize);
-  const cartItems = {
-    id: "FE" + Math.floor(Math.random() * 10000) + "DEV",
-    size: list?.size,
-    price: list?.price,
+  const likeBtnDisabled = activeLikes?.likes ? true : false;
+  const cartBtnDisabled = activeSizeIndex + 1 ? false : true;
+  const cartItems = addCartItems(
+    product,
     image,
     title,
-    recordedQty: quantity,
-    total: (total = totalPrice * quantity),
-    orderDate: new Intl.DateTimeFormat("ko-KR").format(
-      new Date(randomYears, randomMonths, randomDays)
-    ),
-    orderUser: authUser.userId,
-  };
+    quantity,
+    totalPrice,
+    authUser,
+    selectedSize
+  );
 
   const handleCartItem = () => {
     setTotalPrice(selectedSize * quantity);
@@ -153,9 +132,9 @@ const Product = () => {
           <Contents>
             <Title className="content__title">{title}</Title>
             <LogoBox>
-              {stars.map((stars: number) => (
+              {stars.map((stars: number, index: string) => (
                 <Logo
-                  key={Math.random() * 5}
+                  key={index}
                   src={stars === 1 ? star : star0}
                   alt="star"
                   className="stars"
@@ -166,11 +145,11 @@ const Product = () => {
           <Description>{description}</Description>
 
           <SizeBox>
-            {product.map((item: itemProps) => (
+            {product.map((item: itemOptionProps) => (
               <Div key={item.id}>
                 <Button
-                  onClick={() => handleResetMenu(item.price)}
-                  active={item.id === active + 1}
+                  onClick={() => handleResetMenu(Number(item.price))}
+                  active={item.id === activeSizeIndex + 1}
                 >
                   {item.size}
                 </Button>
@@ -180,18 +159,14 @@ const Product = () => {
 
           <PriceBox>
             <PriceText>
-              상품 가격:
-              {new Intl.NumberFormat("ko-KR", {
-                maximumSignificantDigits: 3,
-              }).format(selectedSize * quantity)}
-              원
+              상품 가격:{formattedNumber(selectedSize * quantity)}원
             </PriceText>
 
             <CountBox>
               <Buttons
                 className="minus"
                 onClick={handleMinusClick}
-                disabled={active + 1 ? false : true}
+                disabled={cartBtnDisabled}
               >
                 -
               </Buttons>
@@ -199,7 +174,7 @@ const Product = () => {
               <Buttons
                 className="plus"
                 onClick={handlePlusClick}
-                disabled={active + 1 ? false : true}
+                disabled={cartBtnDisabled}
               >
                 +
               </Buttons>
@@ -210,14 +185,14 @@ const Product = () => {
             <Buttons
               className="likes"
               onClick={handleLikes}
-              disabled={activeLikes?.likes ? true : false}
+              disabled={likeBtnDisabled}
             >
               좋아요
             </Buttons>
             <Buttons
               className="carts"
               onClick={handleCartItem}
-              disabled={active + 1 ? false : true}
+              disabled={cartBtnDisabled}
             >
               장바구니
             </Buttons>

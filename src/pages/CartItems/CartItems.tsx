@@ -95,7 +95,7 @@ const CartItems = () => {
                 <ContentBox>
                   <Text items={recordedCartItem.length}>{item.title}</Text>
                   <Price className="price">
-                    {formattedNumber(item.price)}원
+                    {formattedNumber(Number(item.price))}원
                   </Price>
                   <Text className="size" items={recordedCartItem.length}>
                     크기: {item.size}

@@ -1,12 +1,13 @@
 import { atom, selector } from "recoil";
 import { authProps } from "../@types/types";
 import { accounts } from "../data/userItems";
+import { paymentDetailState, totalCashState } from "./coffeeItemState";
 import {
   findAuthUser,
   findSelectedBank,
   calcBankMoney,
+  showPaymentLists,
 } from "../helpers/helpers";
-import { totalCashState } from "./coffeeItemState";
 
 export const openBookState = atom({
   key: "openBookState",
@@ -30,6 +31,16 @@ export const selectedBankState = selector({
     const bankOption = get(bankOptionState);
     const filteredBank = findSelectedBank(authUser, bankOption);
     return filteredBank;
+  },
+});
+
+export const paymentListState = selector({
+  key: "paymentListState",
+  get: ({ get }) => {
+    const authUser = get(authUserState);
+    const paymentDetail = get(paymentDetailState);
+    const paymentItems = showPaymentLists(paymentDetail, authUser);
+    return paymentItems;
   },
 });
 

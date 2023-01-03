@@ -1,11 +1,10 @@
+import { useRecoilValue } from "recoil";
+import { paymentListState } from "../../atoms/userAuthState";
+import { Link } from "react-router-dom";
 import NavMenu from "../../components/NavMenu/NavMenu";
 import back from "../../assets/back.svg";
 import note from "../../assets/note.svg";
 import payment from "../../assets/payment.svg";
-import { Link } from "react-router-dom";
-import { paymentDetailState } from "../../atoms/coffeeItemState";
-import { useRecoilValue } from "recoil";
-import { authUserState } from "../../atoms/userAuthState";
 import {
   Container,
   Section,
@@ -21,14 +20,7 @@ import {
 } from "./styles";
 
 const PaymentDetails = () => {
-  const paymentDetail = useRecoilValue(paymentDetailState);
-  const authUser = useRecoilValue(authUserState);
-  const items = paymentDetail.filter(
-    (item: any) => item.orderUser === authUser.userId
-  );
-
-  console.log(paymentDetail);
-  console.log(items);
+  const paymentList = useRecoilValue(paymentListState);
 
   return (
     <Container>
@@ -41,7 +33,7 @@ const PaymentDetails = () => {
           <Logo src={note} alt="logo" className="logo" />
         </Header>
 
-        {items.length === 0 && (
+        {paymentList.length === 0 && (
           <EmptyBox>
             <Background img={payment}></Background>
             <LogoText>No payment details.</LogoText>
@@ -49,7 +41,7 @@ const PaymentDetails = () => {
         )}
 
         <Div>
-          {items.map((item: any) => (
+          {paymentList.map((item: any) => (
             <Card key={item.id}>
               <Text>주문코드: {item.id}</Text>
               <Text className="title">제품: {item.title}</Text>

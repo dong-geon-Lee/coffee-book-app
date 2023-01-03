@@ -2,12 +2,12 @@ import { atom, selector } from "recoil";
 import { cartItemProps, productProps } from "../@types/types";
 import { SHIPPING__COST } from "../constants/constants";
 import { coffeeLists } from "../data/coffeeItems";
+import { authUserState } from "./userAuthState";
 import {
   calcTotalProduct,
   findFilteredItems,
   findPaymentOrderUser,
 } from "../helpers/helpers";
-import { authUserState } from "./userAuthState";
 
 export const coffeeItemState = atom<productProps[]>({
   key: "dataState",

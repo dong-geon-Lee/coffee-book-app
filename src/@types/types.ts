@@ -88,15 +88,23 @@ export interface productProps {
   }[];
 }
 
+export interface itemOptionProps {
+  id?: number;
+  size?: string;
+  price?: number;
+  active: boolean | undefined;
+  map?: any;
+}
+
 export interface cartItemProps {
-  id: number | string;
-  image: string;
-  orderDate: string;
-  orderUser: string;
-  price: number;
-  recordedQty: number;
-  size: string;
-  title: string;
+  id?: number | string;
+  image?: string;
+  orderDate?: string;
+  orderUser?: string;
+  price?: number;
+  recordedQty?: number;
+  size?: string;
+  title?: string;
   total: number;
   filter?: any;
 }
