@@ -65,9 +65,10 @@ export interface inputProps {
   password: string | number;
 }
 
-export interface onChangeProps {
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  target: any;
+export interface ButtonProps {
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  target?: any;
 }
 
 export interface productProps {
@@ -78,6 +79,7 @@ export interface productProps {
   image?: string;
   stars?: number[];
   likes: boolean;
+  filter?: any;
   product?: {
     id: number;
     size: string;

@@ -2,19 +2,24 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Button, Container, Div, Form, GuestBox, Input, Label } from "./styles";
-import { authProps, userProps, inputProps } from "../../@types/types";
+import { userProps } from "../../@types/types";
+import { checkAuthUser } from "../../helpers/helpers";
 import {
   accountListState,
   authActiveState,
   authUserState,
-} from "../../recoil/userAuthState";
+} from "../../atoms/userAuthState";
+import {
+  EMPTY__INPUT__MESSAGE,
+  ERROR__INPUT__MESSAGE,
+} from "../../constants/constants";
 
 const Login = () => {
   const accountLists = useRecoilValue(accountListState);
   const [, setAuthActive] = useRecoilState(authActiveState);
-  const [, setAuthUser] = useRecoilState<authProps>(authUserState);
+  const [, setAuthUser] = useRecoilState(authUserState);
 
-  const [authInput, setAuthInput] = useState<inputProps>({
+  const [authInput, setAuthInput] = useState({
     userId: "",
     password: "",
   });
@@ -31,22 +36,19 @@ const Login = () => {
     });
   };
 
-  const handleAuth = (e: { preventDefault: () => void }) => {
+  const handleAuth = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     if (!userId || !password) {
-      alert("아이디와 비밀번호를 모두 입력해주세요");
+      alert(EMPTY__INPUT__MESSAGE);
       return;
     }
 
-    const checkAuth = accountLists.find(
-      (account: authProps) =>
-        account.userId === userId && account.password === +password
-    );
+    const checkAuth = checkAuthUser(accountLists, userId, password);
 
     if (!checkAuth) {
       setAuthActive(false);
-      alert("아이디 또는 비밀번호가 일치하지 않습니다");
+      alert(ERROR__INPUT__MESSAGE);
       return;
     } else {
       setAuthUser(checkAuth);
@@ -58,7 +60,7 @@ const Login = () => {
   const randomGuest = () => {
     const randomIndex = Math.floor(Math.random() * 3);
     const { userId, password } = accountLists[randomIndex];
-    setAuthInput({ userId, password });
+    setAuthInput({ userId, password: String(password) });
   };
 
   useEffect(() => {

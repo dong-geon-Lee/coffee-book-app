@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { authActiveState } from "../../recoil/userAuthState";
-import { onChangeProps, productProps } from "../../@types/types";
+import { authActiveState } from "../../atoms/userAuthState";
+import { ButtonProps, productProps } from "../../@types/types";
 import { Link } from "react-router-dom";
 import {
   checkedMenuState,
   currentItemState,
-} from "../../recoil/coffeeItemState";
+} from "../../atoms/coffeeItemState";
 import {
   ROUTE__CARTITEMS,
   ROUTE__HOME,
@@ -60,7 +60,7 @@ const Home = () => {
   const cartItemStatus = cartStatus.length || 0;
   const profileItemStatus = profileStatus.length || 0;
 
-  const onChange = (e: onChangeProps) => {
+  const onChange = (e: ButtonProps) => {
     setCheckedMenu({
       ...checkedMenu,
       [e.target.name]: e.target.checked,

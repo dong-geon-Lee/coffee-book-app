@@ -8,7 +8,7 @@ import {
   cartItemTotalState,
   paymentDetailState,
   recordedCartItemState,
-} from "../../recoil/coffeeItemState";
+} from "../../atoms/coffeeItemState";
 import Spinner from "../../components/Spinner/Spinner";
 import NavMenu from "../../components/NavMenu/NavMenu";
 import back from "../../assets/back.svg";

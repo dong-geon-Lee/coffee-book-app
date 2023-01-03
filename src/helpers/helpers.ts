@@ -19,6 +19,17 @@ export const findAuthUser = (
   return accounts.findIndex((x: authProps) => x.userId === authUser.userId);
 };
 
+export const checkAuthUser = (
+  accountLists: any,
+  userId: string,
+  password: string
+) => {
+  return accountLists.find(
+    (account: authProps) =>
+      account.userId === userId && account.password === +password
+  );
+};
+
 export const findSelectedBank = (authUser: authProps, bankOption: string) => {
   return authUser.bankInfo.find((bank: bankProps) => {
     return bank.bankName === bankOption;
@@ -74,23 +85,10 @@ export const findPaymentOrderUser = (
   );
 };
 
-export function itemStatus(
-  homeItemStatus: number,
-  likeItemStatus: number,
-  cartItemStatus: number,
-  profileItemStatus: number
-) {
-  return {
-    home: homeItemStatus,
-    like: likeItemStatus,
-    cart: cartItemStatus,
-    profile: profileItemStatus,
-  };
-}
+export const removeCartItem = (cartItems: cartItemProps[], id: string) => {
+  return cartItems.filter((item: cartItemProps) => item.id !== id);
+};
 
-export const removeCartItem = (
-  recordedCartItem: cartItemProps[],
-  id: string
-) => {
-  return recordedCartItem.filter((item: cartItemProps) => item.id !== id);
+export const removeLikeItem = (likeItems: productProps[], id: number) => {
+  return likeItems.filter((item: productProps) => item.id !== id);
 };

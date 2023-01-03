@@ -6,3 +6,5 @@ export const ROUTE__HOME = "home";
 export const ROUTE__LIKES = "likes";
 export const ROUTE__CARTITEMS = "cartItems";
 export const ROUTE__PROFILES = "profiles";
+export const EMPTY__INPUT__MESSAGE = "아이디와 비밀번호를 모두 입력해주세요";
+export const ERROR__INPUT__MESSAGE = "아이디 또는 비밀번호가 일치하지 않습니다";

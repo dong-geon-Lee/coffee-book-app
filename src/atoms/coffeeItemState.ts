@@ -58,16 +58,6 @@ export const cartItemTotalState = selector({
   },
 });
 
-// export const cartItemState = selector({
-//   key: "cartItemState",
-//   get: ({ get }) => {
-//     const recordedCartItem= get(recordedCartItemState);
-//     const newItems = recordedCartItem.filter(
-//       (item: cartItemProps) => item.id !== id
-//     );
-//   },
-// });
-
 export const checkedMenuState = atom({
   key: "checkedMenuState",
   default: {

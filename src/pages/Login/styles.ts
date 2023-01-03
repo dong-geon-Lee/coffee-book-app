@@ -1,23 +1,13 @@
 import styled from "styled-components";
+import { ButtonProps, openProps } from "../../@types/types";
 
-interface props {
-  open?: boolean;
-}
-
-type ButtonProps = {
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void; // to handle onClick functions
-  children?: React.ReactNode; // make the component able to receive children elements
-  color?: "primary" | "secondary"; // two styling options (you can create as many as you want)
-  disabled?: boolean; // make the button disabled or not
-};
-
-export const Container = styled.div<props>`
+export const Container = styled.div<openProps>`
   width: 60rem;
   height: 80rem;
   position: relative;
 `;
 
-export const Form = styled.form<props>`
+export const Form = styled.form<openProps>`
   width: 100%;
   height: 75%;
   display: flex;

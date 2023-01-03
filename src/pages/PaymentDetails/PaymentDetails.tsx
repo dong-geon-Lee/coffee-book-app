@@ -3,9 +3,9 @@ import back from "../../assets/back.svg";
 import note from "../../assets/note.svg";
 import payment from "../../assets/payment.svg";
 import { Link } from "react-router-dom";
-import { paymentDetailState } from "../../recoil/coffeeItemState";
+import { paymentDetailState } from "../../atoms/coffeeItemState";
 import { useRecoilValue } from "recoil";
-import { authUserState } from "../../recoil/userAuthState";
+import { authUserState } from "../../atoms/userAuthState";
 import {
   Container,
   Section,

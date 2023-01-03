@@ -7,7 +7,7 @@ import star from "../../assets/star.svg";
 import star0 from "../../assets/star3.svg";
 import NavMenu from "../../components/NavMenu/NavMenu";
 import { productProps } from "../../@types/types";
-import { authUserState } from "../../recoil/userAuthState";
+import { authUserState } from "../../atoms/userAuthState";
 import {
   coffeeItemState,
   likeItemState,
@@ -16,7 +16,7 @@ import {
   selectedSizeState,
   recordedQtyState,
   recordedCartItemState,
-} from "../../recoil/coffeeItemState";
+} from "../../atoms/coffeeItemState";
 import {
   BtnBox,
   Button,

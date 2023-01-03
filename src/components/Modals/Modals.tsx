@@ -1,7 +1,7 @@
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { totalCashState } from "../../recoil/coffeeItemState";
-import { modalState, overlayState } from "../../recoil/modalState";
-import { onChangeProps } from "../../@types/types";
+import { totalCashState } from "../../atoms/coffeeItemState";
+import { modalState, overlayState } from "../../atoms/modalState";
+import { ButtonProps } from "../../@types/types";
 import { CHARGE__X, CHARGE__Y, CHARGE__Z } from "../../constants/constants";
 import { formattedNumber } from "../../helpers/helpers";
 import {
@@ -10,7 +10,7 @@ import {
   bankAccountState,
   selectedBankState,
   updatedBankMoneyState,
-} from "../../recoil/userAuthState";
+} from "../../atoms/userAuthState";
 import {
   Container,
   ModalBox,
@@ -54,7 +54,7 @@ const Modals = () => {
     setOverlays(false);
   };
 
-  const onChange = (e: onChangeProps) => {
+  const onChange = (e: ButtonProps) => {
     setBankAccount(e.target.value);
   };
 

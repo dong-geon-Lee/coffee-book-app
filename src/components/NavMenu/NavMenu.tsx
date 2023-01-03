@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Container, IconsText, Img, ImgBox, MenuIcons } from "./styles";
 import { useRecoilValue } from "recoil";
-import { currentItemState } from "../../recoil/coffeeItemState";
+import { currentItemState } from "../../atoms/coffeeItemState";
 import {
   ROUTE__CARTITEMS,
   ROUTE__HOME,

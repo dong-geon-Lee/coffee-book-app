@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { imageProps, svgProps } from "../../@types/types";
 
 export const Container = styled.div`
   width: 100%;
@@ -75,10 +76,6 @@ export const EmptyBox = styled.div`
   height: 100%;
 `;
 
-interface imageProps {
-  img: string;
-}
-
 export const Background = styled.div<imageProps>`
   background-image: url(${(props) => props.img});
   width: 20rem;
@@ -106,11 +103,7 @@ export const Img = styled.img`
   opacity: 1;
 `;
 
-interface props {
-  fill?: string;
-}
-
-export const StarImg = styled.img<props>`
+export const StarImg = styled.img<svgProps>`
   width: 2.2rem;
   height: 2.2rem;
   object-fit: cover;

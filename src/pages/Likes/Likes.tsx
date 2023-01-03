@@ -1,8 +1,9 @@
 import NavMenu from "../../components/NavMenu/NavMenu";
-import { likeItemState } from "../../recoil/coffeeItemState";
+import { likeItemState } from "../../atoms/coffeeItemState";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { productProps } from "../../@types/types";
 import { Link } from "react-router-dom";
+import { removeLikeItem } from "../../helpers/helpers";
 import star from "../../assets/star.svg";
 import star0 from "../../assets/star3.svg";
 import back from "../../assets/back.svg";
@@ -32,11 +33,8 @@ const Likes = () => {
   const setLikeItems = useSetRecoilState(likeItemState);
 
   const handleLikes = (id: number) => {
-    const updatedLike = likeItems?.filter(
-      (item: productProps) => item.id !== id
-    );
-
-    setLikeItems(updatedLike);
+    const removeLikes = removeLikeItem(likeItems, id);
+    setLikeItems(removeLikes);
   };
 
   return (
@@ -50,14 +48,7 @@ const Likes = () => {
           <Logo src={heart} alt="logo" className="logo" />
         </Header>
 
-        {likeItems.length === 0 && (
-          <EmptyBox>
-            <Background img={coffee}></Background>
-            <Text>There is no Likes Coffee.</Text>
-          </EmptyBox>
-        )}
-
-        {likeItems.length >= 1 &&
+        {likeItems.length >= 1 ? (
           likeItems.map((item: productProps) => (
             <ItemBox key={item.id}>
               <ImgBox>
@@ -73,9 +64,9 @@ const Likes = () => {
                 <Description>{item.description}</Description>
 
                 <Stars>
-                  {item.stars?.map((stars) => (
+                  {item.stars?.map((stars, index) => (
                     <StarImg
-                      key={Math.random() * 5}
+                      key={index}
                       src={stars === 1 ? star : star0}
                       alt="star"
                     />
@@ -83,7 +74,13 @@ const Likes = () => {
                 </Stars>
               </ContentBox>
             </ItemBox>
-          ))}
+          ))
+        ) : (
+          <EmptyBox>
+            <Background img={coffee}></Background>
+            <Text>There is no Likes Coffee.</Text>
+          </EmptyBox>
+        )}
       </Section>
       <NavMenu />
     </Container>
