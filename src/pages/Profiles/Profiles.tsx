@@ -1,14 +1,19 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { modalState, overlayState } from "../../atoms/modalState";
+import { authUserState, bankOptionState } from "../../atoms/userAuthState";
+import { bankProps, ButtonProps } from "../../@types/types";
+import { findSelectedBank, formattedNumber } from "../../helpers/helpers";
+import {
+  CHOICE__ACCOUNT,
+  CHOICE__BANK__MESSAGE,
+} from "../../constants/constants";
 import NavMenu from "../../components/NavMenu/NavMenu";
 import back from "../../assets/back.svg";
 import profile from "../../assets/profile2.svg";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { modalState, overlayState } from "../../atoms/modalState";
 import Overlays from "../../components/Overlays/Overlays";
 import Modals from "../../components/Modals/Modals";
-import { authUserState, bankOptionState } from "../../atoms/userAuthState";
-import { bankProps } from "../../@types/types";
 import {
   Box,
   BtnBox,
@@ -28,13 +33,15 @@ import {
   UserBox,
   UserInfo,
 } from "./styles";
-import { findSelectedBank } from "../../helpers/helpers";
 
 const Profiles = () => {
   const [openModals, setOpenModals] = useRecoilState(modalState);
   const [overlays, setOverlays] = useRecoilState(overlayState);
   const [bankOption, setBankOption] = useRecoilState(bankOptionState);
+
   const authUser = useRecoilValue(authUserState);
+  const filteredBank = findSelectedBank(authUser, bankOption);
+  const disabledBtn = filteredBank === undefined ? true : false;
 
   const navigate = useNavigate();
 
@@ -43,11 +50,9 @@ const Profiles = () => {
     setOverlays(true);
   };
 
-  const onChange = (e: { target: { value: any } }) => {
+  const onChange = (e: ButtonProps) => {
     setBankOption(e.target.value);
   };
-
-  const filteredBank = findSelectedBank(authUser, bankOption);
 
   useEffect(() => {
     if (!authUser) setBankOption("계좌 선택");
@@ -66,6 +71,7 @@ const Profiles = () => {
 
         {openModals && <Modals />}
         {overlays && <Overlays />}
+
         <UserBox>
           <ImgBox>
             <Img src={authUser.avartar} alt="avartar" />
@@ -89,7 +95,7 @@ const Profiles = () => {
                 <SubBox>
                   <Label>계좌번호</Label>
                   <Select value={bankOption} onChange={onChange}>
-                    <Option value="계좌 선택">계좌 선택</Option>
+                    <Option value={CHOICE__ACCOUNT}>계좌 선택</Option>
                     {authUser?.bankInfo?.map((bank: bankProps) => (
                       <Option key={bank.id} value={bank.bankName}>
                         {bank?.bankName}
@@ -97,26 +103,19 @@ const Profiles = () => {
                     ))}
                   </Select>
                 </SubBox>
-                {filteredBank === undefined ? (
-                  <Span className="choice__bank">
-                    -- 계좌를 선택해주세요 --
-                  </Span>
+                {disabledBtn ? (
+                  <Span className="choice__bank">{CHOICE__BANK__MESSAGE}</Span>
                 ) : (
                   <Span key={filteredBank?.id}>{filteredBank?.accNumber}</Span>
                 )}
               </Box>
               <Box>
                 <Label>Pay머니</Label>
-                {filteredBank === undefined ? (
-                  <Span className="choice__bank">
-                    -- 계좌를 선택해주세요 --
-                  </Span>
+                {disabledBtn ? (
+                  <Span className="choice__bank">{CHOICE__BANK__MESSAGE}</Span>
                 ) : (
                   <Span key={filteredBank?.id}>
-                    {new Intl.NumberFormat("ko-KR", {
-                      maximumSignificantDigits: 3,
-                    }).format(filteredBank?.money)}
-                    원
+                    {formattedNumber(filteredBank?.money)}원
                   </Span>
                 )}
               </Box>
@@ -124,10 +123,7 @@ const Profiles = () => {
           )}
 
           <BtnBox>
-            <Button
-              onClick={() => handleModals()}
-              disabled={filteredBank === undefined ? true : false}
-            >
+            <Button onClick={() => handleModals()} disabled={disabledBtn}>
               Pay충전
             </Button>
             <Button

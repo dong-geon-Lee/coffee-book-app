@@ -69,6 +69,8 @@ export interface ButtonProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   target?: any;
+  active?: boolean;
+  disabled?: boolean | undefined;
 }
 
 export interface productProps {

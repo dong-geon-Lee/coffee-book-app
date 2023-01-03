@@ -151,6 +151,7 @@ export const randomDates = (min: number, max: number) => {
 export const generatePaymentId = () => {
   return "FE" + Math.floor(Math.random() * 10000) + "DEV";
 };
+
 export const addCartItems = (
   product: itemOptionProps[],
   image: string,

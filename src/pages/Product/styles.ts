@@ -1,9 +1,5 @@
 import styled from "styled-components";
-
-interface btnProps {
-  disabled?: boolean | undefined;
-  active?: boolean;
-}
+import { ButtonProps } from "../../@types/types";
 
 export const Container = styled.div`
   width: 100%;
@@ -38,9 +34,6 @@ export const Title = styled.h1`
   &.content__title {
     margin-right: auto;
     margin-top: 0.4rem;
-  }
-
-  &.quantity {
   }
 `;
 
@@ -119,11 +112,7 @@ export const SizeBox = styled.div`
 
 export const Div = styled.div``;
 
-interface activeProps {
-  active?: boolean;
-}
-
-export const Button = styled.button<activeProps>`
+export const Button = styled.button<ButtonProps>`
   padding: 1rem 2rem;
   color: ${(props) => (props.active ? "#fff" : "#000")};
   background-color: ${(props) => (props.active ? "#2f9e44" : "#ffd196")};
@@ -187,9 +176,9 @@ export const Buttons = styled.button`
   }
 
   &.likes {
-    background-color: ${(props: btnProps) =>
+    background-color: ${(props: ButtonProps) =>
       props.disabled ? "#868e96" : "#df4b4b"};
-    cursor: ${(props: btnProps) => props.disabled && "not-allowed"};
+    cursor: ${(props: ButtonProps) => props.disabled && "not-allowed"};
   }
 
   &.carts {
