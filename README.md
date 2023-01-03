@@ -1,12 +1,12 @@
-<img width="100" height="100" alt="bank" src="https://user-images.githubusercontent.com/69576865/207539786-4203251e-7665-4726-a441-05633f692ab1.png">
+<img width="100" height="100" alt="bank" src="https://user-images.githubusercontent.com/69576865/210367299-f930afa5-8a3a-4ab2-9bd5-77c8fb62fe62.png">
 
 ## :mag_right: &nbsp; Intro
-> 인터넷뱅킹 서비스를 모방하여 해당 앱을 구현하였습니다. <br/>
-계과이체와 대출요청 그리고 계정삭제 등의 기능을 가지고 있습니다.
+> 커피를 판매하는 서비스 앱입니다.  
+책이라는 틀을 이용해서 다양한 기능들을 구현하였습니다. 
 <br/>
 
 ## :link: &nbsp; Link
-- https://dong-geon-lee.github.io/account-bank-app/
+- https://dong-geon-lee.github.io/coffee-book-app/
 <br/>  
 
 ## :alarm_clock: &nbsp; Period
