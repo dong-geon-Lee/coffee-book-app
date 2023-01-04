@@ -78,7 +78,23 @@
 </div>
 <img width="600" alt=""
  src="https://user-images.githubusercontent.com/69576865/210478290-702bf118-b811-4150-b3dd-7de26acd9be4.gif">
-</details>  
+</details>
+
+<details>
+<summary>계좌선택 & 계좌충전</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/210479541-2abc4fdf-0a56-4740-a286-f56cb903b6f7.gif">
+</details> 
+
+<details>
+<summary>좋아요 추가 & 제거</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/210478290-702bf118-b811-4150-b3dd-7de26acd9be4.gif">
+</details> 
 </br>
 
 ## :bust_in_silhouette: &nbsp; Crew
