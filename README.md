@@ -25,27 +25,27 @@
 
 ## :eyes: &nbsp; Web View
 <details>
-<summary>로그인 & 랜딩페이지</summary>  
+<summary>랜딩 페이지 & 로그인 페이지</summary>  
 <div markdown="1">
 </div>
 <img width="600" alt=""
- src="https://user-images.githubusercontent.com/69576865/207612332-28ab3131-737b-4326-9435-d10df575ea43.gif">
+ src="https://user-images.githubusercontent.com/69576865/210474883-9b735544-85bf-4190-abad-51919e84e8f7.gif">
 </details>
 
 <details>
-<summary>계좌복사 & 계좌이체</summary>  
+<summary>로그인 & 로그아웃</summary>  
 <div markdown="1">
 </div>
 <img width="600" alt=""
- src="https://user-images.githubusercontent.com/69576865/207610277-50bcc798-3d0d-4aaf-9bd0-f18e528211c9.gif">
+ src="https://user-images.githubusercontent.com/69576865/210475491-6168a7be-0b52-426c-b5c8-2b0c9eed2aee.gif">
 </details>
 
 <details>
-<summary>대출 받기</summary>  
+<summary>유효성 검사 & 게스트 로그인</summary>  
 <div markdown="1">
 </div>
 <img width="600" alt=""
- src="https://user-images.githubusercontent.com/69576865/207613936-5bcffdd3-57ef-4417-9f66-bcc25781ab31.gif">
+ src="https://user-images.githubusercontent.com/69576865/210476028-1a503393-0995-4926-b4ed-7990d0c1bc85.gif">
 </details>
 
 <details>
