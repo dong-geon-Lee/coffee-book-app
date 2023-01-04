@@ -73,11 +73,11 @@
 </details>
 
 <details>
-<summary>커피 메뉴 필터링</summary>  
+<summary>좋아요 추가 & 제거</summary>  
 <div markdown="1">
 </div>
 <img width="600" alt=""
- src="https://user-images.githubusercontent.com/69576865/210476905-0ada2d37-9d52-494a-a395-c747d64f976f.gif">
+ src="https://user-images.githubusercontent.com/69576865/210478290-702bf118-b811-4150-b3dd-7de26acd9be4.gif">
 </details>  
 </br>
 
