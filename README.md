@@ -49,11 +49,11 @@
 </details>
 
 <details>
-<summary>계정 폐쇄</summary>  
+<summary>네비게이션</summary>  
 <div markdown="1">
 </div>
 <img width="600" alt=""
- src="https://user-images.githubusercontent.com/69576865/207615968-0597d1dc-b7db-426a-8151-55f8e56c3178.gif">
+ src="https://user-images.githubusercontent.com/69576865/210476579-b71da3ba-9672-4e36-bf4c-c8b188a58d4e.gif">
 </details>
 
 <details>
