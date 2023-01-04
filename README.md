@@ -89,11 +89,11 @@
 </details> 
 
 <details>
-<summary>좋아요 추가 & 제거</summary>  
+<summary>결제하기 & 결제내역</summary>  
 <div markdown="1">
 </div>
 <img width="600" alt=""
- src="https://user-images.githubusercontent.com/69576865/210478290-702bf118-b811-4150-b3dd-7de26acd9be4.gif">
+ src="https://user-images.githubusercontent.com/69576865/210479874-093b094a-6929-4c53-b0e3-2c9222212162.gif">
 </details> 
 </br>
 
