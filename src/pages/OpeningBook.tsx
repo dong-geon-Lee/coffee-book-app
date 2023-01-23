@@ -1,5 +1,5 @@
 import { useRecoilState, useRecoilValue } from "recoil";
-import { authActiveState, openBookState } from "../atoms/userAuthState";
+import { authActiveState, openBookState } from "../recoils/userAuthState";
 import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Container, Div, Wrapper, Button, LoginBox } from "./styles";
 import Login from "./Login/Login";

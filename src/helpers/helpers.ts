@@ -31,7 +31,7 @@ export const findAuthUser = (
 };
 
 export const checkAuthUser = (
-  accountLists: any,
+  accountLists: authProps[],
   userId: string,
   password: string
 ) => {
@@ -101,6 +101,7 @@ export const removeCartItem = (cartItems: cartItemProps[], id: string) => {
 };
 
 export const removeLikeItem = (likeItems: productProps[], id: number) => {
+  console.log(likeItems, "call");
   return likeItems.filter((item: productProps) => item.id !== id);
 };
 
@@ -137,7 +138,7 @@ export const addLikeProduct = (
   likeItem: productProps[],
   targetItems: productProps | undefined
 ) => {
-  return likeItem.find((item) => item.id === targetItems?.id);
+  return likeItem?.find((item) => item.id === targetItems?.id);
 };
 
 export const randomDates = (min: number, max: number) => {

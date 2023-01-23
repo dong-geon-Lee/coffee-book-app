@@ -8,10 +8,11 @@ import {
   accountListState,
   authActiveState,
   authUserState,
-} from "../../atoms/userAuthState";
+} from "../../recoils/userAuthState";
 import {
   EMPTY__INPUT__MESSAGE,
   ERROR__INPUT__MESSAGE,
+  RANDOM__GUEST__ACCOUNT,
 } from "../../constants/constants";
 
 const Login = () => {
@@ -25,7 +26,6 @@ const Login = () => {
   });
 
   const { userId, password } = authInput;
-
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -70,8 +70,8 @@ const Login = () => {
   return (
     <Container>
       <GuestBox>
-        <Button className="guest__btn" onClick={() => randomGuest()}>
-          랜덤 게스트 계정
+        <Button className="guest__btn" onClick={randomGuest}>
+          {RANDOM__GUEST__ACCOUNT}
         </Button>
       </GuestBox>
 

@@ -8,7 +8,7 @@ import {
   cartItemTotalState,
   paymentDetailState,
   recordedCartItemState,
-} from "../../atoms/coffeeItemState";
+} from "../../recoils/coffeeItemState";
 import Spinner from "../../components/Spinner/Spinner";
 import NavMenu from "../../components/NavMenu/NavMenu";
 import back from "../../assets/back.svg";
@@ -64,12 +64,14 @@ const CartItems = () => {
   };
 
   useEffect(() => {
-    let timeId = setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setActiveSpinner(false);
       if (activeSpinner) navigate("/checkout");
     }, 2000);
 
-    return () => clearTimeout(timeId);
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [activeSpinner]);
 
   return (

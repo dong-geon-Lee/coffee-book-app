@@ -2,16 +2,15 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { itemOptionProps } from "../../@types/types";
-import { authUserState } from "../../atoms/userAuthState";
+import { accountListState, authUserState } from "../../recoils/userAuthState";
 import {
   coffeeItemState,
-  likeItemState,
   quantityState,
   totalPriceState,
   selectedSizeState,
   recordedQtyState,
   recordedCartItemState,
-} from "../../atoms/coffeeItemState";
+} from "../../recoils/coffeeItemState";
 import {
   addCartItems,
   addLikeProduct,
@@ -54,21 +53,44 @@ const Product = () => {
 
   const recordedCartItem = useRecoilValue(recordedCartItemState);
   const coffeeItem = useRecoilValue(coffeeItemState);
-  const likeItem = useRecoilValue(likeItemState);
   const authUser = useRecoilValue(authUserState);
 
   const setRecordedCartItem = useSetRecoilState(recordedCartItemState);
-  const setLikeItem = useSetRecoilState(likeItemState);
+  const setUserLikeLists = useSetRecoilState(authUserState);
+  const setAccounts = useSetRecoilState(accountListState);
 
   const { state } = useLocation();
-  const { id, title, description, image, stars, product } = state.product;
+  const { id, title, description, image, stars, product } =
+    state && state.product;
 
-  const activeSizeIndex = selectProductSize(product, selectedSize);
+  const selectedSizeIndex = selectProductSize(product, selectedSize);
   const targetItems = findSameProduct(coffeeItem, id);
-  const activeLikes = addLikeProduct(likeItem, targetItems);
+  const activeLikes = addLikeProduct(authUser.likeLists, targetItems);
 
   const handleLikes = () => {
-    setLikeItem([...likeItem, { ...targetItems, likes: !targetItems?.likes }]);
+    setUserLikeLists({
+      ...authUser,
+      likeLists: [
+        ...authUser.likeLists,
+        { ...targetItems, likes: !targetItems?.likes },
+      ],
+    });
+
+    setAccounts((prevState) => {
+      return prevState.map((user: any) => {
+        if (user.userId === authUser.userId) {
+          return {
+            ...user,
+            likeLists: [
+              ...authUser.likeLists,
+              { ...targetItems, likes: !targetItems?.likes },
+            ],
+          };
+        }
+
+        return { ...user };
+      });
+    });
   };
 
   const handlePlusClick = () => {
@@ -87,8 +109,8 @@ const Product = () => {
     setTotalPrice(price);
   };
 
-  const likeBtnDisabled = activeLikes?.likes ? true : false;
-  const cartBtnDisabled = activeSizeIndex + 1 ? false : true;
+  const likeBtnDisabled = !!activeLikes?.likes;
+  const cartBtnDisabled = !(selectedSizeIndex + 1);
   const cartItems = addCartItems(
     product,
     image,
@@ -149,7 +171,7 @@ const Product = () => {
               <Div key={item.id}>
                 <Button
                   onClick={() => handleResetMenu(Number(item.price))}
-                  active={item.id === activeSizeIndex + 1}
+                  active={item.id === selectedSizeIndex + 1}
                 >
                   {item.size}
                 </Button>

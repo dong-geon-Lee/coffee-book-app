@@ -34,10 +34,10 @@ export const currentItemState = selector({
   get: ({ get }) => {
     const coffeeLists = get(coffeeItemState);
     const checkedMenu = get(checkedMenuState);
-    const likeStatus = get(likeItemState);
     const cartStatus = get(recordedCartItemState);
     const paymentItems = get(paymentDetailState);
     const authUser = get(authUserState);
+    const likeStatus = authUser.likeLists;
 
     const existCoffeeItems = coffeeLists.slice();
     const filteredItems = findFilteredItems(existCoffeeItems, checkedMenu);

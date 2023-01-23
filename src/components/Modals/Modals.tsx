@@ -1,6 +1,6 @@
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { totalCashState } from "../../atoms/coffeeItemState";
-import { modalState, overlayState } from "../../atoms/modalState";
+import { totalCashState } from "../../recoils/coffeeItemState";
+import { modalState, overlayState } from "../../recoils/modalState";
 import { ButtonProps } from "../../@types/types";
 import { CHARGE__X, CHARGE__Y, CHARGE__Z } from "../../constants/constants";
 import { formattedNumber } from "../../helpers/helpers";
@@ -10,7 +10,7 @@ import {
   bankAccountState,
   selectedBankState,
   updatedBankMoneyState,
-} from "../../atoms/userAuthState";
+} from "../../recoils/userAuthState";
 import {
   Container,
   ModalBox,

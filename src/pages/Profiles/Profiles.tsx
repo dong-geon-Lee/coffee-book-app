@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { modalState, overlayState } from "../../atoms/modalState";
-import { authUserState, bankOptionState } from "../../atoms/userAuthState";
+import { modalState, overlayState } from "../../recoils/modalState";
+import { authUserState, bankOptionState } from "../../recoils/userAuthState";
 import { bankProps, ButtonProps } from "../../@types/types";
 import { findSelectedBank, formattedNumber } from "../../helpers/helpers";
 import {
@@ -41,7 +41,6 @@ const Profiles = () => {
 
   const authUser = useRecoilValue(authUserState);
   const filteredBank = findSelectedBank(authUser, bankOption);
-  const disabledBtn = filteredBank === undefined ? true : false;
 
   const navigate = useNavigate();
 
@@ -103,7 +102,7 @@ const Profiles = () => {
                     ))}
                   </Select>
                 </SubBox>
-                {disabledBtn ? (
+                {!filteredBank ? (
                   <Span className="choice__bank">{CHOICE__BANK__MESSAGE}</Span>
                 ) : (
                   <Span key={filteredBank?.id}>{filteredBank?.accNumber}</Span>
@@ -111,7 +110,7 @@ const Profiles = () => {
               </Box>
               <Box>
                 <Label>Pay머니</Label>
-                {disabledBtn ? (
+                {!filteredBank ? (
                   <Span className="choice__bank">{CHOICE__BANK__MESSAGE}</Span>
                 ) : (
                   <Span key={filteredBank?.id}>
@@ -123,7 +122,7 @@ const Profiles = () => {
           )}
 
           <BtnBox>
-            <Button onClick={() => handleModals()} disabled={disabledBtn}>
+            <Button onClick={() => handleModals()} disabled={!filteredBank}>
               Pay충전
             </Button>
             <Button

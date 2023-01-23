@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { paymentListState } from "../../atoms/userAuthState";
+import { paymentListState } from "../../recoils/userAuthState";
 import { Link } from "react-router-dom";
 import NavMenu from "../../components/NavMenu/NavMenu";
 import back from "../../assets/back.svg";
@@ -41,7 +41,7 @@ const PaymentDetails = () => {
         )}
 
         <Div>
-          {paymentList.map((item: any) => (
+          {paymentList.map((item) => (
             <Card key={item.id}>
               <Text>주문코드: {item.id}</Text>
               <Text className="title">제품: {item.title}</Text>

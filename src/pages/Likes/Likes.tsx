@@ -1,9 +1,10 @@
 import NavMenu from "../../components/NavMenu/NavMenu";
-import { likeItemState } from "../../atoms/coffeeItemState";
 import { useRecoilValue, useSetRecoilState } from "recoil";
+import { authUserState } from "../../recoils/userAuthState";
 import { productProps } from "../../@types/types";
 import { Link } from "react-router-dom";
 import { removeLikeItem } from "../../helpers/helpers";
+import { NOT__LIKE__COFFEE } from "../../constants/constants";
 import star from "../../assets/star.svg";
 import star0 from "../../assets/star3.svg";
 import back from "../../assets/back.svg";
@@ -29,12 +30,12 @@ import {
 } from "./styles";
 
 const Likes = () => {
-  const likeItems = useRecoilValue(likeItemState);
-  const setLikeItems = useSetRecoilState(likeItemState);
+  const authUser = useRecoilValue(authUserState);
+  const setUserLikeLists = useSetRecoilState(authUserState);
 
-  const handleLikes = (id: number) => {
-    const removeLikes = removeLikeItem(likeItems, id);
-    setLikeItems(removeLikes);
+  const handleLikes = (id: number): void => {
+    const removeLikes: productProps[] = removeLikeItem(authUser.likeLists, id);
+    setUserLikeLists({ ...authUser, likeLists: [...removeLikes] });
   };
 
   return (
@@ -48,8 +49,8 @@ const Likes = () => {
           <Logo src={heart} alt="logo" className="logo" />
         </Header>
 
-        {likeItems.length >= 1 ? (
-          likeItems.map((item: productProps) => (
+        {authUser.likeLists?.length >= 1 ? (
+          authUser.likeLists.map((item: productProps) => (
             <ItemBox key={item.id}>
               <ImgBox>
                 <Img src={item.image} className="coffee__img" />
@@ -78,7 +79,7 @@ const Likes = () => {
         ) : (
           <EmptyBox>
             <Background img={coffee}></Background>
-            <Text>There is no Likes Coffee.</Text>
+            <Text>{NOT__LIKE__COFFEE}</Text>
           </EmptyBox>
         )}
       </Section>

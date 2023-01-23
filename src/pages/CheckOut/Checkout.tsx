@@ -1,4 +1,8 @@
 import { Link } from "react-router-dom";
+import {
+  COMPLETE__ORDER,
+  DETAIL__PAYMENT__MESSAGE,
+} from "../../constants/constants";
 import NavMenu from "../../components/NavMenu/NavMenu";
 import back from "../../assets/back.svg";
 import heart from "../../assets/heart2.svg";
@@ -30,8 +34,8 @@ const Checkout = () => {
         <OrderBox>
           <Div>
             <Logo src={checked} className="checked" />
-            <Title className="order__completed">주문이 완료되었습니다!</Title>
-            <Text>자세한 사항은 결제내역을 확인해 주세요</Text>
+            <Title className="order__completed">{COMPLETE__ORDER}</Title>
+            <Text>{DETAIL__PAYMENT__MESSAGE}</Text>
           </Div>
 
           <Div className="btn__group">

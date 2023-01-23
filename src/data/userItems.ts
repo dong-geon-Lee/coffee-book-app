@@ -9,6 +9,7 @@ export const accounts = [
     password: 1111,
     avartar: avartar,
     address: "서울특별시 송파구",
+    likeLists: [],
     bankInfo: [
       {
         id: 1,
@@ -36,6 +37,7 @@ export const accounts = [
     password: 2222,
     avartar: avartar2,
     address: "대전광역시 동구",
+    likeLists: [],
     bankInfo: [
       {
         id: 1,
@@ -63,6 +65,7 @@ export const accounts = [
     password: 3333,
     avartar: avartar3,
     address: "인천광역시 계양구",
+    likeLists: [],
     bankInfo: [
       {
         id: 1,

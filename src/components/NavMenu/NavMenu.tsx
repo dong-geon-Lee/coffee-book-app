@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Container, IconsText, Img, ImgBox, MenuIcons } from "./styles";
 import { useRecoilValue } from "recoil";
-import { currentItemState } from "../../atoms/coffeeItemState";
+import { currentItemState } from "../../recoils/coffeeItemState";
+import { useCallback } from "react";
 import {
   ROUTE__CARTITEMS,
   ROUTE__HOME,
@@ -18,14 +19,17 @@ const NavMenu = () => {
     useRecoilValue(currentItemState);
 
   const navigate = useNavigate();
-  const homeItemStatus = homeStatus.length || 0;
-  const likeItemStatus = likeStatus.length || 0;
-  const cartItemStatus = cartStatus.length || 0;
-  const profileItemStatus = profileStatus.length || 0;
+  const homeItemStatus = homeStatus ? homeStatus.length : 0;
+  const likeItemStatus = likeStatus ? likeStatus.length : 0;
+  const cartItemStatus = cartStatus ? cartStatus.length : 0;
+  const profileItemStatus = profileStatus ? profileStatus.length : 0;
 
-  const handleNavigate = (destination: string) => {
-    navigate(`/${destination}`);
-  };
+  const handleNavigate = useCallback(
+    (destination: string) => {
+      navigate(`/${destination}`);
+    },
+    [navigate]
+  );
 
   return (
     <Container>

@@ -1,13 +1,13 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { authActiveState } from "../../atoms/userAuthState";
+import { authActiveState } from "../../recoils/userAuthState";
 import { ButtonProps, productProps } from "../../@types/types";
 import { Link } from "react-router-dom";
 import {
   checkedMenuState,
   currentItemState,
-} from "../../atoms/coffeeItemState";
+} from "../../recoils/coffeeItemState";
 import {
   ROUTE__CARTITEMS,
   ROUTE__HOME,
@@ -55,22 +55,28 @@ const Home = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const homeItemStatus = homeStatus.length || 0;
-  const likeItemStatus = likeStatus.length || 0;
-  const cartItemStatus = cartStatus.length || 0;
-  const profileItemStatus = profileStatus.length || 0;
+  const homeItemStatus = homeStatus ? homeStatus.length : 0;
+  const likeItemStatus = likeStatus ? likeStatus.length : 0;
+  const cartItemStatus = cartStatus ? cartStatus.length : 0;
+  const profileItemStatus = profileStatus ? profileStatus.length : 0;
 
-  const onChange = (e: ButtonProps) => {
-    setCheckedMenu({
-      ...checkedMenu,
-      [e.target.name]: e.target.checked,
-    });
-  };
+  const onChange = useCallback(
+    (e: ButtonProps) => {
+      setCheckedMenu({
+        ...checkedMenu,
+        [e.target.name]: e.target.checked,
+      });
+    },
+    [checkedMenu, setCheckedMenu]
+  );
 
-  const handleNavigate = (destination: string) => {
-    if (destination === "login") setAuthActive(false);
-    navigate(`/${destination}`);
-  };
+  const handleNavigate = useCallback(
+    (destination: string) => {
+      if (destination === "login") setAuthActive(false);
+      navigate(`/${destination}`);
+    },
+    [navigate, setAuthActive]
+  );
 
   useEffect(() => {
     setAuthActive(true);
@@ -78,9 +84,9 @@ const Home = () => {
 
   useEffect(() => {
     if (!authActive) {
-      return navigate("/login");
+      navigate("/login");
     }
-  }, [authActive]);
+  }, [authActive, navigate]);
 
   return (
     <Container>
