@@ -2,26 +2,12 @@ import { atom, selector } from "recoil";
 import { cartItemProps, productProps } from "../@types/types";
 import { SHIPPING__COST } from "../constants/constants";
 import { coffeeLists } from "../data/coffeeItems";
-import { authUserState } from "./userAuthState";
-import {
-  calcTotalProduct,
-  findFilteredItems,
-  findPaymentOrderUser,
-} from "../helpers/helpers";
+import { authUserState, paymentListState } from "./userAuthState";
+import { calcTotalProduct, findFilteredItems } from "../helpers/helpers";
 
 export const coffeeItemState = atom<productProps[]>({
   key: "dataState",
   default: coffeeLists,
-});
-
-export const likeItemState = atom<productProps[]>({
-  key: "likeItemState",
-  default: [],
-});
-
-export const recordedCartItemState = atom<cartItemProps[]>({
-  key: "recoredCartItemState",
-  default: [],
 });
 
 export const paymentDetailState = atom<cartItemProps[]>({
@@ -58,16 +44,17 @@ export const currentItemState = selector({
   key: "currentItemState",
   get: ({ get }) => {
     const checkedMenu = get(checkedMenuState);
-    const paymentItems = get(paymentDetailState);
-    const authUser = get(authUserState);
-    const likeStatus = authUser.likeLists;
-    const cartStatus = authUser.cartLists;
     const coffeeLists = get(coffeeItemState);
     const existCoffeeItems = coffeeLists.slice();
     const filteredItems = findFilteredItems(existCoffeeItems, checkedMenu);
     const homeStatus =
       filteredItems.length >= 1 ? filteredItems : existCoffeeItems;
-    const profileStatus = findPaymentOrderUser(paymentItems, authUser);
+
+    const authUser = get(authUserState);
+    const likeStatus = authUser.likeLists;
+    const cartStatus = authUser.cartLists;
+    const profileStatus = get(paymentListState);
+
     return { homeStatus, likeStatus, cartStatus, profileStatus };
   },
 });
@@ -75,8 +62,9 @@ export const currentItemState = selector({
 export const cartItemTotalState = selector({
   key: "cartItemTotalState",
   get: ({ get }) => {
-    const recordedCartItem = get(recordedCartItemState);
-    const total = calcTotalProduct(recordedCartItem) + SHIPPING__COST;
+    const authUser = get(authUserState);
+    const cartItemState = authUser.cartLists;
+    const total = calcTotalProduct(cartItemState) + SHIPPING__COST;
     return total;
   },
 });

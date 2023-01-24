@@ -72,11 +72,21 @@ const CartItems = () => {
   const handleCheckout = () => {
     setActiveSpinner(true);
     setPaymentDetails([...paymentDetails, ...cartLists]);
-    setUserCartLists({ ...authUser, cartLists: [] });
+
+    setUserCartLists({
+      ...authUser,
+      cartLists: [],
+      paymentLists: [...paymentDetails, ...cartLists],
+    });
+
     setAccounts((prevState) => {
       return prevState.map((user: any) => {
         if (user.userId === authUser.userId) {
-          return { ...authUser, cartLists: [] };
+          return {
+            ...authUser,
+            cartLists: [],
+            paymentLists: [...paymentDetails, ...cartLists],
+          };
         }
 
         return { ...user };

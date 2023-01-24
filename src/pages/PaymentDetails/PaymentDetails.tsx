@@ -41,7 +41,7 @@ const PaymentDetails = () => {
         )}
 
         <Div>
-          {paymentList.map((item) => (
+          {paymentList?.map((item: any) => (
             <Card key={item.id}>
               <Text>주문코드: {item.id}</Text>
               <Text className="title">제품: {item.title}</Text>
