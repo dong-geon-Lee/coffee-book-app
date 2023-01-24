@@ -24,6 +24,21 @@ export const authUserState = atom<authProps>({
   default: undefined,
 });
 
+export const bankAccountState = atom({
+  key: "bankAccountState",
+  default: "은행을 선택해주세요",
+});
+
+export const accountListState = atom({
+  key: "accountUserState",
+  default: accounts,
+});
+
+export const bankOptionState = atom({
+  key: "bankOptionState",
+  default: "",
+});
+
 export const selectedBankState = selector({
   key: "selectedBank",
   get: ({ get }) => {
@@ -65,17 +80,4 @@ export const updatedBankMoneyState = selector({
   },
 });
 
-export const bankAccountState = atom({
-  key: "bankAccountState",
-  default: "은행을 선택해주세요",
-});
 
-export const accountListState = atom({
-  key: "accountUserState",
-  default: accounts,
-});
-
-export const bankOptionState = atom({
-  key: "bankOptionState",
-  default: "",
-});

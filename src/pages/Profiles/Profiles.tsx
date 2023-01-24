@@ -1,3 +1,8 @@
+import NavMenu from "../../components/NavMenu/NavMenu";
+import back from "../../assets/back.svg";
+import profile from "../../assets/profile2.svg";
+import Overlays from "../../components/Overlays/Overlays";
+import Modals from "../../components/Modals/Modals";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -9,11 +14,6 @@ import {
   CHOICE__ACCOUNT,
   CHOICE__BANK__MESSAGE,
 } from "../../constants/constants";
-import NavMenu from "../../components/NavMenu/NavMenu";
-import back from "../../assets/back.svg";
-import profile from "../../assets/profile2.svg";
-import Overlays from "../../components/Overlays/Overlays";
-import Modals from "../../components/Modals/Modals";
 import {
   Box,
   BtnBox,

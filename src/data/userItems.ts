@@ -10,6 +10,8 @@ export const accounts = [
     avartar: avartar,
     address: "서울특별시 송파구",
     likeLists: [],
+    cartLists: [],
+    paymentLists: [],
     bankInfo: [
       {
         id: 1,
@@ -38,6 +40,7 @@ export const accounts = [
     avartar: avartar2,
     address: "대전광역시 동구",
     likeLists: [],
+    cartLists: [],
     bankInfo: [
       {
         id: 1,
@@ -66,6 +69,7 @@ export const accounts = [
     avartar: avartar3,
     address: "인천광역시 계양구",
     likeLists: [],
+    cartLists: [],
     bankInfo: [
       {
         id: 1,

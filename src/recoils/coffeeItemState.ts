@@ -29,15 +29,41 @@ export const paymentDetailState = atom<cartItemProps[]>({
   default: [],
 });
 
+export const selectedSizeState = atom({
+  key: "selectedSizeState",
+  default: 0,
+});
+
+export const quantityState = atom({
+  key: "quantityState",
+  default: 0,
+});
+
+export const totalPriceState = atom({
+  key: "totalPriceState",
+  default: 0,
+});
+
+export const recordedQtyState = atom({
+  key: "recordedQtyState",
+  default: 0,
+});
+
+export const totalCashState = atom({
+  key: "totalCashState",
+  default: 0,
+});
+
 export const currentItemState = selector({
   key: "currentItemState",
   get: ({ get }) => {
     const coffeeLists = get(coffeeItemState);
     const checkedMenu = get(checkedMenuState);
-    const cartStatus = get(recordedCartItemState);
+    // const cartStatus = get(recordedCartItemState);
     const paymentItems = get(paymentDetailState);
     const authUser = get(authUserState);
     const likeStatus = authUser.likeLists;
+    const cartStatus = authUser.cartLists;
 
     const existCoffeeItems = coffeeLists.slice();
     const filteredItems = findFilteredItems(existCoffeeItems, checkedMenu);
@@ -66,29 +92,4 @@ export const checkedMenuState = atom({
     frappuccino: false,
     blended: false,
   },
-});
-
-export const selectedSizeState = atom({
-  key: "selectedSizeState",
-  default: 0,
-});
-
-export const quantityState = atom({
-  key: "quantityState",
-  default: 0,
-});
-
-export const totalPriceState = atom({
-  key: "totalPriceState",
-  default: 0,
-});
-
-export const recordedQtyState = atom({
-  key: "recordedQtyState",
-  default: 0,
-});
-
-export const totalCashState = atom({
-  key: "totalCashState",
-  default: 0,
 });

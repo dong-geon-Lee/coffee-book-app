@@ -1,3 +1,10 @@
+import Spinner from "../../components/Spinner/Spinner";
+import NavMenu from "../../components/NavMenu/NavMenu";
+import back from "../../assets/back.svg";
+import cart from "../../assets/cart2.svg";
+import emptyCart from "../../assets/cart3.svg";
+import xIcons from "../../assets/delete.svg";
+import { accountListState, authUserState } from "../../recoils/userAuthState";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useEffect, useState } from "react";
@@ -7,14 +14,7 @@ import { SHIPPING__COST } from "../../constants/constants";
 import {
   cartItemTotalState,
   paymentDetailState,
-  recordedCartItemState,
 } from "../../recoils/coffeeItemState";
-import Spinner from "../../components/Spinner/Spinner";
-import NavMenu from "../../components/NavMenu/NavMenu";
-import back from "../../assets/back.svg";
-import cart from "../../assets/cart2.svg";
-import emptyCart from "../../assets/cart3.svg";
-import xIcons from "../../assets/delete.svg";
 import {
   Section,
   Container,
@@ -43,24 +43,45 @@ import {
 const CartItems = () => {
   const [activeSpinner, setActiveSpinner] = useState(false);
 
-  const recordedCartItem = useRecoilValue(recordedCartItemState);
-  const paymentDetails = useRecoilValue(paymentDetailState);
+  const authUser = useRecoilValue(authUserState);
+  const { cartLists } = useRecoilValue(authUserState);
   const cartItemTotal = useRecoilValue(cartItemTotalState);
+  const paymentDetails = useRecoilValue(paymentDetailState);
 
-  const setRecordedCartItem = useSetRecoilState(recordedCartItemState);
+  const setUserCartLists = useSetRecoilState(authUserState);
+  const setAccounts = useSetRecoilState(accountListState);
   const setPaymentDetails = useSetRecoilState(paymentDetailState);
 
   const navigate = useNavigate();
 
   const handleRemoveCartItems = (id: string) => {
-    const newItems = removeCartItem(recordedCartItem, id);
-    setRecordedCartItem(newItems);
+    const newItems = removeCartItem(cartLists, id);
+
+    setUserCartLists({ ...authUser, cartLists: newItems });
+    setAccounts((prevState) => {
+      return prevState.map((user: any) => {
+        if (user.userId === authUser.userId) {
+          return { ...authUser, cartLists: newItems };
+        }
+
+        return { ...user };
+      });
+    });
   };
 
   const handleCheckout = () => {
     setActiveSpinner(true);
-    setPaymentDetails([...paymentDetails, ...recordedCartItem]);
-    setRecordedCartItem([]);
+    setPaymentDetails([...paymentDetails, ...cartLists]);
+    setUserCartLists({ ...authUser, cartLists: [] });
+    setAccounts((prevState) => {
+      return prevState.map((user: any) => {
+        if (user.userId === authUser.userId) {
+          return { ...authUser, cartLists: [] };
+        }
+
+        return { ...user };
+      });
+    });
   };
 
   useEffect(() => {
@@ -76,7 +97,7 @@ const CartItems = () => {
 
   return (
     <Container>
-      <Section items={recordedCartItem}>
+      <Section items={cartLists}>
         <Header>
           <Link to="/home">
             <Logo src={back} alt="logo" />
@@ -87,25 +108,25 @@ const CartItems = () => {
 
         {activeSpinner && <Spinner />}
 
-        <Center items={recordedCartItem.length}>
-          {recordedCartItem.length > 0 ? (
-            recordedCartItem.map((item: cartItemProps) => (
+        <Center items={cartLists.length}>
+          {cartLists.length > 0 ? (
+            cartLists.map((item: cartItemProps) => (
               <Div key={item.id}>
                 <ImgBox>
                   <Img src={item.image} alt="img" />
                 </ImgBox>
                 <ContentBox>
-                  <Text items={recordedCartItem.length}>{item.title}</Text>
+                  <Text items={cartLists.length}>{item.title}</Text>
                   <Price className="price">
                     {formattedNumber(Number(item.price))}원
                   </Price>
-                  <Text className="size" items={recordedCartItem.length}>
+                  <Text className="size" items={cartLists.length}>
                     크기: {item.size}
                   </Text>
                 </ContentBox>
                 <ButtonBox>
                   <Btns>
-                    <Text className="qty" items={recordedCartItem.length}>
+                    <Text className="qty" items={cartLists.length}>
                       상품: {item.recordedQty} 개
                     </Text>
                   </Btns>
@@ -127,7 +148,7 @@ const CartItems = () => {
           )}
         </Center>
 
-        {recordedCartItem.length > 0 && (
+        {cartLists.length > 0 && (
           <Bottom>
             <ItemBox>
               <Label>상품금액</Label>

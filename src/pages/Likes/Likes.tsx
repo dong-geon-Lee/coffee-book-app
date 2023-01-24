@@ -1,6 +1,6 @@
 import NavMenu from "../../components/NavMenu/NavMenu";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { authUserState } from "../../recoils/userAuthState";
+import { accountListState, authUserState } from "../../recoils/userAuthState";
 import { productProps } from "../../@types/types";
 import { Link } from "react-router-dom";
 import { removeLikeItem } from "../../helpers/helpers";
@@ -31,11 +31,23 @@ import {
 
 const Likes = () => {
   const authUser = useRecoilValue(authUserState);
+  const { likeLists } = useRecoilValue(authUserState);
   const setUserLikeLists = useSetRecoilState(authUserState);
+  const setAccounts = useSetRecoilState(accountListState);
 
   const handleLikes = (id: number): void => {
-    const removeLikes: productProps[] = removeLikeItem(authUser.likeLists, id);
-    setUserLikeLists({ ...authUser, likeLists: [...removeLikes] });
+    const newLikesItems = removeLikeItem(likeLists, id);
+
+    setUserLikeLists({ ...authUser, likeLists: newLikesItems });
+    setAccounts((prevState) => {
+      return prevState.map((user: any) => {
+        if (user.userId === authUser.userId) {
+          return { ...authUser, likeLists: newLikesItems };
+        }
+
+        return { ...user };
+      });
+    });
   };
 
   return (
@@ -49,8 +61,8 @@ const Likes = () => {
           <Logo src={heart} alt="logo" className="logo" />
         </Header>
 
-        {authUser.likeLists?.length >= 1 ? (
-          authUser.likeLists.map((item: productProps) => (
+        {likeLists?.length >= 1 ? (
+          likeLists.map((item: productProps) => (
             <ItemBox key={item.id}>
               <ImgBox>
                 <Img src={item.image} className="coffee__img" />

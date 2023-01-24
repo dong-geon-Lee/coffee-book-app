@@ -38,7 +38,7 @@ const Modals = () => {
     useRecoilValue(updatedBankMoneyState);
 
   const setAuthUser = useSetRecoilState(authUserState);
-  const setAccountList = useSetRecoilState(accountListState);
+  const setAccountList: any = useSetRecoilState(accountListState);
 
   const handleTotalCash = (cash: number) => {
     setTotalCash((prevState: number) => prevState + cash);

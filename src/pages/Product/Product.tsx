@@ -1,3 +1,8 @@
+import back from "../../assets/back.svg";
+import coffee8 from "../../assets/coffee8.svg";
+import star from "../../assets/star.svg";
+import star0 from "../../assets/star3.svg";
+import NavMenu from "../../components/NavMenu/NavMenu";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -18,11 +23,6 @@ import {
   formattedNumber,
   selectProductSize,
 } from "../../helpers/helpers";
-import back from "../../assets/back.svg";
-import coffee8 from "../../assets/coffee8.svg";
-import star from "../../assets/star.svg";
-import star0 from "../../assets/star3.svg";
-import NavMenu from "../../components/NavMenu/NavMenu";
 import {
   BtnBox,
   Button,
@@ -54,9 +54,15 @@ const Product = () => {
   const recordedCartItem = useRecoilValue(recordedCartItemState);
   const coffeeItem = useRecoilValue(coffeeItemState);
   const authUser = useRecoilValue(authUserState);
+  const accounts = useRecoilValue(accountListState);
+
+  console.log(authUser);
+  console.log(accounts);
+  console.log(recordedCartItem);
 
   const setRecordedCartItem = useSetRecoilState(recordedCartItemState);
   const setUserLikeLists = useSetRecoilState(authUserState);
+  const setUserCartLists: any = useSetRecoilState(authUserState);
   const setAccounts = useSetRecoilState(accountListState);
 
   const { state } = useLocation();
@@ -125,6 +131,24 @@ const Product = () => {
     setTotalPrice(selectedSize * quantity);
     setRecordedQty(quantity);
     setRecordedCartItem([...recordedCartItem, cartItems]);
+    setUserCartLists({
+      ...authUser,
+      cartLists: [...authUser.cartLists, cartItems],
+    });
+
+    setAccounts((prevState: any) => {
+      return prevState.map((user: any) => {
+        if (user.userId === authUser.userId) {
+          return {
+            ...authUser,
+            cartLists: [...authUser.cartLists, cartItems],
+          };
+        }
+
+        return { ...user };
+      });
+    });
+
     setQuantity(0);
     setSelectedSize(0);
   };
@@ -133,6 +157,9 @@ const Product = () => {
     setQuantity(0);
     setSelectedSize(0);
   };
+
+  console.log(authUser);
+  console.log(accounts);
 
   return (
     <Container>

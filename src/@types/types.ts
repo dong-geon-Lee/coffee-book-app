@@ -53,6 +53,8 @@ export interface authProps {
   avartar: string;
   address: string;
   likeLists: any;
+  cartLists: any;
+  paymentLists?: any;
   bankInfo: bankProps[] | bankProps;
   findIndex?: any;
 }
