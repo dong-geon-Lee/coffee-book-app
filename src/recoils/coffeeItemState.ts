@@ -57,20 +57,17 @@ export const totalCashState = atom({
 export const currentItemState = selector({
   key: "currentItemState",
   get: ({ get }) => {
-    const coffeeLists = get(coffeeItemState);
     const checkedMenu = get(checkedMenuState);
-    // const cartStatus = get(recordedCartItemState);
     const paymentItems = get(paymentDetailState);
     const authUser = get(authUserState);
     const likeStatus = authUser.likeLists;
     const cartStatus = authUser.cartLists;
-
+    const coffeeLists = get(coffeeItemState);
     const existCoffeeItems = coffeeLists.slice();
     const filteredItems = findFilteredItems(existCoffeeItems, checkedMenu);
     const homeStatus =
       filteredItems.length >= 1 ? filteredItems : existCoffeeItems;
     const profileStatus = findPaymentOrderUser(paymentItems, authUser);
-
     return { homeStatus, likeStatus, cartStatus, profileStatus };
   },
 });

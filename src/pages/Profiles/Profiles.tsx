@@ -41,7 +41,6 @@ const Profiles = () => {
 
   const authUser = useRecoilValue(authUserState);
   const filteredBank = findSelectedBank(authUser, bankOption);
-
   const navigate = useNavigate();
 
   const handleModals = () => {

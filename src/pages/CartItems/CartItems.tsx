@@ -10,7 +10,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useEffect, useState } from "react";
 import { cartItemProps } from "../../@types/types";
 import { formattedNumber, removeCartItem } from "../../helpers/helpers";
-import { SHIPPING__COST } from "../../constants/constants";
+import { CART__EMPTY, SHIPPING__COST } from "../../constants/constants";
 import {
   cartItemTotalState,
   paymentDetailState,
@@ -143,7 +143,7 @@ const CartItems = () => {
           ) : (
             <EmptyBox className="empty__box">
               <Background img={emptyCart} />
-              <EmptyText className="empty__text">Your Cart is Empty.</EmptyText>
+              <EmptyText className="empty__text">{CART__EMPTY}</EmptyText>
             </EmptyBox>
           )}
         </Center>

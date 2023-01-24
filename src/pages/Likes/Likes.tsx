@@ -1,16 +1,16 @@
 import NavMenu from "../../components/NavMenu/NavMenu";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { accountListState, authUserState } from "../../recoils/userAuthState";
-import { productProps } from "../../@types/types";
-import { Link } from "react-router-dom";
-import { removeLikeItem } from "../../helpers/helpers";
-import { NOT__LIKE__COFFEE } from "../../constants/constants";
 import star from "../../assets/star.svg";
 import star0 from "../../assets/star3.svg";
 import back from "../../assets/back.svg";
 import heart from "../../assets/heart2.svg";
 import heart4 from "../../assets/heart4.svg";
 import coffee from "../../assets/coffee9.svg";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { accountListState, authUserState } from "../../recoils/userAuthState";
+import { productProps } from "../../@types/types";
+import { Link } from "react-router-dom";
+import { removeLikeItem } from "../../helpers/helpers";
+import { NOT__LIKE__COFFEE } from "../../constants/constants";
 import {
   Background,
   Container,
@@ -35,7 +35,7 @@ const Likes = () => {
   const setUserLikeLists = useSetRecoilState(authUserState);
   const setAccounts = useSetRecoilState(accountListState);
 
-  const handleLikes = (id: number): void => {
+  const handleLikes = (id: number) => {
     const newLikesItems = removeLikeItem(likeLists, id);
 
     setUserLikeLists({ ...authUser, likeLists: newLikesItems });

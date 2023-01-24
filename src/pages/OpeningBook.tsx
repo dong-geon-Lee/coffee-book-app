@@ -1,7 +1,3 @@
-import { useRecoilState, useRecoilValue } from "recoil";
-import { authActiveState, openBookState } from "../recoils/userAuthState";
-import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Container, Div, Wrapper, Button, LoginBox } from "./styles";
 import Login from "./Login/Login";
 import Home from "./Home/Home";
 import CartItems from "./CartItems/CartItems";
@@ -12,6 +8,10 @@ import Checkout from "./CheckOut/Checkout";
 import PaymentDetails from "./PaymentDetails/PaymentDetails";
 import StartPage from "../components/StartPage/StartPage";
 import image2 from "../assets/login3.jpg";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { authActiveState, openBookState } from "../recoils/userAuthState";
+import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Container, Div, Wrapper, Button, LoginBox } from "./styles";
 
 const OpeningBook = () => {
   const [openBook, setOpenBook] = useRecoilState(openBookState);

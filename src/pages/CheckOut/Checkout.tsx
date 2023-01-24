@@ -1,12 +1,12 @@
+import NavMenu from "../../components/NavMenu/NavMenu";
+import back from "../../assets/back.svg";
+import heart from "../../assets/heart2.svg";
+import checked from "../../assets/checked.svg";
 import { Link } from "react-router-dom";
 import {
   COMPLETE__ORDER,
   DETAIL__PAYMENT__MESSAGE,
 } from "../../constants/constants";
-import NavMenu from "../../components/NavMenu/NavMenu";
-import back from "../../assets/back.svg";
-import heart from "../../assets/heart2.svg";
-import checked from "../../assets/checked.svg";
 import {
   Button,
   Container,

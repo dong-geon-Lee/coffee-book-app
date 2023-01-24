@@ -101,7 +101,6 @@ export const removeCartItem = (cartItems: cartItemProps[], id: string) => {
 };
 
 export const removeLikeItem = (likeItems: productProps[], id: number) => {
-  console.log(likeItems, "call");
   return likeItems.filter((item: productProps) => item.id !== id);
 };
 

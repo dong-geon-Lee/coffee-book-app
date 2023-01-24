@@ -1,10 +1,10 @@
-import { useRecoilValue } from "recoil";
-import { paymentListState } from "../../recoils/userAuthState";
-import { Link } from "react-router-dom";
 import NavMenu from "../../components/NavMenu/NavMenu";
 import back from "../../assets/back.svg";
 import note from "../../assets/note.svg";
 import payment from "../../assets/payment.svg";
+import { useRecoilValue } from "recoil";
+import { paymentListState } from "../../recoils/userAuthState";
+import { Link } from "react-router-dom";
 import {
   Container,
   Section,

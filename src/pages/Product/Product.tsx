@@ -14,7 +14,6 @@ import {
   totalPriceState,
   selectedSizeState,
   recordedQtyState,
-  recordedCartItemState,
 } from "../../recoils/coffeeItemState";
 import {
   addCartItems,
@@ -51,18 +50,11 @@ const Product = () => {
   const [totalPrice, setTotalPrice] = useRecoilState(totalPriceState);
   const [, setRecordedQty] = useRecoilState(recordedQtyState);
 
-  const recordedCartItem = useRecoilValue(recordedCartItemState);
   const coffeeItem = useRecoilValue(coffeeItemState);
   const authUser = useRecoilValue(authUserState);
-  const accounts = useRecoilValue(accountListState);
 
-  console.log(authUser);
-  console.log(accounts);
-  console.log(recordedCartItem);
-
-  const setRecordedCartItem = useSetRecoilState(recordedCartItemState);
   const setUserLikeLists = useSetRecoilState(authUserState);
-  const setUserCartLists: any = useSetRecoilState(authUserState);
+  const setUserCartLists = useSetRecoilState(authUserState);
   const setAccounts = useSetRecoilState(accountListState);
 
   const { state } = useLocation();
@@ -93,7 +85,6 @@ const Product = () => {
             ],
           };
         }
-
         return { ...user };
       });
     });
@@ -130,13 +121,12 @@ const Product = () => {
   const handleCartItem = () => {
     setTotalPrice(selectedSize * quantity);
     setRecordedQty(quantity);
-    setRecordedCartItem([...recordedCartItem, cartItems]);
     setUserCartLists({
       ...authUser,
       cartLists: [...authUser.cartLists, cartItems],
     });
 
-    setAccounts((prevState: any) => {
+    setAccounts((prevState) => {
       return prevState.map((user: any) => {
         if (user.userId === authUser.userId) {
           return {
@@ -157,9 +147,6 @@ const Product = () => {
     setQuantity(0);
     setSelectedSize(0);
   };
-
-  console.log(authUser);
-  console.log(accounts);
 
   return (
     <Container>

@@ -1,3 +1,13 @@
+import img from "../../assets/logo5.png";
+import logo6 from "../../assets/coffee6.svg";
+import logo7 from "../../assets/coffee7.svg";
+import logo3 from "../../assets/coffee3.svg";
+import logo4 from "../../assets/coffee4.svg";
+import home from "../../assets/home.svg";
+import heart from "../../assets/heart.svg";
+import cart from "../../assets/cart.svg";
+import profile from "../../assets/profile.svg";
+import logout from "../../assets/logout2.svg";
 import { useCallback, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -14,16 +24,6 @@ import {
   ROUTE__LIKES,
   ROUTE__PROFILES,
 } from "../../constants/constants";
-import img from "../../assets/logo5.png";
-import logo6 from "../../assets/coffee6.svg";
-import logo7 from "../../assets/coffee7.svg";
-import logo3 from "../../assets/coffee3.svg";
-import logo4 from "../../assets/coffee4.svg";
-import home from "../../assets/home.svg";
-import heart from "../../assets/heart.svg";
-import cart from "../../assets/cart.svg";
-import profile from "../../assets/profile.svg";
-import logout from "../../assets/logout2.svg";
 import {
   Button,
   Container,

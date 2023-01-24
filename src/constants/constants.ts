@@ -13,5 +13,6 @@ export const CHOICE__ACCOUNT = "계좌 선택";
 export const RANDOM__GUEST__ACCOUNT = "랜덤 게스트 계정";
 export const NOT__LIKE__COFFEE = "There is no Likes Coffee.";
 export const COMPLETE__ORDER = "주문이 완료되었습니다!";
+export const CART__EMPTY = "Your Cart is Empty.";
 export const DETAIL__PAYMENT__MESSAGE =
   "자세한 사항은 결제내역을 확인해 주세요";
