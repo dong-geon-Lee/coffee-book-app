@@ -6,13 +6,14 @@
 
 ### [ 1 ] &nbsp;프로젝트 목적
 
+- :white_check_mark: &nbsp; 랜딩 페이지 및 UI 설계 및 구현
 - :white_check_mark: &nbsp; 로그인 & 로그아웃 구현
 - :white_check_mark: &nbsp; 라우팅 경로 설계 및 리디렉션 구현
 - :white_check_mark: &nbsp; 상품 '필터링' 기능 구현
 - :white_check_mark: &nbsp; '좋아요' 기능 구현 
 - :white_check_mark: &nbsp; '장바구니' 기능 구현 
 - :white_check_mark: &nbsp; '계좌충전' 기능 구현
-- :white_check_mark: &nbsp; 상태관리 라이브러리 recoil 사용 
+
 </br>
 
 ### [ 2 ] &nbsp;프로젝트 설치 & 실행
@@ -20,8 +21,8 @@
 #### 터미널에서 다음 명령어를 입력합니다.
 
 ```
-$ git clone https://github.com/dong-geon-Lee/todoList-app.git
-$ cd todoList-app
+$ git clone https://github.com/dong-geon-Lee/coffee-book-app.git
+$ cd coffee-book-app
 $ code .
 $ npm install
 $ npm start
