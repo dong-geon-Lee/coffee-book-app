@@ -2,7 +2,31 @@
 
 ## :mag_right: &nbsp; 프로젝트 소개 
 > 커피를 판매하는 서비스 앱입니다.  
-책이라는 틀을 이용해서 다양한 기능들을 구현하였습니다. 
+> 책이라는 틀을 이용해서 다양한 기능들을 구현하였습니다. 
+
+### [ 1 ] &nbsp;프로젝트 목적
+
+- :white_check_mark: &nbsp; 로그인 & 로그아웃 구현
+- :white_check_mark: &nbsp; 라우팅 경로 설계 및 리디렉션 구현
+- :white_check_mark: &nbsp; 상품 '필터링' 기능 구현
+- :white_check_mark: &nbsp; '좋아요' 기능 구현 
+- :white_check_mark: &nbsp; '장바구니' 기능 구현 
+- :white_check_mark: &nbsp; '계좌충전' 기능 구현
+- :white_check_mark: &nbsp; 상태관리 라이브러리 recoil 사용 
+</br>
+
+### [ 2 ] &nbsp;프로젝트 설치 & 실행
+
+#### 터미널에서 다음 명령어를 입력합니다.
+
+```
+$ git clone https://github.com/dong-geon-Lee/todoList-app.git
+$ cd todoList-app
+$ code .
+$ npm install
+$ npm start
+```
+
 <br/>
 
 ## :link: &nbsp; 배포 링크 
