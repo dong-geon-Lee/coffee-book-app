@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { Container, IconsText, Img, ImgBox, MenuIcons } from "./styles";
 import { useRecoilValue } from "recoil";
 import { currentItemState } from "../../recoils/coffeeItemState";
-import { useCallback } from "react";
 import {
   ROUTE__CARTITEMS,
   ROUTE__HOME,
@@ -24,12 +23,9 @@ const NavMenu = () => {
   const cartItemStatus = cartStatus ? cartStatus.length : 0;
   const profileItemStatus = profileStatus ? profileStatus.length : 0;
 
-  const handleNavigate = useCallback(
-    (destination: string) => {
-      navigate(`/${destination}`);
-    },
-    [navigate]
-  );
+  const handleNavigate = (destination: string) => {
+    navigate(`/${destination}`);
+  };
 
   return (
     <Container>

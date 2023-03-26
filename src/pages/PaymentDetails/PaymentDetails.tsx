@@ -35,7 +35,7 @@ const PaymentDetails = () => {
 
         {paymentList.length === 0 && (
           <EmptyBox>
-            <Background img={payment}></Background>
+            <Background img={payment} />
             <LogoText>No payment details.</LogoText>
           </EmptyBox>
         )}

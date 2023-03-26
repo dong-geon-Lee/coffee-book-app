@@ -4,7 +4,7 @@ import profile from "../../assets/profile2.svg";
 import Overlays from "../../components/Overlays/Overlays";
 import Modals from "../../components/Modals/Modals";
 import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { modalState, overlayState } from "../../recoils/modalState";
 import { authUserState, bankOptionState } from "../../recoils/userAuthState";
@@ -42,6 +42,8 @@ const Profiles = () => {
   const authUser = useRecoilValue(authUserState);
   const filteredBank = findSelectedBank(authUser, bankOption);
   const navigate = useNavigate();
+  const location = useLocation();
+  const path = location.pathname.split("/")[1];
 
   const handleModals = () => {
     setOpenModals(true);
@@ -53,8 +55,8 @@ const Profiles = () => {
   };
 
   useEffect(() => {
-    if (!authUser) setBankOption("계좌 선택");
-  }, [authUser]);
+    setBankOption("계좌 선택");
+  }, [path]);
 
   return (
     <Container>

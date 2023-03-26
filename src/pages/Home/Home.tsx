@@ -8,7 +8,7 @@ import heart from "../../assets/heart.svg";
 import cart from "../../assets/cart.svg";
 import profile from "../../assets/profile.svg";
 import logout from "../../assets/logout2.svg";
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { authActiveState } from "../../recoils/userAuthState";
@@ -60,23 +60,17 @@ const Home = () => {
   const cartItemStatus = cartStatus ? cartStatus.length : 0;
   const profileItemStatus = profileStatus ? profileStatus.length : 0;
 
-  const onChange = useCallback(
-    (e: ButtonProps) => {
-      setCheckedMenu({
-        ...checkedMenu,
-        [e.target.name]: e.target.checked,
-      });
-    },
-    [checkedMenu, setCheckedMenu]
-  );
+  const onChange = (e: ButtonProps) => {
+    setCheckedMenu({
+      ...checkedMenu,
+      [e.target.name]: e.target.checked,
+    });
+  };
 
-  const handleNavigate = useCallback(
-    (destination: string) => {
-      if (destination === "login") setAuthActive(false);
-      navigate(`/${destination}`);
-    },
-    [navigate, setAuthActive]
-  );
+  const handleNavigate = (destination: string) => {
+    if (destination === "login") setAuthActive(false);
+    navigate(`/${destination}`);
+  };
 
   useEffect(() => {
     setAuthActive(true);
@@ -95,9 +89,7 @@ const Home = () => {
           <ImgBox>
             <Img src={img} alt="logo" />
           </ImgBox>
-
           <Text>메인페이지</Text>
-
           <Button onClick={() => handleNavigate("login")}>
             <ImgBox className="logout">
               <Img src={logout} />
@@ -161,7 +153,6 @@ const Home = () => {
                     <Img src={item.image} alt="logo" />
                   </ImgBox>
                 </Link>
-
                 <Title>{item.title}</Title>
               </Contents>
             ))}

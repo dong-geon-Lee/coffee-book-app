@@ -118,6 +118,8 @@ const Product = () => {
     selectedSize
   );
 
+  console.log(cartItems);
+
   const handleCartItem = () => {
     setTotalPrice(selectedSize * quantity);
     setRecordedQty(quantity);
@@ -134,7 +136,6 @@ const Product = () => {
             cartLists: [...authUser.cartLists, cartItems],
           };
         }
-
         return { ...user };
       });
     });

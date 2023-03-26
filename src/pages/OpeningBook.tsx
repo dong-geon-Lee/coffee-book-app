@@ -51,7 +51,6 @@ const OpeningBook = () => {
             </Router>
           )}
         </LoginBox>
-
         <StartPage handleBookPage={handleBookPage} openBook={openBook} />
       </Wrapper>
     </Container>

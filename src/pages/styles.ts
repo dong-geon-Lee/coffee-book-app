@@ -52,15 +52,14 @@ export const LoginBox = styled.div<imageProps>`
   background-image: url(${(props) => props.loginImg});
   background-size: cover;
   background-position: right;
-
-  ${(props) =>
+  animation: ${(props) =>
     props.open
       ? css`
-          animation: ${openBook} 2s alternate;
+          ${openBook} 2s alternate
         `
       : css`
-          animation: ${closeBook} 1s alternate;
-        `}
+          ${closeBook} 1s alternate
+        `};
 `;
 
 export const Div = styled.div<openProps>`

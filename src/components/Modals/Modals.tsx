@@ -1,13 +1,11 @@
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { totalCashState } from "../../recoils/coffeeItemState";
 import { modalState, overlayState } from "../../recoils/modalState";
-import { ButtonProps } from "../../@types/types";
 import { CHARGE__X, CHARGE__Y, CHARGE__Z } from "../../constants/constants";
 import { formattedNumber } from "../../helpers/helpers";
 import {
   accountListState,
   authUserState,
-  bankAccountState,
   selectedBankState,
   updatedBankMoneyState,
 } from "../../recoils/userAuthState";
@@ -29,7 +27,6 @@ import {
 
 const Modals = () => {
   const [totalCash, setTotalCash] = useRecoilState(totalCashState);
-  const [bankAccount, setBankAccount] = useRecoilState(bankAccountState);
   const [, setModalState] = useRecoilState(modalState);
   const [, setOverlays] = useRecoilState(overlayState);
 
@@ -38,7 +35,7 @@ const Modals = () => {
     useRecoilValue(updatedBankMoneyState);
 
   const setAuthUser = useSetRecoilState(authUserState);
-  const setAccountList: any = useSetRecoilState(accountListState);
+  const setAccountList = useSetRecoilState(accountListState);
 
   const handleTotalCash = (cash: number) => {
     setTotalCash((prevState: number) => prevState + cash);
@@ -52,10 +49,6 @@ const Modals = () => {
     setTotalCash(0);
     setModalState(false);
     setOverlays(false);
-  };
-
-  const onChange = (e: ButtonProps) => {
-    setBankAccount(e.target.value);
   };
 
   const handleChargePoint = () => {
@@ -103,7 +96,7 @@ const Modals = () => {
           </Button>
         </Div>
 
-        <Select value={bankAccount} onChange={onChange}>
+        <Select>
           {selectedBank && (
             <Option value={selectedBank?.accNumber} key={selectedBank.id}>
               {selectedBank?.bankName} {selectedBank?.accNumber}

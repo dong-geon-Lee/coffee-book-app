@@ -63,16 +63,17 @@ const CartItems = () => {
         if (user.userId === authUser.userId) {
           return { ...authUser, cartLists: newItems };
         }
-
         return { ...user };
       });
     });
   };
 
+  console.log(paymentDetails);
+  console.log(cartLists);
+
   const handleCheckout = () => {
     setActiveSpinner(true);
     setPaymentDetails([...paymentDetails, ...cartLists]);
-
     setUserCartLists({
       ...authUser,
       cartLists: [],
@@ -88,7 +89,6 @@ const CartItems = () => {
             paymentLists: [...paymentDetails, ...cartLists],
           };
         }
-
         return { ...user };
       });
     });
@@ -100,9 +100,7 @@ const CartItems = () => {
       if (activeSpinner) navigate("/checkout");
     }, 2000);
 
-    return () => {
-      clearTimeout(timeoutId);
-    };
+    return () => clearTimeout(timeoutId);
   }, [activeSpinner]);
 
   return (
@@ -115,9 +113,7 @@ const CartItems = () => {
           <Title>장바구니</Title>
           <Logo src={cart} alt="logo" className="logo" />
         </Header>
-
         {activeSpinner && <Spinner />}
-
         <Center items={cartLists.length}>
           {cartLists.length > 0 ? (
             cartLists.map((item: cartItemProps) => (

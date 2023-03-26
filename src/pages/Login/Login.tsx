@@ -36,7 +36,7 @@ const Login = () => {
     });
   };
 
-  const handleAuth = (e: React.SyntheticEvent) => {
+  const handleAuth = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!userId || !password) {

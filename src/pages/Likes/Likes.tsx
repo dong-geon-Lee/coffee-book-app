@@ -44,7 +44,6 @@ const Likes = () => {
         if (user.userId === authUser.userId) {
           return { ...authUser, likeLists: newLikesItems };
         }
-
         return { ...user };
       });
     });
@@ -75,7 +74,6 @@ const Likes = () => {
               <ContentBox>
                 <Title>{item.title}</Title>
                 <Description>{item.description}</Description>
-
                 <Stars>
                   {item.stars?.map((stars, index) => (
                     <StarImg
