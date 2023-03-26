@@ -1,19 +1,19 @@
 <img width="100" height="100" alt="bank" src="https://user-images.githubusercontent.com/69576865/210367299-f930afa5-8a3a-4ab2-9bd5-77c8fb62fe62.png">
 
-## :mag_right: &nbsp; Intro
+## :mag_right: &nbsp; 프로젝트 소개 
 > 커피를 판매하는 서비스 앱입니다.  
 책이라는 틀을 이용해서 다양한 기능들을 구현하였습니다. 
 <br/>
 
-## :link: &nbsp; Link
+## :link: &nbsp; 배포 링크 
 - https://dong-geon-lee.github.io/coffee-book-app/
 <br/>  
 
-## :alarm_clock: &nbsp; Period
+## :alarm_clock: &nbsp; 프로젝트 기간
  - 2022.12.18 - 2023.01.03
 <br/>
 
-## :seedling: &nbsp; Stack  
+## :seedling: &nbsp; 기술 스택  
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=fff)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=fff)
 ![TYPESCRIPT](https://img.shields.io/badge/TypeScript-212121?style=for-the-badge&logo=TypeScript&logoColor=0A9EDC)  
@@ -23,7 +23,7 @@
 <br/>
 <br/>
 
-## :eyes: &nbsp; Web View
+## :eyes: &nbsp; 프로젝트 시연
 <details>
 <summary>랜딩 페이지 & 로그인 페이지</summary>  
 <div markdown="1">
