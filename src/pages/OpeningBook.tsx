@@ -1,3 +1,6 @@
+import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { authActiveState, openBookState } from "../recoils/userAuthState";
 import Login from "./Login/Login";
 import Home from "./Home/Home";
 import CartItems from "./CartItems/CartItems";
@@ -7,11 +10,8 @@ import Product from "./Product/Product";
 import Checkout from "./CheckOut/Checkout";
 import PaymentDetails from "./PaymentDetails/PaymentDetails";
 import StartPage from "../components/StartPage/StartPage";
-import image2 from "../assets/login3.jpg";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { authActiveState, openBookState } from "../recoils/userAuthState";
-import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Container, Div, Wrapper, Button, LoginBox } from "./styles";
+import * as A from "../assets";
+import * as S from "./styles";
 
 const OpeningBook = () => {
   const [openBook, setOpenBook] = useRecoilState(openBookState);
@@ -22,9 +22,9 @@ const OpeningBook = () => {
   };
 
   return (
-    <Container>
-      <Wrapper open={openBook}>
-        <LoginBox loginImg={image2} open={openBook}>
+    <S.Container>
+      <S.Wrapper open={openBook}>
+        <S.LoginBox loginImg={A.image2} open={openBook}>
           {openBook && (
             <Router>
               <Routes>
@@ -42,22 +42,22 @@ const OpeningBook = () => {
           {!authActive && (
             <Router>
               <Link to="/">
-                <Div className="back" open={openBook}>
-                  <Button
+                <S.Div className="back" open={openBook}>
+                  <S.Button
                     onClick={handleBookPage}
                     className="back__btn"
                     disabled={!openBook}
                   >
                     ⬅ 나가기
-                  </Button>
-                </Div>
+                  </S.Button>
+                </S.Div>
               </Link>
             </Router>
           )}
-        </LoginBox>
+        </S.LoginBox>
         <StartPage handleBookPage={handleBookPage} openBook={openBook} />
-      </Wrapper>
-    </Container>
+      </S.Wrapper>
+    </S.Container>
   );
 };
 
