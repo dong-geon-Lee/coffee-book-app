@@ -79,8 +79,8 @@ export const Div = styled.div<openProps>`
   }
 `;
 
-export const Button = styled.div`
-  padding: 1.4rem 2rem;
+export const Button = styled.button`
+  padding: 2rem 2rem;
   background-color: #7f553a;
   color: #fff;
   border: none;

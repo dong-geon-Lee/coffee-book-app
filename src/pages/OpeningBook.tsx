@@ -43,7 +43,11 @@ const OpeningBook = () => {
             <Router>
               <Link to="/">
                 <Div className="back" open={openBook}>
-                  <Button onClick={handleBookPage} className="back__btn">
+                  <Button
+                    onClick={handleBookPage}
+                    className="back__btn"
+                    disabled={!openBook}
+                  >
                     ⬅ 나가기
                   </Button>
                 </Div>

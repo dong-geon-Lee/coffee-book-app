@@ -27,7 +27,6 @@ const Login = () => {
 
   const { userId, password } = authInput;
   const navigate = useNavigate();
-  const location = useLocation();
 
   const onChange = (e: userProps) => {
     setAuthInput({
@@ -62,10 +61,6 @@ const Login = () => {
     const { userId, password } = accountLists[randomIndex];
     setAuthInput({ userId, password: String(password) });
   };
-
-  useEffect(() => {
-    if (location.pathname === "/login") setAuthActive(false);
-  }, [location.pathname]);
 
   return (
     <Container>
