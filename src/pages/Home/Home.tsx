@@ -2,18 +2,13 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { authActiveState } from "../../recoils/userAuthState";
-import { ButtonProps, productProps } from "../../@types/types";
-import { Link } from "react-router-dom";
 import {
   checkedMenuState,
   currentItemState,
 } from "../../recoils/coffeeItemState";
-import {
-  ROUTE__CARTITEMS,
-  ROUTE__HOME,
-  ROUTE__LIKES,
-  ROUTE__PROFILES,
-} from "../../constants/constants";
+import { ButtonProps, productProps } from "../../@types/types";
+import { Link } from "react-router-dom";
+import * as C from "../../constants/constants";
 import * as S from "./styles";
 import * as A from "../../assets";
 
@@ -136,28 +131,28 @@ const Home = () => {
       <S.MenuIcons>
         <S.ImgBox
           className="icon__box"
-          onClick={() => handleNavigate(ROUTE__HOME)}
+          onClick={() => handleNavigate(C.ROUTE__HOME)}
         >
           <S.Img src={A.home} className="icons" />
           <S.IconsText>{homeItemStatus}</S.IconsText>
         </S.ImgBox>
         <S.ImgBox
           className="icon__box"
-          onClick={() => handleNavigate(ROUTE__LIKES)}
+          onClick={() => handleNavigate(C.ROUTE__LIKES)}
         >
           <S.Img src={A.heart} className="icons" />
           <S.IconsText>{likeItemStatus}</S.IconsText>
         </S.ImgBox>
         <S.ImgBox
           className="icon__box"
-          onClick={() => handleNavigate(ROUTE__CARTITEMS)}
+          onClick={() => handleNavigate(C.ROUTE__CARTITEMS)}
         >
           <S.Img src={A.cart} className="icons" />
           <S.IconsText>{cartItemStatus}</S.IconsText>
         </S.ImgBox>
         <S.ImgBox
           className="icon__box"
-          onClick={() => handleNavigate(ROUTE__PROFILES)}
+          onClick={() => handleNavigate(C.ROUTE__PROFILES)}
         >
           <S.Img src={A.profile} className="icons" />
           <S.IconsText>{profileItemStatus}</S.IconsText>
