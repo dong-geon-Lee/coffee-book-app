@@ -1,13 +1,3 @@
-import img from "../../assets/logo5.png";
-import logo6 from "../../assets/coffee6.svg";
-import logo7 from "../../assets/coffee7.svg";
-import logo3 from "../../assets/coffee3.svg";
-import logo4 from "../../assets/coffee4.svg";
-import home from "../../assets/home.svg";
-import heart from "../../assets/heart.svg";
-import cart from "../../assets/cart.svg";
-import profile from "../../assets/profile.svg";
-import logout from "../../assets/logout2.svg";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -24,25 +14,8 @@ import {
   ROUTE__LIKES,
   ROUTE__PROFILES,
 } from "../../constants/constants";
-import {
-  Button,
-  Container,
-  Div,
-  Header,
-  Img,
-  ImgBox,
-  Input,
-  Label,
-  Logo,
-  Section,
-  Wrapper,
-  Title,
-  ContentBox,
-  Contents,
-  MenuIcons,
-  Text,
-  IconsText,
-} from "./styles";
+import * as S from "./styles";
+import * as A from "../../assets";
 
 const Home = () => {
   const [authActive, setAuthActive] = useRecoilState(authActiveState);
@@ -83,114 +56,114 @@ const Home = () => {
   }, [authActive, navigate]);
 
   return (
-    <Container>
-      <Wrapper>
-        <Header>
-          <ImgBox>
-            <Img src={img} alt="logo" />
-          </ImgBox>
-          <Text>메인페이지</Text>
-          <Button onClick={() => handleNavigate("login")}>
-            <ImgBox className="logout">
-              <Img src={logout} />
-            </ImgBox>
-          </Button>
-        </Header>
+    <S.Container>
+      <S.Wrapper>
+        <S.Header>
+          <S.ImgBox>
+            <S.Img src={A.img} alt="logo" />
+          </S.ImgBox>
+          <S.Text>메인페이지</S.Text>
+          <S.Button onClick={() => handleNavigate("login")}>
+            <S.ImgBox className="logout">
+              <S.Img src={A.logout} />
+            </S.ImgBox>
+          </S.Button>
+        </S.Header>
 
-        <Section>
-          <Div className="main">
-            <Div className="flex">
-              <Logo src={logo3} className="logo__svg" />
-              <Label htmlFor="espresso">에스프레소</Label>
-              <Input
+        <S.Section>
+          <S.Div className="main">
+            <S.Div className="flex">
+              <S.Logo src={A.logo3} className="logo__svg" />
+              <S.Label htmlFor="espresso">에스프레소</S.Label>
+              <S.Input
                 type="checkbox"
                 id="espresso"
                 name="espresso"
                 checked={espresso}
                 onChange={onChange}
               />
-            </Div>
-            <Div className="flex">
-              <Logo src={logo7} />
-              <Label htmlFor="coldbrew">콜드 브루</Label>
-              <Input
+            </S.Div>
+            <S.Div className="flex">
+              <S.Logo src={A.logo7} />
+              <S.Label htmlFor="coldbrew">콜드 브루</S.Label>
+              <S.Input
                 type="checkbox"
                 id="coldbrew"
                 name="coldbrew"
                 checked={coldbrew}
                 onChange={onChange}
               />
-            </Div>
-            <Div className="flex">
-              <Logo src={logo4} />
-              <Label htmlFor="frappuccino">푸라푸치노</Label>
-              <Input
+            </S.Div>
+            <S.Div className="flex">
+              <S.Logo src={A.logo4} />
+              <S.Label htmlFor="frappuccino">푸라푸치노</S.Label>
+              <S.Input
                 type="checkbox"
                 id="frappuccino"
                 name="frappuccino"
                 checked={frappuccino}
                 onChange={onChange}
               />
-            </Div>
-            <Div className="flex">
-              <Logo src={logo6} />
-              <Label htmlFor="blended">블렌디드</Label>
-              <Input
+            </S.Div>
+            <S.Div className="flex">
+              <S.Logo src={A.logo6} />
+              <S.Label htmlFor="blended">블렌디드</S.Label>
+              <S.Input
                 type="checkbox"
                 id="blended"
                 name="blended"
                 checked={blended}
                 onChange={onChange}
               />
-            </Div>
-          </Div>
+            </S.Div>
+          </S.Div>
 
-          <ContentBox>
+          <S.ContentBox>
             {homeStatus.map((item: productProps) => (
-              <Contents key={item.id}>
+              <S.Contents key={item.id}>
                 <Link to={`/home/${item.id}`} state={{ product: item }}>
-                  <ImgBox className="content">
-                    <Img src={item.image} alt="logo" />
-                  </ImgBox>
+                  <S.ImgBox className="content">
+                    <S.Img src={item.image} alt="logo" />
+                  </S.ImgBox>
                 </Link>
-                <Title>{item.title}</Title>
-              </Contents>
+                <S.Title>{item.title}</S.Title>
+              </S.Contents>
             ))}
-          </ContentBox>
-        </Section>
-      </Wrapper>
+          </S.ContentBox>
+        </S.Section>
+      </S.Wrapper>
 
-      <MenuIcons>
-        <ImgBox
+      <S.MenuIcons>
+        <S.ImgBox
           className="icon__box"
           onClick={() => handleNavigate(ROUTE__HOME)}
         >
-          <Img src={home} className="icons" />
-          <IconsText>{homeItemStatus}</IconsText>
-        </ImgBox>
-        <ImgBox
+          <S.Img src={A.home} className="icons" />
+          <S.IconsText>{homeItemStatus}</S.IconsText>
+        </S.ImgBox>
+        <S.ImgBox
           className="icon__box"
           onClick={() => handleNavigate(ROUTE__LIKES)}
         >
-          <Img src={heart} className="icons" />
-          <IconsText>{likeItemStatus}</IconsText>
-        </ImgBox>
-        <ImgBox
+          <S.Img src={A.heart} className="icons" />
+          <S.IconsText>{likeItemStatus}</S.IconsText>
+        </S.ImgBox>
+        <S.ImgBox
           className="icon__box"
           onClick={() => handleNavigate(ROUTE__CARTITEMS)}
         >
-          <Img src={cart} className="icons" />
-          <IconsText>{cartItemStatus}</IconsText>
-        </ImgBox>
-        <ImgBox
+          <S.Img src={A.cart} className="icons" />
+          <S.IconsText>{cartItemStatus}</S.IconsText>
+        </S.ImgBox>
+        <S.ImgBox
           className="icon__box"
           onClick={() => handleNavigate(ROUTE__PROFILES)}
         >
-          <Img src={profile} className="icons" />
-          <IconsText>{profileItemStatus}</IconsText>
-        </ImgBox>
-      </MenuIcons>
-    </Container>
+          <S.Img src={A.profile} className="icons" />
+          <S.IconsText>{profileItemStatus}</S.IconsText>
+        </S.ImgBox>
+      </S.MenuIcons>
+    </S.Container>
   );
 };
 
