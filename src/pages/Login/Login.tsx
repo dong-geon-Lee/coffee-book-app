@@ -56,7 +56,7 @@ const Login = () => {
     }
   };
 
-  const randomGuest = () => {
+  const generateRandomGuest = () => {
     const randomIndex = Math.floor(Math.random() * 3);
     const { userId, password } = accountLists[randomIndex];
     setAuthInput({ userId, password: String(password) });
@@ -65,7 +65,7 @@ const Login = () => {
   return (
     <Container>
       <GuestBox>
-        <Button className="guest__btn" onClick={randomGuest}>
+        <Button className="guest__btn" onClick={generateRandomGuest}>
           {RANDOM__GUEST__ACCOUNT}
         </Button>
       </GuestBox>
