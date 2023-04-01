@@ -1,61 +1,48 @@
 import NavMenu from "../../components/NavMenu/NavMenu";
-import back from "../../assets/back.svg";
-import note from "../../assets/note.svg";
 import payment from "../../assets/payment.svg";
 import { useRecoilValue } from "recoil";
 import { paymentListState } from "../../recoils/userAuthState";
 import { Link } from "react-router-dom";
-import {
-  Container,
-  Section,
-  Logo,
-  Title,
-  Header,
-  Div,
-  Card,
-  Text,
-  EmptyBox,
-  Background,
-  LogoText,
-} from "./styles";
+import * as S from "./styles";
+import * as A from "../../assets";
 
 const PaymentDetails = () => {
   const paymentList = useRecoilValue(paymentListState);
 
   return (
-    <Container>
-      <Section>
-        <Header>
+    <S.Container>
+      <S.Section>
+        <S.Header>
           <Link to="/profiles">
-            <Logo src={back} alt="logo" />
+            <S.Logo src={A.back} alt="logo" />
           </Link>
-          <Title>결제내역</Title>
-          <Logo src={note} alt="logo" className="logo" />
-        </Header>
+          <S.Title>결제내역</S.Title>
+          <S.Logo src={A.note} alt="logo" className="logo" />
+        </S.Header>
 
         {paymentList.length === 0 && (
-          <EmptyBox>
-            <Background img={payment} />
-            <LogoText>No payment details.</LogoText>
-          </EmptyBox>
+          <S.EmptyBox>
+            <S.Background img={payment} />
+            <S.LogoText>No payment details.</S.LogoText>
+          </S.EmptyBox>
         )}
 
-        <Div>
+        <S.Div>
           {paymentList?.map((item: any) => (
-            <Card key={item.id}>
-              <Text>주문코드: {item.id}</Text>
-              <Text className="title">제품: {item.title}</Text>
-              <Text>크기: {item.size}</Text>
-              <Text>가격: {item.price}원</Text>
-              <Text>수량: {item.recordedQty}개</Text>
-              <Text>주문합계: {item.total}원</Text>
-              <Text className="dates">결제날짜: {item.orderDate}</Text>
-            </Card>
+            <S.Card key={item.id}>
+              <S.Text>주문코드: {item.id}</S.Text>
+              <S.Text className="title">제품: {item.title}</S.Text>
+              <S.Text>크기: {item.size}</S.Text>
+              <S.Text>가격: {item.price}원</S.Text>
+              <S.Text>수량: {item.recordedQty}개</S.Text>
+              <S.Text>주문합계: {item.total}원</S.Text>
+              <S.Text className="dates">결제날짜: {item.orderDate}</S.Text>
+            </S.Card>
           ))}
-        </Div>
-      </Section>
+        </S.Div>
+      </S.Section>
       <NavMenu />
-    </Container>
+    </S.Container>
   );
 };
 

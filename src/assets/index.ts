@@ -21,3 +21,5 @@ export { default as cart2 } from "./cart2.svg";
 export { default as emptyCart } from "./cart3.svg";
 export { default as xIcons } from "./delete.svg";
 export { default as checked } from "./checked.svg";
+export { default as note } from "./note.svg";
+export { default as payment } from "./payment.svg";
