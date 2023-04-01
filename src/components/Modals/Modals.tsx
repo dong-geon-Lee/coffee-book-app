@@ -1,7 +1,6 @@
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { totalCashState } from "../../recoils/coffeeItemState";
 import { modalState, overlayState } from "../../recoils/modalState";
-import { CHARGE__X, CHARGE__Y, CHARGE__Z } from "../../constants/constants";
 import { formattedNumber } from "../../helpers/helpers";
 import {
   accountListState,
@@ -9,21 +8,8 @@ import {
   selectedBankState,
   updatedBankMoneyState,
 } from "../../recoils/userAuthState";
-import {
-  Container,
-  ModalBox,
-  Div,
-  Price,
-  Button,
-  Text,
-  Select,
-  Option,
-  ChargeBox,
-  Label,
-  Span,
-  Box,
-  BtnBox,
-} from "./styles";
+import * as S from "./styles";
+import * as C from "../../constants/constants";
 
 const Modals = () => {
   const [totalCash, setTotalCash] = useRecoilState(totalCashState);
@@ -66,66 +52,65 @@ const Modals = () => {
   };
 
   return (
-    <Container>
-      <ModalBox>
-        <Text className="title">포인트</Text>
-        <ChargeBox>
-          <Price>{formattedNumber(totalCash)}원</Price>
-          <Button className="reset__btn" onClick={handleResetIcon}>
+    <S.Container>
+      <S.ModalBox>
+        <S.Text className="title">포인트</S.Text>
+        <S.ChargeBox>
+          <S.Price>{formattedNumber(totalCash)}원</S.Price>
+          <S.Button className="reset__btn" onClick={handleResetIcon}>
             x
-          </Button>
-        </ChargeBox>
-        <Div>
-          <Button
-            onClick={() => handleTotalCash(CHARGE__X)}
+          </S.Button>
+        </S.ChargeBox>
+        <S.Div>
+          <S.Button
+            onClick={() => handleTotalCash(C.CHARGE__X)}
             className="cash__btn"
           >
             +1만원
-          </Button>
-          <Button
-            onClick={() => handleTotalCash(CHARGE__Y)}
+          </S.Button>
+          <S.Button
+            onClick={() => handleTotalCash(C.CHARGE__Y)}
             className="cash__btn"
           >
             +5만원
-          </Button>
-          <Button
-            onClick={() => handleTotalCash(CHARGE__Z)}
+          </S.Button>
+          <S.Button
+            onClick={() => handleTotalCash(C.CHARGE__Z)}
             className="cash__btn"
           >
             +10만원
-          </Button>
-        </Div>
+          </S.Button>
+        </S.Div>
 
-        <Select>
+        <S.Select>
           {selectedBank && (
-            <Option value={selectedBank?.accNumber} key={selectedBank.id}>
+            <S.Option value={selectedBank?.accNumber} key={selectedBank.id}>
               {selectedBank?.bankName} {selectedBank?.accNumber}
-            </Option>
+            </S.Option>
           )}
-        </Select>
+        </S.Select>
 
-        <Box>
-          <Label>계좌잔액:</Label>
-          <Span>
+        <S.Box>
+          <S.Label>계좌잔액:</S.Label>
+          <S.Span>
             {selectedBank &&
               `${formattedNumber(totalCash + selectedBank.money)}원`}
-          </Span>
-        </Box>
-
-        <BtnBox>
-          <Button className="close__btn" onClick={handleBtnReset}>
+          </S.Span>
+        </S.Box>
+        <S.BtnBox>
+          <S.Button className="close__btn" onClick={handleBtnReset}>
             닫기
-          </Button>
-          <Button
+          </S.Button>
+          <S.Button
             className="pay__btn"
             onClick={handleChargePoint}
             disabled={btnDisabled}
           >
             충전하기
-          </Button>
-        </BtnBox>
-      </ModalBox>
-    </Container>
+          </S.Button>
+        </S.BtnBox>
+      </S.ModalBox>
+    </S.Container>
   );
 };
 
