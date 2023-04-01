@@ -1,65 +1,58 @@
 import { useNavigate } from "react-router-dom";
-import { Container, IconsText, Img, ImgBox, MenuIcons } from "./styles";
 import { useRecoilValue } from "recoil";
 import { currentItemState } from "../../recoils/coffeeItemState";
-import {
-  ROUTE__CARTITEMS,
-  ROUTE__HOME,
-  ROUTE__LIKES,
-  ROUTE__PROFILES,
-} from "../../constants/constants";
-import home from "../../assets/home.svg";
-import heart from "../../assets/heart.svg";
-import cart from "../../assets/cart.svg";
-import profile from "../../assets/profile.svg";
+import * as S from "./styles";
+import * as A from "../../assets";
+import * as C from "../../constants/constants";
 
 const NavMenu = () => {
   const { homeStatus, likeStatus, cartStatus, profileStatus } =
     useRecoilValue(currentItemState);
 
-  const navigate = useNavigate();
   const homeItemStatus = homeStatus ? homeStatus.length : 0;
   const likeItemStatus = likeStatus ? likeStatus.length : 0;
   const cartItemStatus = cartStatus ? cartStatus.length : 0;
   const profileItemStatus = profileStatus ? profileStatus.length : 0;
+
+  const navigate = useNavigate();
 
   const handleNavigate = (destination: string) => {
     navigate(`/${destination}`);
   };
 
   return (
-    <Container>
-      <MenuIcons>
-        <ImgBox
+    <S.Container>
+      <S.MenuIcons>
+        <S.ImgBox
           className="icon__box"
-          onClick={() => handleNavigate(ROUTE__HOME)}
+          onClick={() => handleNavigate(C.ROUTE__HOME)}
         >
-          <Img src={home} className="icons" />
-          <IconsText>{homeItemStatus}</IconsText>
-        </ImgBox>
-        <ImgBox
+          <S.Img src={A.home} className="icons" />
+          <S.IconsText>{homeItemStatus}</S.IconsText>
+        </S.ImgBox>
+        <S.ImgBox
           className="icon__box"
-          onClick={() => handleNavigate(ROUTE__LIKES)}
+          onClick={() => handleNavigate(C.ROUTE__LIKES)}
         >
-          <Img src={heart} className="icons" />
-          <IconsText>{likeItemStatus}</IconsText>
-        </ImgBox>
-        <ImgBox
+          <S.Img src={A.heart} className="icons" />
+          <S.IconsText>{likeItemStatus}</S.IconsText>
+        </S.ImgBox>
+        <S.ImgBox
           className="icon__box"
-          onClick={() => handleNavigate(ROUTE__CARTITEMS)}
+          onClick={() => handleNavigate(C.ROUTE__CARTITEMS)}
         >
-          <Img src={cart} className="icons" />
-          <IconsText>{cartItemStatus}</IconsText>
-        </ImgBox>
-        <ImgBox
+          <S.Img src={A.cart} className="icons" />
+          <S.IconsText>{cartItemStatus}</S.IconsText>
+        </S.ImgBox>
+        <S.ImgBox
           className="icon__box"
-          onClick={() => handleNavigate(ROUTE__PROFILES)}
+          onClick={() => handleNavigate(C.ROUTE__PROFILES)}
         >
-          <Img src={profile} className="icons" />
-          <IconsText>{profileItemStatus}</IconsText>
-        </ImgBox>
-      </MenuIcons>
-    </Container>
+          <S.Img src={A.profile} className="icons" />
+          <S.IconsText>{profileItemStatus}</S.IconsText>
+        </S.ImgBox>
+      </S.MenuIcons>
+    </S.Container>
   );
 };
 
