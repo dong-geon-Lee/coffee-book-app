@@ -20,3 +20,4 @@ export { default as heart4 } from "./heart4.svg";
 export { default as cart2 } from "./cart2.svg";
 export { default as emptyCart } from "./cart3.svg";
 export { default as xIcons } from "./delete.svg";
+export { default as checked } from "./checked.svg";

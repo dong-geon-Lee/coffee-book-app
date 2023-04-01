@@ -1,55 +1,41 @@
 import NavMenu from "../../components/NavMenu/NavMenu";
-import back from "../../assets/back.svg";
-import heart from "../../assets/heart2.svg";
 import checked from "../../assets/checked.svg";
 import { Link } from "react-router-dom";
-import {
-  COMPLETE__ORDER,
-  DETAIL__PAYMENT__MESSAGE,
-} from "../../constants/constants";
-import {
-  Button,
-  Container,
-  Div,
-  Header,
-  Logo,
-  OrderBox,
-  Section,
-  Text,
-  Title,
-} from "./styles";
+import * as S from "./styles";
+import * as A from "../../assets";
+import * as C from "../../constants/constants";
 
 const Checkout = () => {
   return (
-    <Container>
-      <Section>
-        <Header>
+    <S.Container>
+      <S.Section>
+        <S.Header>
           <Link to="/home">
-            <Logo src={back} alt="logo" />
+            <S.Logo src={A.back} alt="logo" />
           </Link>
-          <Title>결제</Title>
-          <Logo src={heart} alt="logo" className="logo" />
-        </Header>
+          <S.Title>결제</S.Title>
+          <S.Logo src={A.heart2} alt="logo" className="logo" />
+        </S.Header>
 
-        <OrderBox>
-          <Div>
-            <Logo src={checked} className="checked" />
-            <Title className="order__completed">{COMPLETE__ORDER}</Title>
-            <Text>{DETAIL__PAYMENT__MESSAGE}</Text>
-          </Div>
+        <S.OrderBox>
+          <S.Div>
+            <S.Logo src={checked} className="checked" />
+            <S.Title className="order__completed">{C.COMPLETE__ORDER}</S.Title>
+            <S.Text>{C.DETAIL__PAYMENT__MESSAGE}</S.Text>
+          </S.Div>
 
-          <Div className="btn__group">
+          <S.Div className="btn__group">
             <Link to="/home">
-              <Button className="home__btn">메인페이지</Button>
+              <S.Button className="home__btn">메인페이지</S.Button>
             </Link>
             <Link to="/details">
-              <Button className="checkout__btn">결제내역</Button>
+              <S.Button className="checkout__btn">결제내역</S.Button>
             </Link>
-          </Div>
-        </OrderBox>
-      </Section>
+          </S.Div>
+        </S.OrderBox>
+      </S.Section>
       <NavMenu />
-    </Container>
+    </S.Container>
   );
 };
 
