@@ -1,8 +1,3 @@
-import NavMenu from "../../components/NavMenu/NavMenu";
-import back from "../../assets/back.svg";
-import profile from "../../assets/profile2.svg";
-import Overlays from "../../components/Overlays/Overlays";
-import Modals from "../../components/Modals/Modals";
 import { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -10,29 +5,12 @@ import { modalState, overlayState } from "../../recoils/modalState";
 import { authUserState, bankOptionState } from "../../recoils/userAuthState";
 import { bankProps, ButtonProps } from "../../@types/types";
 import { findSelectedBank, formattedNumber } from "../../helpers/helpers";
-import {
-  CHOICE__ACCOUNT,
-  CHOICE__BANK__MESSAGE,
-} from "../../constants/constants";
-import {
-  Box,
-  BtnBox,
-  Button,
-  Container,
-  Header,
-  Img,
-  ImgBox,
-  Label,
-  Logo,
-  Option,
-  Section,
-  Select,
-  Span,
-  SubBox,
-  Title,
-  UserBox,
-  UserInfo,
-} from "./styles";
+import NavMenu from "../../components/NavMenu/NavMenu";
+import Overlays from "../../components/Overlays/Overlays";
+import Modals from "../../components/Modals/Modals";
+import * as S from "./styles";
+import * as A from "../../assets";
+import * as C from "../../constants/constants";
 
 const Profiles = () => {
   const [openModals, setOpenModals] = useRecoilState(modalState);
@@ -59,85 +37,88 @@ const Profiles = () => {
   }, [path]);
 
   return (
-    <Container>
-      <Section>
-        <Header>
+    <S.Container>
+      <S.Section>
+        <S.Header>
           <Link to="/home">
-            <Logo src={back} alt="logo" />
+            <S.Logo src={A.back} alt="logo" />
           </Link>
-          <Title>프로필</Title>
-          <Logo src={profile} alt="logo" className="logo" />
-        </Header>
+          <S.Title>프로필</S.Title>
+          <S.Logo src={A.profile2} alt="logo" className="logo" />
+        </S.Header>
 
         {openModals && <Modals />}
         {overlays && <Overlays />}
 
-        <UserBox>
-          <ImgBox>
-            <Img src={authUser.avartar} alt="avartar" />
-          </ImgBox>
-
+        <S.UserBox>
+          <S.ImgBox>
+            <S.Img src={authUser.avartar} alt="avartar" />
+          </S.ImgBox>
           {authUser && (
-            <UserInfo>
-              <Box>
-                <Label>아이디</Label>
-                <Span>{authUser.userId}</Span>
-              </Box>
-              <Box>
-                <Label>이름</Label>
-                <Span>{authUser.name}</Span>
-              </Box>
-              <Box>
-                <Label>주소</Label>
-                <Span>{authUser.address}</Span>
-              </Box>
-              <Box>
-                <SubBox>
-                  <Label>계좌번호</Label>
-                  <Select value={bankOption} onChange={onChange}>
-                    <Option value={CHOICE__ACCOUNT}>계좌 선택</Option>
+            <S.UserInfo>
+              <S.Box>
+                <S.Label>아이디</S.Label>
+                <S.Span>{authUser.userId}</S.Span>
+              </S.Box>
+              <S.Box>
+                <S.Label>이름</S.Label>
+                <S.Span>{authUser.name}</S.Span>
+              </S.Box>
+              <S.Box>
+                <S.Label>주소</S.Label>
+                <S.Span>{authUser.address}</S.Span>
+              </S.Box>
+              <S.Box>
+                <S.SubBox>
+                  <S.Label>계좌번호</S.Label>
+                  <S.Select value={bankOption} onChange={onChange}>
+                    <S.Option value={C.CHOICE__ACCOUNT}>계좌 선택</S.Option>
                     {authUser?.bankInfo?.map((bank: bankProps) => (
-                      <Option key={bank.id} value={bank.bankName}>
+                      <S.Option key={bank.id} value={bank.bankName}>
                         {bank?.bankName}
-                      </Option>
+                      </S.Option>
                     ))}
-                  </Select>
-                </SubBox>
+                  </S.Select>
+                </S.SubBox>
                 {!filteredBank ? (
-                  <Span className="choice__bank">{CHOICE__BANK__MESSAGE}</Span>
+                  <S.Span className="choice__bank">
+                    {C.CHOICE__BANK__MESSAGE}
+                  </S.Span>
                 ) : (
-                  <Span key={filteredBank?.id}>{filteredBank?.accNumber}</Span>
+                  <S.Span key={filteredBank?.id}>
+                    {filteredBank?.accNumber}
+                  </S.Span>
                 )}
-              </Box>
-              <Box>
-                <Label>Pay머니</Label>
+              </S.Box>
+              <S.Box>
+                <S.Label>Pay머니</S.Label>
                 {!filteredBank ? (
-                  <Span className="choice__bank">{CHOICE__BANK__MESSAGE}</Span>
+                  <S.Span className="choice__bank">
+                    {C.CHOICE__BANK__MESSAGE}
+                  </S.Span>
                 ) : (
-                  <Span key={filteredBank?.id}>
+                  <S.Span key={filteredBank?.id}>
                     {formattedNumber(filteredBank?.money)}원
-                  </Span>
+                  </S.Span>
                 )}
-              </Box>
-            </UserInfo>
+              </S.Box>
+            </S.UserInfo>
           )}
-
-          <BtnBox>
-            <Button onClick={() => handleModals()} disabled={!filteredBank}>
+          <S.BtnBox>
+            <S.Button onClick={() => handleModals()} disabled={!filteredBank}>
               Pay충전
-            </Button>
-            <Button
+            </S.Button>
+            <S.Button
               onClick={() => navigate("/details")}
               className="pay__recorded"
             >
               결제내역
-            </Button>
-          </BtnBox>
-        </UserBox>
-      </Section>
-
+            </S.Button>
+          </S.BtnBox>
+        </S.UserBox>
+      </S.Section>
       <NavMenu />
-    </Container>
+    </S.Container>
   );
 };
 

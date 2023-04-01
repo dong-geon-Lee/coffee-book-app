@@ -8,6 +8,7 @@ export { default as home } from "./home.svg";
 export { default as heart } from "./heart.svg";
 export { default as cart } from "./cart.svg";
 export { default as profile } from "./profile.svg";
+export { default as profile2 } from "./profile2.svg";
 export { default as logout } from "./logout2.svg";
 export { default as image2 } from "./login3.jpg";
 export { default as back } from "./back.svg";
