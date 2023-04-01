@@ -23,3 +23,4 @@ export { default as xIcons } from "./delete.svg";
 export { default as checked } from "./checked.svg";
 export { default as note } from "./note.svg";
 export { default as payment } from "./payment.svg";
+export { default as image } from "./coffee.jpg";

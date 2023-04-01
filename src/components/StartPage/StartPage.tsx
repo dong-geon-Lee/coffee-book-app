@@ -1,25 +1,24 @@
 import { HashRouter as Router, Link } from "react-router-dom";
-import { Div, Button, Title, Strong, Img, ImageBox } from "./styles";
 import { openBookProps } from "../../@types/types";
-import image from "../../assets/coffee.jpg";
-import image4 from "../../assets/login3.jpg";
+import * as S from "./styles";
+import * as A from "../../assets";
 
 const StartPage = ({ handleBookPage, openBook }: openBookProps) => {
   return (
-    <ImageBox className="book" open={openBook}>
-      <Title>
-        <Strong>Coffee</Strong> Book
-      </Title>
-      <Img src={image} />
-      <Img src={image4} className="back__image" />
+    <S.ImageBox className="book" open={openBook}>
+      <S.Title>
+        <S.Strong>Coffee</S.Strong> Book
+      </S.Title>
+      <S.Img src={A.image} />
+      <S.Img src={A.image2} className="back__image" />
       <Router>
         <Link to="/login">
-          <Div className="start">
-            <Button onClick={() => handleBookPage()}>시작하기</Button>
-          </Div>
+          <S.Div className="start">
+            <S.Button onClick={() => handleBookPage()}>시작하기</S.Button>
+          </S.Div>
         </Link>
       </Router>
-    </ImageBox>
+    </S.ImageBox>
   );
 };
 
