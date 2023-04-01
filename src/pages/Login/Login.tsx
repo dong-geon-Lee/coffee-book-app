@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { Button, Container, Div, Form, GuestBox, Input, Label } from "./styles";
 import { userProps } from "../../@types/types";
 import { checkAuthUser } from "../../helpers/helpers";
 import {
@@ -9,11 +8,8 @@ import {
   authActiveState,
   authUserState,
 } from "../../recoils/userAuthState";
-import {
-  EMPTY__INPUT__MESSAGE,
-  ERROR__INPUT__MESSAGE,
-  RANDOM__GUEST__ACCOUNT,
-} from "../../constants/constants";
+import * as S from "./styles";
+import * as C from "../../constants/constants";
 
 const Login = () => {
   const accountLists = useRecoilValue(accountListState);
@@ -39,7 +35,7 @@ const Login = () => {
     e.preventDefault();
 
     if (!userId || !password) {
-      alert(EMPTY__INPUT__MESSAGE);
+      alert(C.EMPTY__INPUT__MESSAGE);
       return;
     }
 
@@ -47,7 +43,7 @@ const Login = () => {
 
     if (!checkAuth) {
       setAuthActive(false);
-      alert(ERROR__INPUT__MESSAGE);
+      alert(C.ERROR__INPUT__MESSAGE);
       return;
     } else {
       setAuthUser(checkAuth);
@@ -63,37 +59,37 @@ const Login = () => {
   };
 
   return (
-    <Container>
-      <GuestBox>
-        <Button className="guest__btn" onClick={generateRandomGuest}>
-          {RANDOM__GUEST__ACCOUNT}
-        </Button>
-      </GuestBox>
+    <S.Container>
+      <S.GuestBox>
+        <S.Button className="guest__btn" onClick={generateRandomGuest}>
+          {C.RANDOM__GUEST__ACCOUNT}
+        </S.Button>
+      </S.GuestBox>
 
-      <Form onSubmit={handleAuth}>
-        <Div>
-          <Label>아이디</Label>
-          <Input
+      <S.Form onSubmit={handleAuth}>
+        <S.Div>
+          <S.Label>아이디</S.Label>
+          <S.Input
             type="text"
             placeholder="게스트 아이디를 입력하세요"
             onChange={onChange}
             value={userId}
             name="userId"
           />
-        </Div>
-        <Div>
-          <Label>비밀번호</Label>
-          <Input
+        </S.Div>
+        <S.Div>
+          <S.Label>비밀번호</S.Label>
+          <S.Input
             type="password"
             placeholder="게스트 비밀번호를 입력하세요"
             onChange={onChange}
             value={password}
             name="password"
           />
-        </Div>
-        <Button type="submit">로그인</Button>
-      </Form>
-    </Container>
+        </S.Div>
+        <S.Button type="submit">로그인</S.Button>
+      </S.Form>
+    </S.Container>
   );
 };
 

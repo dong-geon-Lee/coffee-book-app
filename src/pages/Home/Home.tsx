@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { authActiveState } from "../../recoils/userAuthState";
 import {
@@ -21,8 +21,6 @@ const Home = () => {
     useRecoilValue(currentItemState);
 
   const navigate = useNavigate();
-  const location = useLocation();
-
   const homeItemStatus = homeStatus ? homeStatus.length : 0;
   const likeItemStatus = likeStatus ? likeStatus.length : 0;
   const cartItemStatus = cartStatus ? cartStatus.length : 0;
@@ -39,10 +37,6 @@ const Home = () => {
     if (destination === "login") setAuthActive(false);
     navigate(`/${destination}`);
   };
-
-  useEffect(() => {
-    setAuthActive(true);
-  }, [location.pathname === "/home"]);
 
   useEffect(() => {
     if (!authActive) {

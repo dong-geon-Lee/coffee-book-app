@@ -77,7 +77,6 @@ export const findFilteredItems = (
   checkedMenu: filterItemProps
 ) => {
   const { espresso, coldbrew, frappuccino, blended } = checkedMenu;
-
   return existCoffeeItems.filter(
     (coffeeItem) =>
       (espresso && coffeeItem.type === "espresso") ||
