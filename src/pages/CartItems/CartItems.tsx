@@ -1,44 +1,18 @@
 import Spinner from "../../components/Spinner/Spinner";
 import NavMenu from "../../components/NavMenu/NavMenu";
-import back from "../../assets/back.svg";
-import cart from "../../assets/cart2.svg";
-import emptyCart from "../../assets/cart3.svg";
-import xIcons from "../../assets/delete.svg";
 import { accountListState, authUserState } from "../../recoils/userAuthState";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useEffect, useState } from "react";
 import { cartItemProps } from "../../@types/types";
 import { formattedNumber, removeCartItem } from "../../helpers/helpers";
-import { CART__EMPTY, SHIPPING__COST } from "../../constants/constants";
 import {
   cartItemTotalState,
   paymentDetailState,
 } from "../../recoils/coffeeItemState";
-import {
-  Section,
-  Container,
-  Header,
-  Logo,
-  Title,
-  Div,
-  Img,
-  ImgBox,
-  ContentBox,
-  Text,
-  Price,
-  ButtonBox,
-  Button,
-  Btns,
-  Center,
-  Label,
-  Bottom,
-  ItemBox,
-  Span,
-  EmptyBox,
-  EmptyText,
-  Background,
-} from "./styles";
+import * as S from "./styles";
+import * as A from "../../assets";
+import * as C from "../../constants/constants";
 
 const CartItems = () => {
   const [activeSpinner, setActiveSpinner] = useState(false);
@@ -67,9 +41,6 @@ const CartItems = () => {
       });
     });
   };
-
-  console.log(paymentDetails);
-  console.log(cartLists);
 
   const handleCheckout = () => {
     setActiveSpinner(true);
@@ -104,81 +75,81 @@ const CartItems = () => {
   }, [activeSpinner]);
 
   return (
-    <Container>
-      <Section items={cartLists}>
-        <Header>
+    <S.Container>
+      <S.Section items={cartLists}>
+        <S.Header>
           <Link to="/home">
-            <Logo src={back} alt="logo" />
+            <S.Logo src={A.back} alt="logo" />
           </Link>
-          <Title>장바구니</Title>
-          <Logo src={cart} alt="logo" className="logo" />
-        </Header>
+          <S.Title>장바구니</S.Title>
+          <S.Logo src={A.cart2} alt="logo" className="logo" />
+        </S.Header>
+
         {activeSpinner && <Spinner />}
-        <Center items={cartLists.length}>
+
+        <S.Center items={cartLists.length}>
           {cartLists.length > 0 ? (
             cartLists.map((item: cartItemProps) => (
-              <Div key={item.id}>
-                <ImgBox>
-                  <Img src={item.image} alt="img" />
-                </ImgBox>
-                <ContentBox>
-                  <Text items={cartLists.length}>{item.title}</Text>
-                  <Price className="price">
+              <S.Div key={item.id}>
+                <S.ImgBox>
+                  <S.Img src={item.image} alt="img" />
+                </S.ImgBox>
+                <S.ContentBox>
+                  <S.Text items={cartLists.length}>{item.title}</S.Text>
+                  <S.Price className="price">
                     {formattedNumber(Number(item.price))}원
-                  </Price>
-                  <Text className="size" items={cartLists.length}>
+                  </S.Price>
+                  <S.Text className="size" items={cartLists.length}>
                     크기: {item.size}
-                  </Text>
-                </ContentBox>
-                <ButtonBox>
-                  <Btns>
-                    <Text className="qty" items={cartLists.length}>
+                  </S.Text>
+                </S.ContentBox>
+                <S.ButtonBox>
+                  <S.Btns>
+                    <S.Text className="qty" items={cartLists.length}>
                       상품: {item.recordedQty} 개
-                    </Text>
-                  </Btns>
-
-                  <Logo
-                    src={xIcons}
+                    </S.Text>
+                  </S.Btns>
+                  <S.Logo
+                    src={A.xIcons}
                     alt="logo"
                     className="xBtn"
                     onClick={() => handleRemoveCartItems(String(item.id))}
                   />
-                </ButtonBox>
-              </Div>
+                </S.ButtonBox>
+              </S.Div>
             ))
           ) : (
-            <EmptyBox className="empty__box">
-              <Background img={emptyCart} />
-              <EmptyText className="empty__text">{CART__EMPTY}</EmptyText>
-            </EmptyBox>
+            <S.EmptyBox className="empty__box">
+              <S.Background img={A.emptyCart} />
+              <S.EmptyText className="empty__text">{C.CART__EMPTY}</S.EmptyText>
+            </S.EmptyBox>
           )}
-        </Center>
+        </S.Center>
 
         {cartLists.length > 0 && (
-          <Bottom>
-            <ItemBox>
-              <Label>상품금액</Label>
-              <Span>+{formattedNumber(cartItemTotal - SHIPPING__COST)}원</Span>
-            </ItemBox>
-
-            <ItemBox>
-              <Label>배송비</Label>
-              <Span>+{formattedNumber(SHIPPING__COST)}원</Span>
-            </ItemBox>
-
-            <ItemBox>
-              <Label>주문금액</Label>
-              <Span>{formattedNumber(cartItemTotal)} 원</Span>
-            </ItemBox>
-
-            <Button className="checkout__btn" onClick={handleCheckout}>
+          <S.Bottom>
+            <S.ItemBox>
+              <S.Label>상품금액</S.Label>
+              <S.Span>
+                +{formattedNumber(cartItemTotal - C.SHIPPING__COST)}원
+              </S.Span>
+            </S.ItemBox>
+            <S.ItemBox>
+              <S.Label>배송비</S.Label>
+              <S.Span>+{formattedNumber(C.SHIPPING__COST)}원</S.Span>
+            </S.ItemBox>
+            <S.ItemBox>
+              <S.Label>주문금액</S.Label>
+              <S.Span>{formattedNumber(cartItemTotal)} 원</S.Span>
+            </S.ItemBox>
+            <S.Button className="checkout__btn" onClick={handleCheckout}>
               결제하기
-            </Button>
-          </Bottom>
+            </S.Button>
+          </S.Bottom>
         )}
-      </Section>
+      </S.Section>
       <NavMenu />
-    </Container>
+    </S.Container>
   );
 };
 

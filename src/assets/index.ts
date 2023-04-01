@@ -16,3 +16,6 @@ export { default as star } from "./star.svg";
 export { default as star0 } from "./star3.svg";
 export { default as heart2 } from "./heart2.svg";
 export { default as heart4 } from "./heart4.svg";
+export { default as cart2 } from "./cart2.svg";
+export { default as emptyCart } from "./cart3.svg";
+export { default as xIcons } from "./delete.svg";
