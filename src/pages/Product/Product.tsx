@@ -1,11 +1,7 @@
-import back from "../../assets/back.svg";
-import coffee8 from "../../assets/coffee8.svg";
-import star from "../../assets/star.svg";
-import star0 from "../../assets/star3.svg";
-import NavMenu from "../../components/NavMenu/NavMenu";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import NavMenu from "../../components/NavMenu/NavMenu";
 import { itemOptionProps } from "../../@types/types";
 import { accountListState, authUserState } from "../../recoils/userAuthState";
 import {
@@ -22,27 +18,8 @@ import {
   formattedNumber,
   selectProductSize,
 } from "../../helpers/helpers";
-import {
-  BtnBox,
-  Button,
-  Buttons,
-  Container,
-  ContentBox,
-  Contents,
-  CountBox,
-  Description,
-  Div,
-  Header,
-  Img,
-  ImgBox,
-  Logo,
-  LogoBox,
-  PriceBox,
-  PriceText,
-  Section,
-  SizeBox,
-  Title,
-} from "./styles";
+import * as S from "./styles";
+import * as A from "../../assets";
 
 const Product = () => {
   const [selectedSize, setSelectedSize] = useRecoilState(selectedSizeState);
@@ -148,94 +125,87 @@ const Product = () => {
   };
 
   return (
-    <Container>
-      <Section>
-        <Header>
+    <S.Container>
+      <S.Section>
+        <S.Header>
           <Link to="/home" onClick={arrowResetBtn}>
-            <Logo src={back} alt="logo" />
+            <S.Logo src={A.back} alt="logo" />
           </Link>
-
-          <Title>상품페이지</Title>
-          <Logo src={coffee8} alt="logo" className="logo" />
-        </Header>
-
-        <ImgBox>
-          <Img src={image} />
-        </ImgBox>
-
-        <ContentBox>
-          <Contents>
-            <Title className="content__title">{title}</Title>
-            <LogoBox>
+          <S.Title>상품페이지</S.Title>
+          <S.Logo src={A.coffee8} alt="logo" className="logo" />
+        </S.Header>
+        <S.ImgBox>
+          <S.Img src={image} />
+        </S.ImgBox>
+        <S.ContentBox>
+          <S.Contents>
+            <S.Title className="content__title">{title}</S.Title>
+            <S.LogoBox>
               {stars.map((stars: number, index: string) => (
-                <Logo
+                <S.Logo
                   key={index}
-                  src={stars === 1 ? star : star0}
+                  src={stars === 1 ? A.star : A.star0}
                   alt="star"
                   className="stars"
                 />
               ))}
-            </LogoBox>
-          </Contents>
-          <Description>{description}</Description>
-
-          <SizeBox>
+            </S.LogoBox>
+          </S.Contents>
+          <S.Description>{description}</S.Description>
+          <S.SizeBox>
             {product.map((item: itemOptionProps) => (
-              <Div key={item.id}>
-                <Button
+              <S.Div key={item.id}>
+                <S.Button
                   onClick={() => handleResetMenu(Number(item.price))}
                   active={item.id === selectedSizeIndex + 1}
                 >
                   {item.size}
-                </Button>
-              </Div>
+                </S.Button>
+              </S.Div>
             ))}
-          </SizeBox>
-
-          <PriceBox>
-            <PriceText>
+          </S.SizeBox>
+          <S.PriceBox>
+            <S.PriceText>
               상품 가격:{formattedNumber(selectedSize * quantity)}원
-            </PriceText>
-
-            <CountBox>
-              <Buttons
+            </S.PriceText>
+            <S.CountBox>
+              <S.Buttons
                 className="minus"
                 onClick={handleMinusClick}
                 disabled={cartBtnDisabled}
               >
                 -
-              </Buttons>
-              <Title className="quantity">{quantity}</Title>
-              <Buttons
+              </S.Buttons>
+              <S.Title className="quantity">{quantity}</S.Title>
+              <S.Buttons
                 className="plus"
                 onClick={handlePlusClick}
                 disabled={cartBtnDisabled}
               >
                 +
-              </Buttons>
-            </CountBox>
-          </PriceBox>
-
-          <BtnBox>
-            <Buttons
+              </S.Buttons>
+            </S.CountBox>
+          </S.PriceBox>
+          <S.BtnBox>
+            <S.Buttons
               className="likes"
               onClick={handleLikes}
               disabled={likeBtnDisabled}
             >
               좋아요
-            </Buttons>
-            <Buttons
+            </S.Buttons>
+            <S.Buttons
               className="carts"
               onClick={handleCartItem}
               disabled={cartBtnDisabled}
             >
               장바구니
-            </Buttons>
-          </BtnBox>
-        </ContentBox>
-      </Section>
+            </S.Buttons>
+          </S.BtnBox>
+        </S.ContentBox>
+      </S.Section>
       <NavMenu />
-    </Container>
+    </S.Container>
   );
 };
 

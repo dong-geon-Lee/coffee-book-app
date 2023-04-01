@@ -9,3 +9,7 @@ export { default as cart } from "./cart.svg";
 export { default as profile } from "./profile.svg";
 export { default as logout } from "./logout2.svg";
 export { default as image2 } from "./login3.jpg";
+export { default as back } from "./back.svg";
+export { default as coffee8 } from "./coffee8.svg";
+export { default as star } from "./star.svg";
+export { default as star0 } from "./star3.svg";
