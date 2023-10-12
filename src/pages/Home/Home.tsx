@@ -39,9 +39,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (!authActive) {
-      navigate("/login");
-    }
+    if (!authActive) navigate("/login");
   }, [authActive, navigate]);
 
   return (

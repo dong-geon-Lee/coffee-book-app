@@ -1,7 +1,6 @@
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import NavMenu from "../../components/NavMenu/NavMenu";
 import { itemOptionProps } from "../../@types/types";
 import { accountListState, authUserState } from "../../recoils/userAuthState";
 import {
@@ -18,6 +17,7 @@ import {
   formattedNumber,
   selectProductSize,
 } from "../../helpers/helpers";
+import NavMenu from "../../components/NavMenu/NavMenu";
 import * as S from "./styles";
 import * as A from "../../assets";
 
