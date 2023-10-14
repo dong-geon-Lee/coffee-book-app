@@ -7,7 +7,7 @@ import { calcTotalProduct, findFilteredItems } from "../helpers/helpers";
 
 export const coffeeItemState = atom<productProps[]>({
   key: "dataState",
-  default: coffeeLists,
+  default: coffeeLists || [],
 });
 
 export const paymentDetailState = atom<cartItemProps[]>({

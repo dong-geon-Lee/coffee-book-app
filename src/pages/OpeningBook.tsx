@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { authActiveState, openBookState } from "../recoils/userAuthState";
 import Login from "./Login/Login";
@@ -24,6 +24,19 @@ const OpeningBook = () => {
   return (
     <S.Container>
       <S.Wrapper open={openBook}>
+        <Router>
+          <Routes>
+            <Route
+              path="components"
+              element={
+                <>
+                  <button>카카오 로그인</button>
+                </>
+              }
+            ></Route>
+          </Routes>
+        </Router>
+
         <S.LoginBox loginImg={A.image2} open={openBook}>
           {openBook && (
             <Router>
@@ -43,13 +56,17 @@ const OpeningBook = () => {
             <Router>
               <Link to="/">
                 <S.Div className="back" open={openBook}>
-                  <S.Button
+                  {/* <S.Button
                     onClick={handleBookPage}
                     className="back__btn"
                     disabled={!openBook}
                   >
                     ⬅ 나가기
-                  </S.Button>
+                  </S.Button> */}
+
+                  {/* <S.Button className="oauth__btn">네이버 로그인</S.Button>
+                  <S.Button className="oauth__btn">카카오 로그인</S.Button>
+                  <S.Button className="oauth__btn">구글 로그인</S.Button> */}
                 </S.Div>
               </Link>
             </Router>

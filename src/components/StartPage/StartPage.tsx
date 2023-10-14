@@ -1,4 +1,4 @@
-import { HashRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import { openBookProps } from "../../@types/types";
 import * as S from "./styles";
 import * as A from "../../assets";

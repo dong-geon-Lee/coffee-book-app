@@ -104,4 +104,10 @@ export const Button = styled.button`
     font-size: 1.8rem;
     width: 50%;
   }
+
+  &.oauth__btn {
+    display: block;
+    padding: 1rem;
+    margin: 1.8rem 25%;
+  }
 `;

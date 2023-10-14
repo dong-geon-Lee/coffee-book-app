@@ -20,6 +20,8 @@ const Home = () => {
   const { homeStatus, likeStatus, cartStatus, profileStatus } =
     useRecoilValue(currentItemState);
 
+  console.log(homeStatus);
+
   const navigate = useNavigate();
   const homeItemStatus = homeStatus ? homeStatus.length : 0;
   const likeItemStatus = likeStatus ? likeStatus.length : 0;
